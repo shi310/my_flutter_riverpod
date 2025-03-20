@@ -11,6 +11,7 @@ class GlobalController with WidgetsBindingObserver {
 
   static GlobalController get to => _instance;
 
+  // 网络请求
   MyDio? myDio;
 
   // wss 通信
@@ -40,31 +41,47 @@ class GlobalController with WidgetsBindingObserver {
   // 是否使用过APP
   String isUsedApp = '1';
 
-  void onInit() {
+  Future<void> onInit() async {
     WidgetsBinding.instance.addObserver(this);
   }
 
-  void onClose() {
+  void _onClose() {
+    MyLogger.w('检测到 App 彻底退出...');
+    timerHotUpdate?.cancel();
+    _disconnectTimer?.cancel();
+    myWss?.close();
+    myDio?.cancel();
     WidgetsBinding.instance.removeObserver(this);
+  }
+
+  void _onResumed() {
+    MyLogger.w('检测到 app 切换到了前台...');
+    _disconnectTimer?.cancel();
+    _disconnectTimer = null;
+    if (isWssCanConnection) {
+      myWss?.connect();
+    }
+  }
+
+  void _onPaused() {
+    MyLogger.w('检测到 app 切换到了后台...');
+    _disconnectTimer = Timer(Duration(minutes: 1), () {
+      MyLogger.w('1 分钟未回到前台，断开 WebSocket');
+      myWss?.close();
+    });
   }
 
   @override
   void didChangeAppLifecycleState(AppLifecycleState state) async {
     switch (state) {
       case AppLifecycleState.resumed:
-        MyLogger.w('app 切换到了前台');
-        _disconnectTimer?.cancel();
-        _disconnectTimer = null;
-        if (isWssCanConnection) {
-          myWss?.connect();
-        }
+        _onResumed();
         break;
       case AppLifecycleState.paused:
-        MyLogger.w('app 切换到了后台');
-        _disconnectTimer = Timer(Duration(minutes: 1), () {
-          MyLogger.w('1 分钟未回到前台，断开 WebSocket');
-          myWss?.close();
-        });
+        _onPaused();
+        break;
+      case AppLifecycleState.detached:
+        _onClose();
         break;
       default:
         break;

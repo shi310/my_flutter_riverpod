@@ -12,6 +12,7 @@ Future<void> getOptions({
   if (GlobalController.to.wssUrlList.isNotEmpty && GlobalController.to.baseUrlList.isNotEmpty) {
     MyLogger.w('配置已获取请勿重复操作...');
     await onSuccess?.call();
+    return;
   }
 
   final client = HttpClient();

@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:my_flutter_basic/common/provider/alive_code.dart';
+
+import '../../common/common.dart';
 
 class Text01View extends ConsumerStatefulWidget {
   const Text01View({super.key});
@@ -14,7 +15,7 @@ class _Text01ViewState extends ConsumerState<Text01View> {
   @override
   void initState() {
     super.initState();
-    Future.microtask(() => ref.invalidate(aliveCodeNotifierProvider));
+    // Future.microtask(() => ref.invalidate(aliveCodeNotifierProvider));
   }
 
   @override
@@ -26,7 +27,7 @@ class _Text01ViewState extends ConsumerState<Text01View> {
       body: SafeArea(child: Column(
         children: [
           Expanded(child: switch (aliveCode) {
-            AsyncData(:final value) => Text(value.picPath),
+            AsyncData(:final value) => Text("${value.picPath}"),
             AsyncError() => const Text('Oops, something unexpected happened'),
             _ => const CircularProgressIndicator(),
           },),

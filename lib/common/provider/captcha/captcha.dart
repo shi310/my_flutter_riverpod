@@ -7,7 +7,7 @@ part 'captcha.g.dart';
 
 @riverpod
 Future<CaptchaModel> captcha(Ref ref) async {
-  CaptchaModel data = CaptchaModel.empty();
+  CaptchaModel data = CaptchaModel();
   await GlobalController.to.myDio?.get<CaptchaModel>(ApiPath.base.captcha,
     onSuccess: (code, msg, results) async {
       data = results;
@@ -16,6 +16,5 @@ Future<CaptchaModel> captcha(Ref ref) async {
     },
     onModel: (m) => CaptchaModel.fromJson(m),
   );
-
   return data;
 }

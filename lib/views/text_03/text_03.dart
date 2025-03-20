@@ -13,7 +13,7 @@ class Text03View extends ConsumerWidget{
       appBar: AppBar(title: Text('Http Request')),
       body: Center(
         child: switch (activity) {
-          AsyncData(:final value) => Text(value.picPath),
+          AsyncData(:final value) => Text('${value.picPath}'),
           AsyncError() => const Text('Oops, something unexpected happened'),
           _ => const CircularProgressIndicator(),
         },

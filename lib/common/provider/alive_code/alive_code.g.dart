@@ -6,7 +6,7 @@ part of 'alive_code.dart';
 // RiverpodGenerator
 // **************************************************************************
 
-String _$aliveCodeNotifierHash() => r'20d019d8fdcfffa82f39fd3a3c8298a9a9170435';
+String _$aliveCodeNotifierHash() => r'707ea1520bfe5b5effec0829b97e5011572a6f8b';
 
 /// See also [AliveCodeNotifier].
 @ProviderFor(AliveCodeNotifier)

@@ -8,7 +8,7 @@ part 'alive_code.g.dart';
 class AliveCodeNotifier extends _$AliveCodeNotifier {
   @override
   Future<CaptchaModel> build() async {
-    CaptchaModel data = CaptchaModel.empty();
+    CaptchaModel data = CaptchaModel();
     await GlobalController.to.myDio?.get<CaptchaModel>(ApiPath.base.captcha,
       onSuccess: (code, msg, results) async {
         data = results;
@@ -20,7 +20,9 @@ class AliveCodeNotifier extends _$AliveCodeNotifier {
   }
 
   void updateCaptcha() {
-    final newCaptcha = CaptchaModel.empty();
+    final newCaptcha = CaptchaModel(
+      picPath: '12313132',
+    );
     state = AsyncValue.data(newCaptcha);
   }
 }

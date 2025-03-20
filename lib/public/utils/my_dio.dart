@@ -8,7 +8,7 @@ class MyDio {
     this.headers,
     this.onResponse,
     this.onError,
-    this.dioCode = 0,
+    required this.isResponseSuccessful,
   }) {
     if (isInitialized) {
       log("⚠️ MyDio 已经初始化过...");
@@ -37,15 +37,13 @@ class MyDio {
         return onError?.call(err, handle);
       },
     ));
-    myDioCode = dioCode;
   }
 
   final BaseOptions Function(BaseOptions options)? baseOptions;
   final Map<String, dynamic>? headers;
   final Future<void> Function(Response<dynamic> response)? onResponse;
   final Future<void> Function(DioException error, ErrorInterceptorHandler handler)? onError;
-
-  final int dioCode;
+  final bool Function(int code) isResponseSuccessful;
 
   BaseOptions? dioOptions;
   Map<String, dynamic>? dioHeaders;
@@ -61,8 +59,6 @@ class MyDio {
     }
     return _dio!;
   }
-
-  int myDioCode = 0;
 
   void cancel() {
     cancelTokenPublic.cancel();
@@ -118,7 +114,7 @@ class MyDio {
       );
       final responseModel = ResponseModel.fromJson(response.data);
 
-      if (responseModel.code == myDioCode) {
+      if (isResponseSuccessful(responseModel.code)) {
         final model = onModel != null ? onModel(responseModel.data) : responseModel.data as T;
         await onSuccess?.call(responseModel.code, responseModel.msg, model);
       } else {
@@ -149,7 +145,7 @@ class MyDio {
       );
       final responseModel = ResponseModel.fromJson(response.data);
 
-      if (responseModel.code == myDioCode) {
+      if (isResponseSuccessful(responseModel.code)) {
         final model = onModel != null ? onModel(responseModel.data) : responseModel.data as T;
         await onSuccess?.call(responseModel.code, responseModel.msg, model);
       } else {
@@ -189,7 +185,7 @@ class MyDio {
       ).timeout(const Duration(days: 1));
       final responseModel = ResponseModel.fromJson(response.data);
 
-      if (responseModel.code == myDioCode) {
+      if (isResponseSuccessful(responseModel.code)) {
         final model = onModel != null ? onModel(responseModel.data) : responseModel.data as T;
         await onSuccess?.call(responseModel.code, responseModel.msg, model);
       } else {
@@ -228,6 +224,16 @@ class ResponseModel {
     code: -1,
     data: {},
     msg: '',
+  );
+
+  ResponseModel copyWith({
+    int? code,
+    dynamic data,
+    String? msg,
+  }) => ResponseModel(
+    code: code ?? this.code,
+    data: data ?? this.data,
+    msg: msg ?? this.msg,
   );
 
   Map<String, dynamic> toJson() => {

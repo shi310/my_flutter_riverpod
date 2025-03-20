@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:my_flutter_basic/common/provider/code.dart';
+
+import '../../common/common.dart';
 
 class Text02View extends ConsumerWidget{
   const Text02View({super.key});

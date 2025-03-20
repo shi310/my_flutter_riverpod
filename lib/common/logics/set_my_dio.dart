@@ -11,26 +11,26 @@ Future<void> setMyDio({
     return;
   }
   await getBaseUrl(
-      urls: GlobalController.to.baseUrlList,
-      onSuccess: (baseUrl) async {
-        await _setMyDio(baseUrl: baseUrl);
-        await onSuccess?.call();
-      },
-      onError: () async {
-        // if (isShowMyDialog) {
-        //   showMyDialog(
-        //     title: '与服务器连接失败',
-        //     content: '请稍后在重试',
-        //     confirmText: '重试',
-        //     onConfirm: () async {
-        //       showMyLoading();
-        //       await setMyDio(onSuccess: onSuccess);
-        //       hideMyLoading();
-        //     },
-        //     onCancel: () {},
-        //   );
-        // }
-      }
+    urls: GlobalController.to.baseUrlList,
+    onSuccess: (baseUrl) async {
+      await _setMyDio(baseUrl: baseUrl);
+      await onSuccess?.call();
+    },
+    onError: () async {
+      // if (isShowMyDialog) {
+      //   showMyDialog(
+      //     title: '与服务器连接失败',
+      //     content: '请稍后在重试',
+      //     confirmText: '重试',
+      //     onConfirm: () async {
+      //       showMyLoading();
+      //       await setMyDio(onSuccess: onSuccess);
+      //       hideMyLoading();
+      //     },
+      //     onCancel: () {},
+      //   );
+      // }
+    }
   );
 }
 
@@ -64,7 +64,9 @@ Future<void> _setMyDio({
     onError: (err, handle) async {
       return handle.reject(err);
     },
-    dioCode: 0,
+    isResponseSuccessful: (code) {
+      return code == 0;
+    },
   );
 }
 
