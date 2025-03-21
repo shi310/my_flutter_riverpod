@@ -1,8 +1,14 @@
 import 'dart:async';
+import 'dart:ui';
 
 import 'package:flutter/material.dart';
+import 'package:flutter/scheduler.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:my_device_info/models/my_device_info_model.dart';
 import 'package:my_flutter_basic/public/public.dart';
+
+import '../provider/language.dart';
+import '../provider/theme.dart';
 
 class GlobalController with WidgetsBindingObserver {
   static final GlobalController _instance = GlobalController._internal();
@@ -10,6 +16,9 @@ class GlobalController with WidgetsBindingObserver {
   GlobalController._internal();
 
   static GlobalController get to => _instance;
+
+  // 全局Key
+  final GlobalKey<NavigatorState> navigatorKey = GlobalKey<NavigatorState>();
 
   // 网络请求
   MyDio? myDio;
@@ -40,6 +49,12 @@ class GlobalController with WidgetsBindingObserver {
 
   // 是否使用过APP
   String isUsedApp = '1';
+
+  // localTag
+  String? localTag;
+
+  // themeModeTag
+  String? themeModeTag;
 
   Future<void> onInit() async {
     WidgetsBinding.instance.addObserver(this);
@@ -87,5 +102,49 @@ class GlobalController with WidgetsBindingObserver {
         break;
     }
     super.didChangeAppLifecycleState(state);
+  }
+
+  @override
+  void didChangePlatformBrightness() async {
+    if (GlobalController.to.themeModeTag != null) {
+      return;
+    }
+
+    SchedulerBinding.instance.addPostFrameCallback((_) {
+      final context = navigatorKey.currentContext;
+      if (context != null) {
+        final container = ProviderScope.containerOf(context);
+        container.read(themeNotifierProvider.notifier).updateLanguage(ThemeMode.system);
+      } else {
+        debugPrint("❌ navigatorKey.currentContext 为空，无法更新主题");
+      }
+    });
+  }
+
+  @override
+  void didChangeLocales(List<Locale>? locales) async {
+    if (GlobalController.to.localTag != null) {
+      return;
+    }
+
+    SchedulerBinding.instance.addPostFrameCallback((_) {
+      final context = navigatorKey.currentContext;
+      if (context != null) {
+        final container = ProviderScope.containerOf(context);
+        final systemLocale = PlatformDispatcher.instance.locale;
+        final systemLocaleTag = systemLocale.languageCode;
+
+        switch (systemLocaleTag) {
+          case 'zh':
+            container.read(languageNotifierProvider.notifier).updateLanguage(Locale('zh', 'CN'));
+          case 'en':
+            container.read(languageNotifierProvider.notifier).updateLanguage(Locale('en', 'US'));
+          default:
+            container.read(languageNotifierProvider.notifier).updateLanguage(Locale('zh', 'CN'));
+        }
+      } else {
+        debugPrint("❌ navigatorKey.currentContext 为空，无法更新语言");
+      }
+    });
   }
 }
