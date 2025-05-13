@@ -1,8 +1,9 @@
 import 'dart:async';
 import 'dart:io';
 
-import 'package:my_flutter_basic/common/common.dart';
-import 'package:my_flutter_basic/public/public.dart';
+import '../../public/public.dart';
+import '../common.dart';
+
 
 Future<void> getBaseUrl({
   required List<String> urls,

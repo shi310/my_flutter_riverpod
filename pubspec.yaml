@@ -1,7 +1,7 @@
 name: my_flutter_basic
 description: "A new Flutter project."
 publish_to: 'none' # Remove this line if you wish to publish to pub.dev
-version: 1.1.2
+version: 3.0.0
 
 environment:
   sdk: '>=3.5.3 <=4.0.0'
@@ -14,13 +14,6 @@ dependencies:
   flutter_localizations:
     sdk: flutter
 
-  # Use with the CupertinoIcons class for iOS style icons.
-  cupertino_icons: ^1.0.8
-
-  # 本地国际化
-  # Flutter 3.27.1 最高只能使用 0.19.0 的版本
-  intl: ^0.19.0
-
   # 获取设备信息
   my_device_info:
     path: ./plugins/my_device_info
@@ -29,8 +22,12 @@ dependencies:
   my_gallery:
     path: ./plugins/my_gallery
 
-  # 状态管理
-  flutter_riverpod: ^2.6.1
+  # Use with the CupertinoIcons class for iOS style icons.
+  cupertino_icons: ^1.0.8
+
+  # 本地国际化
+  # Flutter 3.27.1 最高只能使用 0.19.0 的版本
+  intl: ^0.19.0
 
   # svg
   flutter_svg: ^2.0.10+1
@@ -54,7 +51,10 @@ dependencies:
   encrypt: ^5.0.3
 
   # ws 模块
-  web_socket_channel: ^3.0.2
+  #  web_socket_channel: ^3.0.2
+
+  # 包信息
+  package_info_plus: ^8.3.0
 
   # 富文本
   flutter_html: ^3.0.0-beta.2
@@ -77,7 +77,23 @@ dependencies:
   # 深度链接
   app_links: ^6.4.0
 
+  # go_router
+  go_router: ^14.8.1
+
+  # flutter_security_checker
+  flutter_security_checker: ^3.2.1
+
+  # open_install
+  openinstall_flutter_plugin: ^2.5.4
+
+  # 键盘隐藏
+  flutter_keyboard_visibility: 6.0.0
+
+  # 网易行为验证码
+  captcha_plugin_flutter: ^1.1.9
+
   # riverpod
+  flutter_riverpod: ^2.6.1
   hooks_riverpod: ^2.6.1
   flutter_hooks: ^0.21.2
   riverpod_annotation: ^2.6.1
@@ -102,6 +118,7 @@ dev_dependencies:
   freezed: ^3.0.4
   json_serializable: ^6.9.4
 
+  # 多语言代码生成工具
   intl_utils: ^2.8.10
 
 analyzer:

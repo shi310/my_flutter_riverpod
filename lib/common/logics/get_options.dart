@@ -1,15 +1,18 @@
 import 'dart:async';
 import 'dart:convert';
 import 'dart:io';
-import 'package:my_flutter_basic/common/common.dart';
-import 'package:my_flutter_basic/public/public.dart';
+import 'package:flutter/material.dart';
+
+import '../../global.dart';
+import '../../public/public.dart';
+import '../common.dart';
 
 Future<void> getOptions({
   required List<String> urls,
   Future<dynamic> Function()? onSuccess,
   Future<dynamic> Function()? onError,
 }) async {
-  if (GlobalController.to.wssUrlList.isNotEmpty && GlobalController.to.baseUrlList.isNotEmpty) {
+  if (Global.to.wssUrlList.isNotEmpty && Global.to.baseUrlList.isNotEmpty) {
     MyLogger.w('配置已获取请勿重复操作...');
     await onSuccess?.call();
     return;
@@ -57,34 +60,47 @@ Future<void> getOptions({
     MyLogger.l();
 
     final List<dynamic> baseUrls = json['api'];
-    GlobalController.to.baseUrlList.clear();
+    Global.to.baseUrlList.clear();
     for (var element in baseUrls) {
-      GlobalController.to.baseUrlList.add(element.toString());
+      Global.to.baseUrlList.add(element.toString());
     }
 
-    MyLogger.w('获取到 API 地址 --> ${GlobalController.to.baseUrlList}');
+    MyLogger.w('获取到 API 地址 --> ${Global.to.baseUrlList}');
 
     final List<dynamic> wss = json['ws'];
-    GlobalController.to.wssUrlList.clear();
+    Global.to.wssUrlList.clear();
     for (var element in wss) {
-      GlobalController.to.wssUrlList.add(element.toString());
+      Global.to.wssUrlList.add(element.toString());
     }
 
-    MyLogger.w('获取到 WSS 地址 --> ${GlobalController.to.wssUrlList}');
+    MyLogger.w('获取到 WSS 地址 --> ${Global.to.wssUrlList}');
     MyLogger.l();
 
     await onSuccess?.call();
   } else {
-    // showMyDialog(
-    //   title: '连接失败',
-    //   content: '请点击重新按钮重新尝试',
-    //   onCancel: () {},
-    //   onConfirm: () async {
-    //     showMyLoading();
-    //     await onError?.call();
-    //     await getOptions(urls: urls, onError: onError, onSuccess: onSuccess);
-    //     hideMyLoading();
-    //   },
-    // );
+    showMyDialog(
+      isDismissible: false,
+      title: (context) {
+        return Text('连接失败', style: TextStyle(
+          fontSize: MyFontSize.titleSmall.value,
+          fontWeight: FontWeight.w600,
+        ));
+      },
+      content: (context) {
+        return Text('请点击重新按钮重新尝试', style: TextStyle(
+          fontSize: MyFontSize.body.value,
+        ));
+      },
+      onConfirm: (context) async {
+        showMyLoading();
+        await onError?.call();
+        await getOptions(
+          urls: urls,
+          onError: onError,
+          onSuccess: onSuccess,
+        );
+        hideMyLoading();
+      }
+    );
   }
 }

@@ -4,7 +4,8 @@ version: 0.0.1
 #homepage:
 
 environment:
-  sdk: '>=3.5.3 <=4.0.0'
+  sdk: ^3.5.4
+  flutter: '>=3.3.0'
 
 dependencies:
   flutter:
@@ -15,13 +16,13 @@ dependencies:
   plugin_platform_interface: ^2.1.8
 
   # 扫码
-  mobile_scanner: ^6.0.7
+  mobile_scanner: ^6.0.10
 
   # 相册图片选择
   image_picker: ^1.1.2
 
   # 动态获取权限
-  permission_handler: ^11.4.0
+  permission_handler: ^11.3.1
 
 dev_dependencies:
   flutter_test:

@@ -39,6 +39,10 @@ android {
         targetSdk = flutter.targetSdkVersion
         versionCode = flutter.versionCode
         versionName = flutter.versionName
+
+        manifestPlaceholders = [
+            OPENINSTALL_APPKEY : "w65l5p"
+        ]
     }
 
     buildTypes {

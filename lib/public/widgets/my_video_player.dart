@@ -39,7 +39,7 @@ class _MyVideoPlayerState extends State<MyVideoPlayer> {
         _videoPlayerController = VideoPlayerController.networkUrl(Uri.parse(widget.videoUrl!));
       }
     }
-    
+
     _chewieController = ChewieController(
       videoPlayerController: _videoPlayerController,
       autoPlay: false,
@@ -64,22 +64,22 @@ class _MyVideoPlayerState extends State<MyVideoPlayer> {
     super.initState();
   }
 
-  @override
-  void didUpdateWidget(covariant MyVideoPlayer oldWidget) {
-    // 页面刷新的时候
-    // 先暂停旧的视频，然后重新初始化
-    _videoPlayerController.pause();
-
-    _videoPlayerController.dispose().then((value) {
-      _chewieController.dispose();
-      initPlayer();
-      setState(() {
-        _isShowLoading = true;
-      });
-    });
-
-    super.didUpdateWidget(oldWidget);
-  }
+  // @override
+  // void didUpdateWidget(covariant MyVideoPlayer oldWidget) {
+  //   // 页面刷新的时候
+  //   // 先暂停旧的视频，然后重新初始化
+  //   _videoPlayerController.pause();
+  //
+  //   _videoPlayerController.dispose().then((value) {
+  //     _chewieController.dispose();
+  //     initPlayer();
+  //     setState(() {
+  //       _isShowLoading = true;
+  //     });
+  //   });
+  //
+  //   super.didUpdateWidget(oldWidget);
+  // }
 
   @override
   void dispose() {
@@ -115,21 +115,23 @@ class _MyVideoPlayerState extends State<MyVideoPlayer> {
       loadingContent,
     ]);
 
-    final size = MediaQuery.of(context).size.width - 40 - 32;
+    final size = MediaQuery.of(context).size.width;
 
     // 加载中的组成方式：
     // 封面图放最底下
     // 遮罩罩住封面图
     // 加载动画
     // 最后把加载中放到顶层
-    return ConstrainedBox(
-      constraints: BoxConstraints(maxWidth: size, maxHeight: size), 
-      child: _isShowLoading
-        ? loadingBox
-        : Container(
+    return RepaintBoundary(
+      child: ConstrainedBox(
+          constraints: BoxConstraints(maxWidth: size, maxHeight: size),
+          child: _isShowLoading
+              ? loadingBox
+              : Container(
             color: Colors.black,
             child: Chewie(controller: _chewieController),
           )
+      ),
     );
   }
 }

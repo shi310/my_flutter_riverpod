@@ -1,5 +1,5 @@
 library;
 
-export 'text_01/index.dart';
-export 'text_02/index.dart';
-export 'text_03/index.dart';
+export 'index/view.dart';
+export 'login/view.dart';
+export 'test/view.dart';

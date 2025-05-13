@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:my_flutter_basic/public/public.dart';
+
+import '../../public/public.dart';
 
 void showMyLoading() => MyAlert.showLoading();
 void hideMyLoading() => MyAlert.hideLoading();

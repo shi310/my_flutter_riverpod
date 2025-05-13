@@ -1,7 +1,8 @@
 import 'dart:ui';
 
-import 'package:my_flutter_basic/common/common.dart';
 import 'package:riverpod_annotation/riverpod_annotation.dart';
+
+import '../../global.dart';
 
 part 'language.g.dart';
 
@@ -10,8 +11,8 @@ class LanguageNotifier extends _$LanguageNotifier {
   @override
   Locale build() {
     String localeTag = '';
-    if (GlobalController.to.localTag != null) {
-      localeTag = GlobalController.to.localTag!;
+    if (Global.to.localTag != null) {
+      localeTag = Global.to.localTag!;
     } else {
       final systemLocale = PlatformDispatcher.instance.locale;
       final systemLocaleTag = systemLocale.languageCode;
