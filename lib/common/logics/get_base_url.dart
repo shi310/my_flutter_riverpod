@@ -19,7 +19,7 @@ Future<void> getBaseUrl({
     tasks.add(Future(() async {
       try {
         final uri = Uri.parse('$url${ApiPath.auth.health}');
-        final request = await client.getUrl(uri).timeout(MyConfig.time.out);
+        final request = await client.getUrl(uri).timeout(MyConfig.time.timeout);
         final response = await request.close();
 
         if (response.statusCode >= 200 && response.statusCode < 300) {
@@ -39,7 +39,7 @@ Future<void> getBaseUrl({
   String baseUrl = '';
 
   try {
-    baseUrl = await completer.future.timeout(MyConfig.time.out);
+    baseUrl = await completer.future.timeout(MyConfig.time.timeout);
   } catch (e) {
     MyLogger.w('健康检测超时或发生其他错误 --> $e');
   }

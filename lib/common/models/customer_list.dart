@@ -47,3 +47,18 @@ enum CustomerType {
   user,
 }
 
+@freezed
+abstract class CustomerChatViewArguments with _$CustomerChatViewArguments {
+  const factory CustomerChatViewArguments({
+    String? cret,
+    String? message,
+    String? apiUrl,
+    String? imageUrl,
+    String? avatarUrl,
+    String? sign,
+    int? tenantId,
+    int? userId,
+  }) = _CustomerChatViewArguments;
+
+  factory CustomerChatViewArguments.fromJson(Map<String, dynamic> json) => _$CustomerChatViewArgumentsFromJson(json);
+}

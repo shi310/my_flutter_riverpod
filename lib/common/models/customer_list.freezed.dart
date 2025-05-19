@@ -643,4 +643,287 @@ class __$CustomerListViewArgumentsCopyWithImpl<$Res>
   }
 }
 
+/// @nodoc
+mixin _$CustomerChatViewArguments {
+  String? get cret;
+  String? get message;
+  String? get apiUrl;
+  String? get imageUrl;
+  String? get avatarUrl;
+  String? get sign;
+  int? get tenantId;
+  int? get userId;
+
+  /// Create a copy of CustomerChatViewArguments
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
+  @pragma('vm:prefer-inline')
+  $CustomerChatViewArgumentsCopyWith<CustomerChatViewArguments> get copyWith =>
+      _$CustomerChatViewArgumentsCopyWithImpl<CustomerChatViewArguments>(
+          this as CustomerChatViewArguments, _$identity);
+
+  /// Serializes this CustomerChatViewArguments to a JSON map.
+  Map<String, dynamic> toJson();
+
+  @override
+  bool operator ==(Object other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType &&
+            other is CustomerChatViewArguments &&
+            (identical(other.cret, cret) || other.cret == cret) &&
+            (identical(other.message, message) || other.message == message) &&
+            (identical(other.apiUrl, apiUrl) || other.apiUrl == apiUrl) &&
+            (identical(other.imageUrl, imageUrl) ||
+                other.imageUrl == imageUrl) &&
+            (identical(other.avatarUrl, avatarUrl) ||
+                other.avatarUrl == avatarUrl) &&
+            (identical(other.sign, sign) || other.sign == sign) &&
+            (identical(other.tenantId, tenantId) ||
+                other.tenantId == tenantId) &&
+            (identical(other.userId, userId) || other.userId == userId));
+  }
+
+  @JsonKey(includeFromJson: false, includeToJson: false)
+  @override
+  int get hashCode => Object.hash(runtimeType, cret, message, apiUrl, imageUrl,
+      avatarUrl, sign, tenantId, userId);
+
+  @override
+  String toString() {
+    return 'CustomerChatViewArguments(cret: $cret, message: $message, apiUrl: $apiUrl, imageUrl: $imageUrl, avatarUrl: $avatarUrl, sign: $sign, tenantId: $tenantId, userId: $userId)';
+  }
+}
+
+/// @nodoc
+abstract mixin class $CustomerChatViewArgumentsCopyWith<$Res> {
+  factory $CustomerChatViewArgumentsCopyWith(CustomerChatViewArguments value,
+          $Res Function(CustomerChatViewArguments) _then) =
+      _$CustomerChatViewArgumentsCopyWithImpl;
+  @useResult
+  $Res call(
+      {String? cret,
+      String? message,
+      String? apiUrl,
+      String? imageUrl,
+      String? avatarUrl,
+      String? sign,
+      int? tenantId,
+      int? userId});
+}
+
+/// @nodoc
+class _$CustomerChatViewArgumentsCopyWithImpl<$Res>
+    implements $CustomerChatViewArgumentsCopyWith<$Res> {
+  _$CustomerChatViewArgumentsCopyWithImpl(this._self, this._then);
+
+  final CustomerChatViewArguments _self;
+  final $Res Function(CustomerChatViewArguments) _then;
+
+  /// Create a copy of CustomerChatViewArguments
+  /// with the given fields replaced by the non-null parameter values.
+  @pragma('vm:prefer-inline')
+  @override
+  $Res call({
+    Object? cret = freezed,
+    Object? message = freezed,
+    Object? apiUrl = freezed,
+    Object? imageUrl = freezed,
+    Object? avatarUrl = freezed,
+    Object? sign = freezed,
+    Object? tenantId = freezed,
+    Object? userId = freezed,
+  }) {
+    return _then(_self.copyWith(
+      cret: freezed == cret
+          ? _self.cret
+          : cret // ignore: cast_nullable_to_non_nullable
+              as String?,
+      message: freezed == message
+          ? _self.message
+          : message // ignore: cast_nullable_to_non_nullable
+              as String?,
+      apiUrl: freezed == apiUrl
+          ? _self.apiUrl
+          : apiUrl // ignore: cast_nullable_to_non_nullable
+              as String?,
+      imageUrl: freezed == imageUrl
+          ? _self.imageUrl
+          : imageUrl // ignore: cast_nullable_to_non_nullable
+              as String?,
+      avatarUrl: freezed == avatarUrl
+          ? _self.avatarUrl
+          : avatarUrl // ignore: cast_nullable_to_non_nullable
+              as String?,
+      sign: freezed == sign
+          ? _self.sign
+          : sign // ignore: cast_nullable_to_non_nullable
+              as String?,
+      tenantId: freezed == tenantId
+          ? _self.tenantId
+          : tenantId // ignore: cast_nullable_to_non_nullable
+              as int?,
+      userId: freezed == userId
+          ? _self.userId
+          : userId // ignore: cast_nullable_to_non_nullable
+              as int?,
+    ));
+  }
+}
+
+/// @nodoc
+@JsonSerializable()
+class _CustomerChatViewArguments implements CustomerChatViewArguments {
+  const _CustomerChatViewArguments(
+      {this.cret,
+      this.message,
+      this.apiUrl,
+      this.imageUrl,
+      this.avatarUrl,
+      this.sign,
+      this.tenantId,
+      this.userId});
+  factory _CustomerChatViewArguments.fromJson(Map<String, dynamic> json) =>
+      _$CustomerChatViewArgumentsFromJson(json);
+
+  @override
+  final String? cret;
+  @override
+  final String? message;
+  @override
+  final String? apiUrl;
+  @override
+  final String? imageUrl;
+  @override
+  final String? avatarUrl;
+  @override
+  final String? sign;
+  @override
+  final int? tenantId;
+  @override
+  final int? userId;
+
+  /// Create a copy of CustomerChatViewArguments
+  /// with the given fields replaced by the non-null parameter values.
+  @override
+  @JsonKey(includeFromJson: false, includeToJson: false)
+  @pragma('vm:prefer-inline')
+  _$CustomerChatViewArgumentsCopyWith<_CustomerChatViewArguments>
+      get copyWith =>
+          __$CustomerChatViewArgumentsCopyWithImpl<_CustomerChatViewArguments>(
+              this, _$identity);
+
+  @override
+  Map<String, dynamic> toJson() {
+    return _$CustomerChatViewArgumentsToJson(
+      this,
+    );
+  }
+
+  @override
+  bool operator ==(Object other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType &&
+            other is _CustomerChatViewArguments &&
+            (identical(other.cret, cret) || other.cret == cret) &&
+            (identical(other.message, message) || other.message == message) &&
+            (identical(other.apiUrl, apiUrl) || other.apiUrl == apiUrl) &&
+            (identical(other.imageUrl, imageUrl) ||
+                other.imageUrl == imageUrl) &&
+            (identical(other.avatarUrl, avatarUrl) ||
+                other.avatarUrl == avatarUrl) &&
+            (identical(other.sign, sign) || other.sign == sign) &&
+            (identical(other.tenantId, tenantId) ||
+                other.tenantId == tenantId) &&
+            (identical(other.userId, userId) || other.userId == userId));
+  }
+
+  @JsonKey(includeFromJson: false, includeToJson: false)
+  @override
+  int get hashCode => Object.hash(runtimeType, cret, message, apiUrl, imageUrl,
+      avatarUrl, sign, tenantId, userId);
+
+  @override
+  String toString() {
+    return 'CustomerChatViewArguments(cret: $cret, message: $message, apiUrl: $apiUrl, imageUrl: $imageUrl, avatarUrl: $avatarUrl, sign: $sign, tenantId: $tenantId, userId: $userId)';
+  }
+}
+
+/// @nodoc
+abstract mixin class _$CustomerChatViewArgumentsCopyWith<$Res>
+    implements $CustomerChatViewArgumentsCopyWith<$Res> {
+  factory _$CustomerChatViewArgumentsCopyWith(_CustomerChatViewArguments value,
+          $Res Function(_CustomerChatViewArguments) _then) =
+      __$CustomerChatViewArgumentsCopyWithImpl;
+  @override
+  @useResult
+  $Res call(
+      {String? cret,
+      String? message,
+      String? apiUrl,
+      String? imageUrl,
+      String? avatarUrl,
+      String? sign,
+      int? tenantId,
+      int? userId});
+}
+
+/// @nodoc
+class __$CustomerChatViewArgumentsCopyWithImpl<$Res>
+    implements _$CustomerChatViewArgumentsCopyWith<$Res> {
+  __$CustomerChatViewArgumentsCopyWithImpl(this._self, this._then);
+
+  final _CustomerChatViewArguments _self;
+  final $Res Function(_CustomerChatViewArguments) _then;
+
+  /// Create a copy of CustomerChatViewArguments
+  /// with the given fields replaced by the non-null parameter values.
+  @override
+  @pragma('vm:prefer-inline')
+  $Res call({
+    Object? cret = freezed,
+    Object? message = freezed,
+    Object? apiUrl = freezed,
+    Object? imageUrl = freezed,
+    Object? avatarUrl = freezed,
+    Object? sign = freezed,
+    Object? tenantId = freezed,
+    Object? userId = freezed,
+  }) {
+    return _then(_CustomerChatViewArguments(
+      cret: freezed == cret
+          ? _self.cret
+          : cret // ignore: cast_nullable_to_non_nullable
+              as String?,
+      message: freezed == message
+          ? _self.message
+          : message // ignore: cast_nullable_to_non_nullable
+              as String?,
+      apiUrl: freezed == apiUrl
+          ? _self.apiUrl
+          : apiUrl // ignore: cast_nullable_to_non_nullable
+              as String?,
+      imageUrl: freezed == imageUrl
+          ? _self.imageUrl
+          : imageUrl // ignore: cast_nullable_to_non_nullable
+              as String?,
+      avatarUrl: freezed == avatarUrl
+          ? _self.avatarUrl
+          : avatarUrl // ignore: cast_nullable_to_non_nullable
+              as String?,
+      sign: freezed == sign
+          ? _self.sign
+          : sign // ignore: cast_nullable_to_non_nullable
+              as String?,
+      tenantId: freezed == tenantId
+          ? _self.tenantId
+          : tenantId // ignore: cast_nullable_to_non_nullable
+              as int?,
+      userId: freezed == userId
+          ? _self.userId
+          : userId // ignore: cast_nullable_to_non_nullable
+              as int?,
+    ));
+  }
+}
+
 // dart format on

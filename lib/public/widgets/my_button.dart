@@ -3,7 +3,7 @@ import 'package:flutter/material.dart';
 class MyButton extends StatefulWidget {
   const MyButton({
     super.key,
-    required this.onPressed,
+    this.onPressed,
     required this.child,
     this.borderRadius,
     this.debounceDuration = const Duration(milliseconds: 1000),

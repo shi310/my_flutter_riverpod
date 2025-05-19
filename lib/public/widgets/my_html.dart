@@ -4,7 +4,7 @@ import 'package:flutter_html/flutter_html.dart';
 class MyHtml extends StatelessWidget {
   const MyHtml({
     super.key,
-    required this.data,
+    this.data,
     this.alignment,
     this.textAlign,
     this.maxLines,
@@ -15,7 +15,7 @@ class MyHtml extends StatelessWidget {
     this.height,
   });
 
-  final String data;
+  final String? data;
   final Alignment? alignment;
   final TextAlign? textAlign;
   final int? maxLines;
@@ -27,7 +27,10 @@ class MyHtml extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final richText = data.replaceAll('\n', '<br>');
+    if (data == null || data!.isEmpty) {
+      return const SizedBox.shrink();
+    }
+    final richText = data!.replaceAll('\n', '<br>');
     return Html(data: richText, style: {
       "html": Style(
         padding: HtmlPaddings.zero,

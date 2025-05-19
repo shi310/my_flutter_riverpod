@@ -44,9 +44,6 @@ void showCaptcha({
     "styleConfig":styleConfig.toJson(),
   });
 
-  print('初始化网易行为式验证码... $captchaId');
-  print('传入的语言... $language');
-
   captchaPlugin.showCaptcha(
     onLoaded: () {
       MyLogger.w('网易行为式验证码初始化完毕...');

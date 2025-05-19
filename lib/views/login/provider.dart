@@ -3,7 +3,7 @@ import 'package:riverpod_annotation/riverpod_annotation.dart';
 part 'provider.g.dart';
 
 @riverpod
-class LoginViewEnableButtonSendCode extends _$LoginViewEnableButtonSendCode {
+class LoginViewEnableButtonSendCodeNotifier extends _$LoginViewEnableButtonSendCodeNotifier {
   @override
   bool build() => false;
 
@@ -11,7 +11,7 @@ class LoginViewEnableButtonSendCode extends _$LoginViewEnableButtonSendCode {
 }
 
 @riverpod
-class LoginViewEnableButtonLogin extends _$LoginViewEnableButtonLogin {
+class LoginViewEnableButtonLoginNotifier extends _$LoginViewEnableButtonLoginNotifier {
   @override
   bool build() => false;
 
@@ -19,7 +19,7 @@ class LoginViewEnableButtonLogin extends _$LoginViewEnableButtonLogin {
 }
 
 @riverpod
-class LoginViewEnableButtonConfirm extends _$LoginViewEnableButtonConfirm {
+class LoginViewEnableButtonConfirmNotifier extends _$LoginViewEnableButtonConfirmNotifier {
   @override
   bool build() => false;
 
@@ -27,7 +27,7 @@ class LoginViewEnableButtonConfirm extends _$LoginViewEnableButtonConfirm {
 }
 
 @riverpod
-class LoginViewEnableButtonRegister extends _$LoginViewEnableButtonRegister {
+class LoginViewEnableButtonRegisterNotifier extends _$LoginViewEnableButtonRegisterNotifier {
   @override
   bool build() => false;
 
@@ -35,7 +35,7 @@ class LoginViewEnableButtonRegister extends _$LoginViewEnableButtonRegister {
 }
 
 @riverpod
-class LoginViewRememberPassword extends _$LoginViewRememberPassword {
+class LoginViewRememberPasswordNotifier extends _$LoginViewRememberPasswordNotifier {
   @override
   bool build() => false;
 
@@ -43,7 +43,7 @@ class LoginViewRememberPassword extends _$LoginViewRememberPassword {
 }
 
 @riverpod
-class LoginViewHidePassword extends _$LoginViewHidePassword {
+class LoginViewHidePasswordNotifier extends _$LoginViewHidePasswordNotifier {
   @override
   bool build() => false;
 
@@ -51,7 +51,7 @@ class LoginViewHidePassword extends _$LoginViewHidePassword {
 }
 
 @riverpod
-class LoginViewHideRePassword extends _$LoginViewHideRePassword {
+class LoginViewHideRePasswordNotifier extends _$LoginViewHideRePasswordNotifier {
   @override
   bool build() => false;
 
@@ -59,7 +59,7 @@ class LoginViewHideRePassword extends _$LoginViewHideRePassword {
 }
 
 @riverpod
-class LoginViewTimeSendWait extends _$LoginViewTimeSendWait {
+class LoginViewTimeSendWaitNotifier extends _$LoginViewTimeSendWaitNotifier {
   @override
   int build() => 60;
 
@@ -67,7 +67,7 @@ class LoginViewTimeSendWait extends _$LoginViewTimeSendWait {
 }
 
 @riverpod
-class LoginViewSignState extends _$LoginViewSignState {
+class LoginViewSignStateNotifier extends _$LoginViewSignStateNotifier {
   @override
   SignState build() => SignState.loginForPassword;
 
@@ -75,7 +75,7 @@ class LoginViewSignState extends _$LoginViewSignState {
 }
 
 @riverpod
-class LoginViewSendCodeState extends _$LoginViewSendCodeState {
+class LoginViewSendCodeStateNotifier extends _$LoginViewSendCodeStateNotifier {
   @override
   SendCodeState build() => SendCodeState.toBeSend;
 

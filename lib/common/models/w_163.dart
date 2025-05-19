@@ -1,7 +1,7 @@
 import 'package:freezed_annotation/freezed_annotation.dart';
 
-part '163.freezed.dart';
-part '163.g.dart';
+part 'w_163.freezed.dart';
+part 'w_163.g.dart';
 
 // 网易图形验证码
 @freezed

@@ -6,175 +6,178 @@ part of 'provider.dart';
 // RiverpodGenerator
 // **************************************************************************
 
-String _$loginViewEnableButtonSendCodeHash() =>
-    r'580e9aa370d3e9169f552f13ca94cdb1d0940a3c';
+String _$loginViewEnableButtonSendCodeNotifierHash() =>
+    r'cdb409e67f320a69fa4685a9c102dd36b0f5c0f5';
 
-/// See also [LoginViewEnableButtonSendCode].
-@ProviderFor(LoginViewEnableButtonSendCode)
-final loginViewEnableButtonSendCodeProvider =
-    AutoDisposeNotifierProvider<LoginViewEnableButtonSendCode, bool>.internal(
-  LoginViewEnableButtonSendCode.new,
-  name: r'loginViewEnableButtonSendCodeProvider',
+/// See also [LoginViewEnableButtonSendCodeNotifier].
+@ProviderFor(LoginViewEnableButtonSendCodeNotifier)
+final loginViewEnableButtonSendCodeNotifierProvider =
+    AutoDisposeNotifierProvider<LoginViewEnableButtonSendCodeNotifier,
+        bool>.internal(
+  LoginViewEnableButtonSendCodeNotifier.new,
+  name: r'loginViewEnableButtonSendCodeNotifierProvider',
   debugGetCreateSourceHash: const bool.fromEnvironment('dart.vm.product')
       ? null
-      : _$loginViewEnableButtonSendCodeHash,
+      : _$loginViewEnableButtonSendCodeNotifierHash,
   dependencies: null,
   allTransitiveDependencies: null,
 );
 
-typedef _$LoginViewEnableButtonSendCode = AutoDisposeNotifier<bool>;
-String _$loginViewEnableButtonLoginHash() =>
-    r'baed4daebcfef55080cf39d35c8c23919395f68b';
+typedef _$LoginViewEnableButtonSendCodeNotifier = AutoDisposeNotifier<bool>;
+String _$loginViewEnableButtonLoginNotifierHash() =>
+    r'437fa86d16364bc40667100d34bb756f347ed5ae';
 
-/// See also [LoginViewEnableButtonLogin].
-@ProviderFor(LoginViewEnableButtonLogin)
-final loginViewEnableButtonLoginProvider =
-    AutoDisposeNotifierProvider<LoginViewEnableButtonLogin, bool>.internal(
-  LoginViewEnableButtonLogin.new,
-  name: r'loginViewEnableButtonLoginProvider',
+/// See also [LoginViewEnableButtonLoginNotifier].
+@ProviderFor(LoginViewEnableButtonLoginNotifier)
+final loginViewEnableButtonLoginNotifierProvider = AutoDisposeNotifierProvider<
+    LoginViewEnableButtonLoginNotifier, bool>.internal(
+  LoginViewEnableButtonLoginNotifier.new,
+  name: r'loginViewEnableButtonLoginNotifierProvider',
   debugGetCreateSourceHash: const bool.fromEnvironment('dart.vm.product')
       ? null
-      : _$loginViewEnableButtonLoginHash,
+      : _$loginViewEnableButtonLoginNotifierHash,
   dependencies: null,
   allTransitiveDependencies: null,
 );
 
-typedef _$LoginViewEnableButtonLogin = AutoDisposeNotifier<bool>;
-String _$loginViewEnableButtonConfirmHash() =>
-    r'8e552136bfdb154fc7f9c4500b83f0bc1ab0d382';
+typedef _$LoginViewEnableButtonLoginNotifier = AutoDisposeNotifier<bool>;
+String _$loginViewEnableButtonConfirmNotifierHash() =>
+    r'21c54b1c5aae3a3b7624f3fa8c5773b2ba20a74b';
 
-/// See also [LoginViewEnableButtonConfirm].
-@ProviderFor(LoginViewEnableButtonConfirm)
-final loginViewEnableButtonConfirmProvider =
-    AutoDisposeNotifierProvider<LoginViewEnableButtonConfirm, bool>.internal(
-  LoginViewEnableButtonConfirm.new,
-  name: r'loginViewEnableButtonConfirmProvider',
+/// See also [LoginViewEnableButtonConfirmNotifier].
+@ProviderFor(LoginViewEnableButtonConfirmNotifier)
+final loginViewEnableButtonConfirmNotifierProvider =
+    AutoDisposeNotifierProvider<LoginViewEnableButtonConfirmNotifier,
+        bool>.internal(
+  LoginViewEnableButtonConfirmNotifier.new,
+  name: r'loginViewEnableButtonConfirmNotifierProvider',
   debugGetCreateSourceHash: const bool.fromEnvironment('dart.vm.product')
       ? null
-      : _$loginViewEnableButtonConfirmHash,
+      : _$loginViewEnableButtonConfirmNotifierHash,
   dependencies: null,
   allTransitiveDependencies: null,
 );
 
-typedef _$LoginViewEnableButtonConfirm = AutoDisposeNotifier<bool>;
-String _$loginViewEnableButtonRegisterHash() =>
-    r'1942a13d2321b3cf2a8237eda23c81f474c3ebc5';
+typedef _$LoginViewEnableButtonConfirmNotifier = AutoDisposeNotifier<bool>;
+String _$loginViewEnableButtonRegisterNotifierHash() =>
+    r'c7b451a1344d7498cc5610cf853f6528d259fc42';
 
-/// See also [LoginViewEnableButtonRegister].
-@ProviderFor(LoginViewEnableButtonRegister)
-final loginViewEnableButtonRegisterProvider =
-    AutoDisposeNotifierProvider<LoginViewEnableButtonRegister, bool>.internal(
-  LoginViewEnableButtonRegister.new,
-  name: r'loginViewEnableButtonRegisterProvider',
+/// See also [LoginViewEnableButtonRegisterNotifier].
+@ProviderFor(LoginViewEnableButtonRegisterNotifier)
+final loginViewEnableButtonRegisterNotifierProvider =
+    AutoDisposeNotifierProvider<LoginViewEnableButtonRegisterNotifier,
+        bool>.internal(
+  LoginViewEnableButtonRegisterNotifier.new,
+  name: r'loginViewEnableButtonRegisterNotifierProvider',
   debugGetCreateSourceHash: const bool.fromEnvironment('dart.vm.product')
       ? null
-      : _$loginViewEnableButtonRegisterHash,
+      : _$loginViewEnableButtonRegisterNotifierHash,
   dependencies: null,
   allTransitiveDependencies: null,
 );
 
-typedef _$LoginViewEnableButtonRegister = AutoDisposeNotifier<bool>;
-String _$loginViewRememberPasswordHash() =>
-    r'e9645bde0c1535c929c4e6350b66d274206aa0da';
+typedef _$LoginViewEnableButtonRegisterNotifier = AutoDisposeNotifier<bool>;
+String _$loginViewRememberPasswordNotifierHash() =>
+    r'438f0ca40ca6fda3e215c7b2a2ad533bc6d249ab';
 
-/// See also [LoginViewRememberPassword].
-@ProviderFor(LoginViewRememberPassword)
-final loginViewRememberPasswordProvider =
-    AutoDisposeNotifierProvider<LoginViewRememberPassword, bool>.internal(
-  LoginViewRememberPassword.new,
-  name: r'loginViewRememberPasswordProvider',
+/// See also [LoginViewRememberPasswordNotifier].
+@ProviderFor(LoginViewRememberPasswordNotifier)
+final loginViewRememberPasswordNotifierProvider = AutoDisposeNotifierProvider<
+    LoginViewRememberPasswordNotifier, bool>.internal(
+  LoginViewRememberPasswordNotifier.new,
+  name: r'loginViewRememberPasswordNotifierProvider',
   debugGetCreateSourceHash: const bool.fromEnvironment('dart.vm.product')
       ? null
-      : _$loginViewRememberPasswordHash,
+      : _$loginViewRememberPasswordNotifierHash,
   dependencies: null,
   allTransitiveDependencies: null,
 );
 
-typedef _$LoginViewRememberPassword = AutoDisposeNotifier<bool>;
-String _$loginViewHidePasswordHash() =>
-    r'b453c280b6371bf3c6da368599372f5e66b43695';
+typedef _$LoginViewRememberPasswordNotifier = AutoDisposeNotifier<bool>;
+String _$loginViewHidePasswordNotifierHash() =>
+    r'a8ff48487b5f7be11b65a93570b99ea3cc60ce69';
 
-/// See also [LoginViewHidePassword].
-@ProviderFor(LoginViewHidePassword)
-final loginViewHidePasswordProvider =
-    AutoDisposeNotifierProvider<LoginViewHidePassword, bool>.internal(
-  LoginViewHidePassword.new,
-  name: r'loginViewHidePasswordProvider',
+/// See also [LoginViewHidePasswordNotifier].
+@ProviderFor(LoginViewHidePasswordNotifier)
+final loginViewHidePasswordNotifierProvider =
+    AutoDisposeNotifierProvider<LoginViewHidePasswordNotifier, bool>.internal(
+  LoginViewHidePasswordNotifier.new,
+  name: r'loginViewHidePasswordNotifierProvider',
   debugGetCreateSourceHash: const bool.fromEnvironment('dart.vm.product')
       ? null
-      : _$loginViewHidePasswordHash,
+      : _$loginViewHidePasswordNotifierHash,
   dependencies: null,
   allTransitiveDependencies: null,
 );
 
-typedef _$LoginViewHidePassword = AutoDisposeNotifier<bool>;
-String _$loginViewHideRePasswordHash() =>
-    r'09adcb717387536979ca44790c51db19d7c2e070';
+typedef _$LoginViewHidePasswordNotifier = AutoDisposeNotifier<bool>;
+String _$loginViewHideRePasswordNotifierHash() =>
+    r'3774ad26df1e309c4b9cc886a00d78dd00844bf9';
 
-/// See also [LoginViewHideRePassword].
-@ProviderFor(LoginViewHideRePassword)
-final loginViewHideRePasswordProvider =
-    AutoDisposeNotifierProvider<LoginViewHideRePassword, bool>.internal(
-  LoginViewHideRePassword.new,
-  name: r'loginViewHideRePasswordProvider',
+/// See also [LoginViewHideRePasswordNotifier].
+@ProviderFor(LoginViewHideRePasswordNotifier)
+final loginViewHideRePasswordNotifierProvider =
+    AutoDisposeNotifierProvider<LoginViewHideRePasswordNotifier, bool>.internal(
+  LoginViewHideRePasswordNotifier.new,
+  name: r'loginViewHideRePasswordNotifierProvider',
   debugGetCreateSourceHash: const bool.fromEnvironment('dart.vm.product')
       ? null
-      : _$loginViewHideRePasswordHash,
+      : _$loginViewHideRePasswordNotifierHash,
   dependencies: null,
   allTransitiveDependencies: null,
 );
 
-typedef _$LoginViewHideRePassword = AutoDisposeNotifier<bool>;
-String _$loginViewTimeSendWaitHash() =>
-    r'0793029f49a536fe733ff7600524ca5e071e99ac';
+typedef _$LoginViewHideRePasswordNotifier = AutoDisposeNotifier<bool>;
+String _$loginViewTimeSendWaitNotifierHash() =>
+    r'0fdef3a820cb7e0344a04f27a9ac5afafd7da43d';
 
-/// See also [LoginViewTimeSendWait].
-@ProviderFor(LoginViewTimeSendWait)
-final loginViewTimeSendWaitProvider =
-    AutoDisposeNotifierProvider<LoginViewTimeSendWait, int>.internal(
-  LoginViewTimeSendWait.new,
-  name: r'loginViewTimeSendWaitProvider',
+/// See also [LoginViewTimeSendWaitNotifier].
+@ProviderFor(LoginViewTimeSendWaitNotifier)
+final loginViewTimeSendWaitNotifierProvider =
+    AutoDisposeNotifierProvider<LoginViewTimeSendWaitNotifier, int>.internal(
+  LoginViewTimeSendWaitNotifier.new,
+  name: r'loginViewTimeSendWaitNotifierProvider',
   debugGetCreateSourceHash: const bool.fromEnvironment('dart.vm.product')
       ? null
-      : _$loginViewTimeSendWaitHash,
+      : _$loginViewTimeSendWaitNotifierHash,
   dependencies: null,
   allTransitiveDependencies: null,
 );
 
-typedef _$LoginViewTimeSendWait = AutoDisposeNotifier<int>;
-String _$loginViewSignStateHash() =>
-    r'86ecd3f9937b2c02e20566bd59f7cf35f41da9e3';
+typedef _$LoginViewTimeSendWaitNotifier = AutoDisposeNotifier<int>;
+String _$loginViewSignStateNotifierHash() =>
+    r'ef31a26e3e3258a27abec7e3e0dbf1d5d66453cb';
 
-/// See also [LoginViewSignState].
-@ProviderFor(LoginViewSignState)
-final loginViewSignStateProvider =
-    AutoDisposeNotifierProvider<LoginViewSignState, SignState>.internal(
-  LoginViewSignState.new,
-  name: r'loginViewSignStateProvider',
+/// See also [LoginViewSignStateNotifier].
+@ProviderFor(LoginViewSignStateNotifier)
+final loginViewSignStateNotifierProvider =
+    AutoDisposeNotifierProvider<LoginViewSignStateNotifier, SignState>.internal(
+  LoginViewSignStateNotifier.new,
+  name: r'loginViewSignStateNotifierProvider',
   debugGetCreateSourceHash: const bool.fromEnvironment('dart.vm.product')
       ? null
-      : _$loginViewSignStateHash,
+      : _$loginViewSignStateNotifierHash,
   dependencies: null,
   allTransitiveDependencies: null,
 );
 
-typedef _$LoginViewSignState = AutoDisposeNotifier<SignState>;
-String _$loginViewSendCodeStateHash() =>
-    r'08730a16982eb0efb7be91b804e799ec67c5c649';
+typedef _$LoginViewSignStateNotifier = AutoDisposeNotifier<SignState>;
+String _$loginViewSendCodeStateNotifierHash() =>
+    r'585509beea235746e7826f6b149fc475fe5a7e02';
 
-/// See also [LoginViewSendCodeState].
-@ProviderFor(LoginViewSendCodeState)
-final loginViewSendCodeStateProvider =
-    AutoDisposeNotifierProvider<LoginViewSendCodeState, SendCodeState>.internal(
-  LoginViewSendCodeState.new,
-  name: r'loginViewSendCodeStateProvider',
+/// See also [LoginViewSendCodeStateNotifier].
+@ProviderFor(LoginViewSendCodeStateNotifier)
+final loginViewSendCodeStateNotifierProvider = AutoDisposeNotifierProvider<
+    LoginViewSendCodeStateNotifier, SendCodeState>.internal(
+  LoginViewSendCodeStateNotifier.new,
+  name: r'loginViewSendCodeStateNotifierProvider',
   debugGetCreateSourceHash: const bool.fromEnvironment('dart.vm.product')
       ? null
-      : _$loginViewSendCodeStateHash,
+      : _$loginViewSendCodeStateNotifierHash,
   dependencies: null,
   allTransitiveDependencies: null,
 );
 
-typedef _$LoginViewSendCodeState = AutoDisposeNotifier<SendCodeState>;
+typedef _$LoginViewSendCodeStateNotifier = AutoDisposeNotifier<SendCodeState>;
 // ignore_for_file: type=lint
 // ignore_for_file: subtype_of_sealed_class, invalid_use_of_internal_member, invalid_use_of_visible_for_testing_member, deprecated_member_use_from_same_package

@@ -5,6 +5,7 @@ export 'my_dio.dart';
 export 'my_environment.dart';
 export 'my_logger.dart';
 export 'my_map.dart';
+export 'my_provider_keep_alive.dart';
 export 'my_string.dart';
 export 'my_task_queue.dart';
 export 'my_timer.dart';

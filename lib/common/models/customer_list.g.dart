@@ -63,3 +63,29 @@ const _$CustomerTypeEnumMap = {
   CustomerType.guest: 'guest',
   CustomerType.user: 'user',
 };
+
+_CustomerChatViewArguments _$CustomerChatViewArgumentsFromJson(
+        Map<String, dynamic> json) =>
+    _CustomerChatViewArguments(
+      cret: json['cret'] as String?,
+      message: json['message'] as String?,
+      apiUrl: json['apiUrl'] as String?,
+      imageUrl: json['imageUrl'] as String?,
+      avatarUrl: json['avatarUrl'] as String?,
+      sign: json['sign'] as String?,
+      tenantId: (json['tenantId'] as num?)?.toInt(),
+      userId: (json['userId'] as num?)?.toInt(),
+    );
+
+Map<String, dynamic> _$CustomerChatViewArgumentsToJson(
+        _CustomerChatViewArguments instance) =>
+    <String, dynamic>{
+      'cret': instance.cret,
+      'message': instance.message,
+      'apiUrl': instance.apiUrl,
+      'imageUrl': instance.imageUrl,
+      'avatarUrl': instance.avatarUrl,
+      'sign': instance.sign,
+      'tenantId': instance.tenantId,
+      'userId': instance.userId,
+    };

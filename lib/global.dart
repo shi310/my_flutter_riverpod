@@ -19,8 +19,8 @@ class Global with WidgetsBindingObserver {
 
   static Global get to => _instance;
 
-  // 全局Key
-  final GlobalKey<NavigatorState> navigatorKey = GlobalKey<NavigatorState>();
+  // 用户信息
+  UserInfoModel userInfo = UserInfoModel();
 
   // 网络请求
   MyDio? myDio;
@@ -36,9 +36,6 @@ class Global with WidgetsBindingObserver {
 
   // wssUrls 数组
   List<String> wssUrlList = [];
-
-  // 用户 token
-  UserInfoModel userInfo = UserInfoModel();
 
   // 热更新定时器
   Timer? timerHotUpdate;
@@ -128,7 +125,7 @@ class Global with WidgetsBindingObserver {
     }
 
     SchedulerBinding.instance.addPostFrameCallback((_) {
-      final context = navigatorKey.currentContext;
+      final context = MyPages.globalNavigatorKey.currentContext;
       if (context != null) {
         final container = ProviderScope.containerOf(context);
         container.read(themeNotifierProvider.notifier).updateTheme(ThemeMode.system);
@@ -145,7 +142,7 @@ class Global with WidgetsBindingObserver {
     }
 
     SchedulerBinding.instance.addPostFrameCallback((_) {
-      final context = navigatorKey.currentContext;
+      final context = MyPages.globalNavigatorKey.currentContext;
       if (context != null) {
         final container = ProviderScope.containerOf(context);
         final systemLocale = PlatformDispatcher.instance.locale;

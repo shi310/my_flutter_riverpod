@@ -65,9 +65,6 @@ class MyDio {
   int _index = 0;
 
 
-  // 请求体
-  Response? _response;
-
   void close() {
     _dio?.close();
     _dio = null;
@@ -137,10 +134,13 @@ class MyDio {
     Future<void> Function(DioException)? onConnectError,
     T Function(dynamic)? onModel,
   }) async {
+    // 请求体
+    Response? response;
+
     for (int index = 0; index < urls.length; index++) {
       try {
         _dio?.options.baseUrl = urls[_index];
-        _response = await _dio?.get(
+        response = await _dio?.get(
           path,
           queryParameters: data,
           cancelToken: cancelToken ?? cancelTokenPublic,
@@ -158,21 +158,33 @@ class MyDio {
               method: 'POST',
               headers: headers,
             ),
-            response: _response,
+            response: response,
             message: err.toString(),
           ));
           break;
         }
       }
 
-      if (_response != null && _response!.statusCode != null && _response!.statusCode! >= 200 && _response!.statusCode! < 300) {
-        final responseModel = ResponseModel.fromJson(_response?.data);
+
+      if (response != null && response.statusCode != null && response.statusCode! >= 200 && response.statusCode! < 300) {
+        ResponseModel responseModel;
+
+        try {
+          responseModel = ResponseModel.fromJson(response.data);
+        } catch (e) {
+          responseModel = ResponseModel(
+            code: 0,
+            data: response.data,
+            msg: '',
+          );
+        }
+
         if (codes.contains(responseModel.code)) {
           final model = onModel != null ? onModel(responseModel.data) : responseModel.data as T;
           await onSuccess?.call(responseModel.code, responseModel.msg, model);
           return;
         } else {
-          await onError?.call(_response!);
+          await onError?.call(response);
           return;
         }
       }
@@ -187,10 +199,12 @@ class MyDio {
     Future<void> Function(DioException)? onConnectError,
     T Function(dynamic)? onModel,
   }) async {
+    Response? response;
+
     for (int index = 0; index < urls.length; index++) {
       try {
         _dio?.options.baseUrl = urls[_index];
-        _response = await _dio?.post(
+        response = await _dio?.post(
           path,
           data: data,
           cancelToken: cancelToken ?? cancelTokenPublic,
@@ -207,21 +221,32 @@ class MyDio {
               method: 'POST',
               headers: headers,
             ),
-            response: _response,
+            response: response,
             message: err.toString(),
           ));
           break;
         }
       }
 
-      if (_response != null && _response!.statusCode != null && _response!.statusCode! >= 200 && _response!.statusCode! < 300) {
-        final responseModel = ResponseModel.fromJson(_response?.data);
+      if (response != null && response.statusCode != null && response.statusCode! >= 200 && response.statusCode! < 300) {
+        ResponseModel responseModel;
+
+        try {
+          responseModel = ResponseModel.fromJson(response.data);
+        } catch (e) {
+          responseModel = ResponseModel(
+            code: 0,
+            data: response.data,
+            msg: '',
+          );
+        }
+
         if (codes.contains(responseModel.code)) {
           final model = onModel != null ? onModel(responseModel.data) : responseModel.data as T;
           await onSuccess?.call(responseModel.code, responseModel.msg, model);
           return;
         } else {
-          await onError?.call(_response!);
+          await onError?.call(response);
           return;
         }
       }
@@ -237,10 +262,12 @@ class MyDio {
     Future<dynamic> Function(int, String, T)? onSuccess,
     T Function(dynamic)? onModel,
   }) async {
+    Response? response;
+
     for (int index = 0; index < urls.length; index++) {
       try {
         _dio?.options.baseUrl = urls[_index];
-        _response = await _dio?.post(
+        response = await _dio?.post(
           path,
           data: data == null ? null : FormData.fromMap(data),
           options: Options(
@@ -248,7 +275,7 @@ class MyDio {
           ),
           cancelToken: cancelToken ?? cancelTokenPublic,
           onReceiveProgress: onSendProgress,
-        );
+        ).timeout(timeout * 60 * 60 * 24);
       } catch (err) {
         _index = (_index + 1) % urls.length;
 
@@ -261,21 +288,32 @@ class MyDio {
               method: 'POST',
               headers: headers,
             ),
-            response: _response,
+            response: response,
             message: err.toString(),
           ));
           break;
         }
       }
 
-      if (_response != null && _response!.statusCode != null && _response!.statusCode! >= 200 && _response!.statusCode! < 300) {
-        final responseModel = ResponseModel.fromJson(_response?.data);
+      if (response != null && response.statusCode != null && response.statusCode! >= 200 && response.statusCode! < 300) {
+        ResponseModel responseModel;
+
+        try {
+          responseModel = ResponseModel.fromJson(response.data);
+        } catch (e) {
+          responseModel = ResponseModel(
+            code: 0,
+            data: response.data,
+            msg: '',
+          );
+        }
+
         if (codes.contains(responseModel.code)) {
           final model = onModel != null ? onModel(responseModel.data) : responseModel.data as T;
           await onSuccess?.call(responseModel.code, responseModel.msg, model);
           return;
         } else {
-          await onError?.call(_response!);
+          await onError?.call(response);
           return;
         }
       }

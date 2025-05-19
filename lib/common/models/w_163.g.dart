@@ -1,6 +1,6 @@
 // GENERATED CODE - DO NOT MODIFY BY HAND
 
-part of '163.dart';
+part of 'w_163.dart';
 
 // **************************************************************************
 // JsonSerializableGenerator
