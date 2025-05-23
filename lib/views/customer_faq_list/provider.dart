@@ -4,7 +4,6 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:riverpod_annotation/riverpod_annotation.dart';
 
 import '../../common/common.dart';
-import '../../global.dart';
 import '../../public/public.dart';
 
 part 'provider.g.dart';
@@ -20,7 +19,8 @@ Future<CustomerFaqListModel> customerFaqListNotifier(Ref ref, {
   final typeId = arguments.id;
 
   CustomerFaqListModel data = CustomerFaqListModel();
-  await Global.to.myDio?.post<CustomerFaqListModel>(ApiPath.me.getCustomerFaqList,
+  final myDio = ref.read(myDioForAppNotifierProvider);
+  await myDio?.post<CustomerFaqListModel>(ApiPath.me.getCustomerFaqList,
     onSuccess: (code, msg, results) async {
       data = results;
     },

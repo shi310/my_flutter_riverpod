@@ -4,7 +4,8 @@ import '../common.dart';
 
 // 保存用户信息
 void saveUserInfo() {
-  MyCache.putFile(MyConfig.shard.userInfo,Global.to.userInfo.toJson().toJsonString().aesEncrypt(MyConfig.key.aesKey),
+  final data = Global.to.providerContainer.read(userInfoNotifierProvider);
+  MyCache.putFile(MyConfig.shard.userInfo,data.toJson().toJsonString().aesEncrypt(MyConfig.key.aesKey),
     time: const Duration(days: 5),
   );
 }

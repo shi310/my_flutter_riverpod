@@ -3,42 +3,70 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:riverpod_annotation/riverpod_annotation.dart';
 
-import '../../global.dart';
+import '../../../public/public.dart';
+import '../../common.dart';
 
 part 'theme.g.dart';
 
-@riverpod
+@Riverpod(keepAlive: true)
 class ThemeNotifier extends _$ThemeNotifier {
+  String? themeModeTag;
+
   @override
   ThemeMode build() {
-    if (Global.to.themeModeTag != null) {
-      switch (Global.to.themeModeTag) {
+    return ThemeMode.system;
+  }
+
+  Future<void> init() async {
+    // 锁定竖屏，禁止旋转屏幕，按需开启
+    final option = [DeviceOrientation.portraitUp, DeviceOrientation.portraitDown];
+    await SystemChrome.setPreferredOrientations(option);
+
+    // 读取本地储存的主题信息
+    final themeModeCache = await MyCache.getFile(MyConfig.shard.themeModeKey);
+    themeModeTag = await themeModeCache?.readAsString();
+
+    if (themeModeTag != null) {
+      switch (themeModeTag) {
         case 'light':
           _setSystemUIOverlayStyle(Brightness.light);
-          return ThemeMode.light;
+          state = ThemeMode.light;
         case 'dark':
           _setSystemUIOverlayStyle(Brightness.dark);
-          return ThemeMode.dark;
+          state = ThemeMode.dark;
         default:
           final brightness = WidgetsBinding.instance.platformDispatcher.platformBrightness;
           _setSystemUIOverlayStyle(brightness);
-          return ThemeMode.system;
+          state = ThemeMode.system;
       }
     } else {
       final brightness = WidgetsBinding.instance.platformDispatcher.platformBrightness;
       _setSystemUIOverlayStyle(brightness);
-      return ThemeMode.system;
+      state = ThemeMode.system;
     }
   }
 
-  void updateTheme(ThemeMode themeMode) {
-    state = themeMode;
+  void light() {
+    state = ThemeMode.light;
+    themeModeTag = 'light';
+    MyCache.putFile(MyConfig.shard.themeModeKey, 'light');
     Brightness brightness = Brightness.light;
-    if (themeMode == ThemeMode.dark) {
-      brightness = Brightness.dark;
-    } else if (themeMode == ThemeMode.system) {
-      brightness = WidgetsBinding.instance.platformDispatcher.platformBrightness;
-    }
+    _setSystemUIOverlayStyle(brightness);
+  }
+
+  void dark() {
+    state = ThemeMode.dark;
+    themeModeTag = 'dark';
+    MyCache.putFile(MyConfig.shard.themeModeKey, 'dark');
+    Brightness brightness = Brightness.dark;
+    _setSystemUIOverlayStyle(brightness);
+  }
+
+  void system() {
+    state = ThemeMode.system;
+    themeModeTag = null;
+    MyCache.removeFile(MyConfig.shard.themeModeKey);
+    Brightness brightness = WidgetsBinding.instance.platformDispatcher.platformBrightness;
     _setSystemUIOverlayStyle(brightness);
   }
 }

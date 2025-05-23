@@ -1,26 +1,27 @@
 // GENERATED CODE - DO NOT MODIFY BY HAND
 
-part of 'theme.dart';
+part of 'my_socket.dart';
 
 // **************************************************************************
 // RiverpodGenerator
 // **************************************************************************
 
-String _$themeNotifierHash() => r'e55b9b2cf30012bdd1f9419caaab8bd12c89fd6f';
+String _$mySocketForAppNotifierHash() =>
+    r'a1f0a9f0888e52cfa51844a8fc42694a65328505';
 
-/// See also [ThemeNotifier].
-@ProviderFor(ThemeNotifier)
-final themeNotifierProvider =
-    AutoDisposeNotifierProvider<ThemeNotifier, ThemeMode>.internal(
-  ThemeNotifier.new,
-  name: r'themeNotifierProvider',
+/// See also [MySocketForAppNotifier].
+@ProviderFor(MySocketForAppNotifier)
+final mySocketForAppNotifierProvider =
+    NotifierProvider<MySocketForAppNotifier, MySocket?>.internal(
+  MySocketForAppNotifier.new,
+  name: r'mySocketForAppNotifierProvider',
   debugGetCreateSourceHash: const bool.fromEnvironment('dart.vm.product')
       ? null
-      : _$themeNotifierHash,
+      : _$mySocketForAppNotifierHash,
   dependencies: null,
   allTransitiveDependencies: null,
 );
 
-typedef _$ThemeNotifier = AutoDisposeNotifier<ThemeMode>;
+typedef _$MySocketForAppNotifier = Notifier<MySocket?>;
 // ignore_for_file: type=lint
 // ignore_for_file: subtype_of_sealed_class, invalid_use_of_internal_member, invalid_use_of_visible_for_testing_member, deprecated_member_use_from_same_package

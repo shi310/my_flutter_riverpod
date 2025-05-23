@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:go_router/go_router.dart';
+import 'package:my_flutter_basic/common/provider/alive/is_used_app.dart';
 
 import '../../../common/common.dart';
 import '../../generated/l10n.dart';
@@ -44,8 +45,10 @@ class IndexView extends StatelessWidget {
                     foregroundColor: Theme.of(context).myColors.onButtonCancel,
                   ),
                   onPressed: () {
-                    Global.to.isUsedApp = 'true';
-                    MyCache.putFile(MyConfig.shard.isUsedAppKey, Global.to.isUsedApp.aesEncrypt(MyConfig.key.aesKey), time: const Duration(days: 365));
+                    // Global.to.isUsedApp = 'true';
+                    Global.to.providerContainer.read(isUsedAppNotifierProvider.notifier).set('true');
+                    final isUsedApp = Global.to.providerContainer.read(isUsedAppNotifierProvider);
+                    MyCache.putFile(MyConfig.shard.isUsedAppKey, isUsedApp.aesEncrypt(MyConfig.key.aesKey), time: const Duration(days: 365));
                     context.goNamed(MyRouters.loginView.name);
                   },
                   child: Text(S.of(context).tryItNow),

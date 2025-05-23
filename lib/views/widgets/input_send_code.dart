@@ -7,7 +7,6 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter_svg/svg.dart';
 
 import '../../generated/l10n.dart';
-import '../../global.dart';
 import '../../public/widgets/widgets.dart';
 import '../../common/common.dart';
 import '../login/provider.dart';
@@ -117,7 +116,8 @@ class _InputSendCodeState extends ConsumerState<InputSendCode> {
         ? builderInputButton(
             onPressed: codeState == SendCodeState.toBeSend ? () async {
               widget.onSendCodeBefore?.call();
-              await Global.to.myDio?.post(ApiPath.base.sendSms,
+              final myDio = ref.read(myDioForAppNotifierProvider);
+              await myDio?.post(ApiPath.base.sendSms,
                 onSuccess: (code, msg, results) async {
                   startTimer();
                   showMySnack(child: Text(msg));

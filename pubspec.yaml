@@ -23,103 +23,109 @@ dependencies:
     path: ./plugins/my_gallery
 
   # Use with the CupertinoIcons class for iOS style icons.
-  cupertino_icons: ^1.0.8
+  cupertino_icons: 1.0.8
 
   # 本地国际化
   # Flutter 3.27.1 最高只能使用 0.19.0 的版本
-  intl: ^0.19.0
+  intl: 0.19.0
 
   # svg
-  flutter_svg: ^2.0.10+1
+  flutter_svg: 2.0.10+1
 
   # lottie
-  lottie: ^3.3.1
+  lottie: 3.3.1
 
   # 音频/音效
-  audioplayers: ^6.4.0
+  audioplayers: 6.4.0
 
   # 热更新
-  shorebird_code_push: ^2.0.3
+  shorebird_code_push: 2.0.3
 
   # 网络请求
-  dio: ^5.8.0+1
+  dio: 5.8.0+1
 
   # 缓存
-  flutter_cache_manager: ^3.4.1
+  flutter_cache_manager: 3.4.1
 
   # 加密
-  encrypt: ^5.0.3
+  encrypt: 5.0.3
 
   # ws 模块
-  #  web_socket_channel: ^3.0.2
+  #  web_socket_channel: 3.0.2
 
   # 包信息
-  package_info_plus: ^8.3.0
+  package_info_plus: 8.3.0
 
   # 富文本
-  flutter_html: ^3.0.0-beta.2
+  flutter_html: 3.0.0-beta.2
 
   # 下拉刷新
-  pull_to_refresh: ^2.0.0
+  pull_to_refresh: 2.0.0
 
   # 滑动拓展
-  flutter_slidable: ^4.0.0
+  flutter_slidable: 4.0.0
 
   # 视频播放
-  video_player: ^2.9.3
+  video_player: 2.9.3
 
   # 播放器皮肤
-  chewie: ^1.11.0
+  chewie: 1.11.0
 
   # 压缩 / 解压缩
-  archive: ^4.0.4
+  archive: 4.0.4
 
   # 深度链接
-  app_links: ^6.4.0
+  app_links: 6.4.0
 
   # go_router
-  go_router: ^14.8.1
+  go_router: 14.8.1
 
   # flutter_security_checker
-  flutter_security_checker: ^3.2.1
+  flutter_security_checker: 3.2.1
 
   # open_install
-  openinstall_flutter_plugin: ^2.5.4
+  openinstall_flutter_plugin: 2.5.4
 
   # 键盘隐藏
   flutter_keyboard_visibility: 6.0.0
 
   # 网易行为验证码
-  captcha_plugin_flutter: ^1.1.9
+  captcha_plugin_flutter: 1.1.9
+
+  # 起聊SDK
+  qichatsdk_flutter: 1.2.7
+
+  # uuid
+  uuid: 4.5.1
 
   # riverpod
-  flutter_riverpod: ^2.6.1
-  hooks_riverpod: ^2.6.1
-  flutter_hooks: ^0.21.2
-  riverpod_annotation: ^2.6.1
+  flutter_riverpod: 2.6.1
+  hooks_riverpod: 2.6.1
+  flutter_hooks: 0.21.2
+  riverpod_annotation: 2.6.1
 
   # freezed
-  freezed_annotation: ^3.0.0
-  json_annotation: ^4.9.0
+  freezed_annotation: 3.0.0
+  json_annotation: 4.9.0
 
 dev_dependencies:
   flutter_test:
     sdk: flutter
 
-  flutter_lints: ^5.0.0
-  build_runner: ^2.4.15
+  flutter_lints: 5.0.0
+  build_runner: 2.4.15
 
   # riverpod
-  riverpod_generator: ^2.6.5
-  custom_lint: ^0.7.5
-  riverpod_lint: ^2.6.5
+  riverpod_generator: 2.6.5
+  custom_lint: 0.7.5
+  riverpod_lint: 2.6.5
 
   # freezed
-  freezed: ^3.0.4
-  json_serializable: ^6.9.4
+  freezed: 3.0.4
+  json_serializable: 6.9.4
 
   # 多语言代码生成工具
-  intl_utils: ^2.8.10
+  intl_utils: 2.8.10
 
 analyzer:
   plugins:

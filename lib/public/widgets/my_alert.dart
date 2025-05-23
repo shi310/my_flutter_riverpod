@@ -1,5 +1,6 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:my_flutter_basic/common/common.dart';
 
 class MyAlert extends StatefulWidget {
   static final globalKey = GlobalKey<_MyAlertState>();
@@ -224,6 +225,7 @@ class _SnackBarWidget extends StatelessWidget {
                   child: IntrinsicHeight(
                     child: Center(
                       child: Material(
+                        textStyle: TextStyle(color: Theme.of(context).myColors.white, fontSize: MyFontSize.body.value),
                         borderRadius: const BorderRadius.all(Radius.circular(8)),
                         color: Colors.black87,
                         child: SingleChildScrollView(

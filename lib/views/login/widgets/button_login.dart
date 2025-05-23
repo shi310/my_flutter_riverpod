@@ -18,7 +18,9 @@ class _ButtonLogin extends ConsumerWidget {
           foregroundColor: Theme.of(context).myColors.onButtonPressed,
         ),
         onPressed: isEnableButtonLogin ? () => verificationHuman(
-          ref: ref,
+          context: context,
+          language: ref.read(localeNotifierProvider).languageCode,
+          getCaptchaImage: ref.read(humanVerificationNotifierProvider.future),
           onSuccess: (value) => onPressed?.call(value),
         ) : null,
         child: Text(S.of(context).loginViewLogin),

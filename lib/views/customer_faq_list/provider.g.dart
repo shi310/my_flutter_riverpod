@@ -7,7 +7,7 @@ part of 'provider.dart';
 // **************************************************************************
 
 String _$customerFaqListNotifierHash() =>
-    r'be459649a0d3a47a8a22ae2e535805aaed91e127';
+    r'6c10e5f5c9ed3f95b1b1e2c91cb79fd0d26f979d';
 
 /// Copied from Dart SDK
 class _SystemHash {

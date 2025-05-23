@@ -3,7 +3,6 @@ import 'dart:async';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:riverpod_annotation/riverpod_annotation.dart';
 
-import '../../global.dart';
 import '../../public/public.dart';
 import '../common.dart';
 
@@ -17,7 +16,8 @@ part 'w_163.g.dart';
 @riverpod
 Future<CaptchaImageModel> captchaImageNotifier(Ref ref) async {
   CaptchaImageModel data = CaptchaImageModel();
-  await Global.to.myDio?.get<CaptchaImageModel>(ApiPath.base.captcha,
+  final myDio = ref.read(myDioForAppNotifierProvider);
+  await myDio?.get<CaptchaImageModel>(ApiPath.base.captcha,
     onSuccess: (code, msg, results) async {
       data = results;
     },
@@ -36,7 +36,8 @@ Future<HumanVerificationModel> humanVerificationNotifier(Ref ref) async {
 
   // 获取数据
   HumanVerificationModel data = HumanVerificationModel();
-  await Global.to.myDio?.get<HumanVerificationModel>(
+  final myDio = ref.read(myDioForAppNotifierProvider);
+  await myDio?.get<HumanVerificationModel>(
     ApiPath.base.getCaptchaKey,
     onSuccess: (code, msg, results) async {
       data = results;

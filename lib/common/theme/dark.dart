@@ -1,6 +1,6 @@
-part of 'theme.dart';
+import 'package:flutter/material.dart';
 
-final _dark = ThemeData(
+final themeDataDark = ThemeData(
   brightness: Brightness.dark,
   platform: TargetPlatform.iOS,
   useMaterial3: true,
@@ -10,8 +10,6 @@ final _dark = ThemeData(
       foregroundColor: const Color(0xFFFFFFFF),
       backgroundColor: const Color(0xFF586BF9),
       elevation: 0,
-      maximumSize: const Size(double.infinity, 40),
-      minimumSize: const Size(double.infinity, 40),
     ),
   ),
 );

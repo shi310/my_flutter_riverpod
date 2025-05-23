@@ -5,16 +5,19 @@ Future<void> _loginForPassword({
   required String validate,
   required String username,
   required String password,
-  required WidgetRef ref,
+  required BuildContext context,
+  required bool isRememberPassword,
   required String account,
 }) async {
   showMyLoading();
-  await Global.to.myDio?.post<UserInfoModel>(ApiPath.base.accountLogin,
+  final myDio = Global.to.providerContainer.read(myDioForAppNotifierProvider);
+  await myDio?.post<UserInfoModel>(ApiPath.base.accountLogin,
       onSuccess: (code, msg, data) async {
-        Global.to.userInfo = data;
+        // Global.to.userInfo = data;
+        Global.to.providerContainer.read(userInfoNotifierProvider.notifier).set(data);
 
         // 是否保存账号信息
-        if (ref.read(loginViewRememberPasswordNotifierProvider)) {
+        if (isRememberPassword) {
           MyCache.putFile(MyConfig.shard.accountKey, account.aesEncrypt(MyConfig.key.aesKey),
             time: const Duration(days: 365),
           );
@@ -22,7 +25,7 @@ Future<void> _loginForPassword({
           MyCache.removeFile(MyConfig.shard.accountKey);
         }
 
-        _goHomeView(ref.context);
+        _goHomeView(context);
       },
       onModel: (json) => UserInfoModel.fromJson(json),
       data: {

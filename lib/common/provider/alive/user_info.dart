@@ -1,8 +1,7 @@
 import 'package:riverpod_annotation/riverpod_annotation.dart';
 
-import '../../global.dart';
-import '../../public/utils/my_logger.dart';
-import '../common.dart';
+import '../../../public/utils/my_logger.dart';
+import '../../common.dart';
 
 part 'user_info.g.dart';
 
@@ -18,10 +17,10 @@ class UserInfoNotifier extends _$UserInfoNotifier {
 
   // 从接口刷新
   Future<void> fromServer() async {
-    await Global.to.myDio?.post<UserInfoModel>(ApiPath.base.getUserInfo,
+    final myDio = ref.read(myDioForAppNotifierProvider);
+    await myDio?.post<UserInfoModel>(ApiPath.base.getUserInfo,
       onSuccess: (code, msg, data) async {
         state = data;
-        Global.to.userInfo = data;
         saveUserInfo();
       },
       onModel: (json) => UserInfoModel.fromJson(json),
@@ -35,14 +34,12 @@ class UserInfoNotifier extends _$UserInfoNotifier {
   // 手动修改
   void set(UserInfoModel data) {
     state = data;
-    Global.to.userInfo = data;
     saveUserInfo();
   }
 
   // 清空
   void clear() {
     state = UserInfoModel();
-    Global.to.userInfo = UserInfoModel();
     removeUserInfo();
   }
 }

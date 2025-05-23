@@ -1,26 +1,26 @@
 // GENERATED CODE - DO NOT MODIFY BY HAND
 
-part of 'user_info.dart';
+part of 'locale.dart';
 
 // **************************************************************************
 // RiverpodGenerator
 // **************************************************************************
 
-String _$userInfoNotifierHash() => r'64ed8e5e9d9f6c7b8a8453223640597aeb1d536f';
+String _$localeNotifierHash() => r'8826c7b546fd151957c44082f4a0169df78765a2';
 
-/// See also [UserInfoNotifier].
-@ProviderFor(UserInfoNotifier)
-final userInfoNotifierProvider =
-    NotifierProvider<UserInfoNotifier, UserInfoModel>.internal(
-  UserInfoNotifier.new,
-  name: r'userInfoNotifierProvider',
+/// See also [LocaleNotifier].
+@ProviderFor(LocaleNotifier)
+final localeNotifierProvider =
+    NotifierProvider<LocaleNotifier, Locale>.internal(
+  LocaleNotifier.new,
+  name: r'localeNotifierProvider',
   debugGetCreateSourceHash: const bool.fromEnvironment('dart.vm.product')
       ? null
-      : _$userInfoNotifierHash,
+      : _$localeNotifierHash,
   dependencies: null,
   allTransitiveDependencies: null,
 );
 
-typedef _$UserInfoNotifier = Notifier<UserInfoModel>;
+typedef _$LocaleNotifier = Notifier<Locale>;
 // ignore_for_file: type=lint
 // ignore_for_file: subtype_of_sealed_class, invalid_use_of_internal_member, invalid_use_of_visible_for_testing_member, deprecated_member_use_from_same_package

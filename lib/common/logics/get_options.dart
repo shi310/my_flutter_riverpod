@@ -12,7 +12,12 @@ Future<void> getOptions({
   Future<dynamic> Function()? onSuccess,
   Future<dynamic> Function()? onError,
 }) async {
-  if (Global.to.wssUrlList.isNotEmpty && Global.to.baseUrlList.isNotEmpty) {
+  MyLogger.w('正在获取配置信息...');
+
+  final wssUrls = Global.to.providerContainer.read(wssUrlsNotifierProvider);
+  final baseUrls = Global.to.providerContainer.read(baseUrlsNotifierProvider);
+  // variableName = ;
+  if (wssUrls.isNotEmpty && baseUrls.isNotEmpty) {
     MyLogger.w('配置已获取请勿重复操作...');
     await onSuccess?.call();
     return;
@@ -60,20 +65,20 @@ Future<void> getOptions({
     MyLogger.l();
 
     final List<dynamic> baseUrls = json['api'];
-    Global.to.baseUrlList.clear();
+    Global.to.providerContainer.read(baseUrlsNotifierProvider).clear();
     for (var element in baseUrls) {
-      Global.to.baseUrlList.add(element.toString());
+      Global.to.providerContainer.read(baseUrlsNotifierProvider.notifier).add(element.toString());
     }
 
-    MyLogger.w('获取到 API 地址 --> ${Global.to.baseUrlList}');
+    MyLogger.w('获取到 API 地址 --> $baseUrls');
 
     final List<dynamic> wss = json['ws'];
-    Global.to.wssUrlList.clear();
+    Global.to.providerContainer.read(wssUrlsNotifierProvider).clear();
     for (var element in wss) {
-      Global.to.wssUrlList.add(element.toString());
+      Global.to.providerContainer.read(wssUrlsNotifierProvider.notifier).add(element.toString());
     }
 
-    MyLogger.w('获取到 WSS 地址 --> ${Global.to.wssUrlList}');
+    MyLogger.w('获取到 WSS 地址 --> $wss');
     MyLogger.l();
 
     await onSuccess?.call();

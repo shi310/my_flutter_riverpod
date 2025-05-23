@@ -5,17 +5,20 @@ Future<void> _loginForCode({
   required String validate,
   required String phone,
   required String verificationCode,
-  required WidgetRef ref,
+  required BuildContext context,
+  required bool isRememberPassword,
   required String account,
 }) async {
   showMyLoading();
+  final myDio = Global.to.providerContainer.read(myDioForAppNotifierProvider);
 
-  await Global.to.myDio?.post<UserInfoModel>(ApiPath.base.phoneLogin,
+  await myDio?.post<UserInfoModel>(ApiPath.base.phoneLogin,
       onSuccess: (code, msg, data) async {
-        Global.to.userInfo = data;
+        // Global.to.userInfo = data;
+        Global.to.providerContainer.read(userInfoNotifierProvider.notifier).set(data);
 
         // 保存手机号码
-        if (ref.read(loginViewRememberPasswordNotifierProvider)) {
+        if (isRememberPassword) {
           MyCache.putFile(MyConfig.shard.phoneKey, phone.aesEncrypt(MyConfig.key.aesKey),
             time: const Duration(days: 365),
           );
@@ -23,7 +26,7 @@ Future<void> _loginForCode({
           MyCache.removeFile(MyConfig.shard.phoneKey);
         }
 
-        _goHomeView(ref.context);
+        _goHomeView(context);
       },
       onModel: (json) => UserInfoModel.fromJson(json),
       data: {

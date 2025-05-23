@@ -7,17 +7,18 @@ Future<void> _register({
   required String password,
   required String rePassword,
   required String verificationCode,
-  required WidgetRef ref
+  required BuildContext context,
 }) async {
   showMyLoading();
-
-  await Global.to.myDio?.post<UserInfoModel>(ApiPath.base.register,
+  final myDio = Global.to.providerContainer.read(myDioForAppNotifierProvider);
+  await myDio?.post<UserInfoModel>(ApiPath.base.register,
       onSuccess: (code, msg, data) async {
-        Global.to.userInfo = data;
+        // Global.to.userInfo = data;
+        Global.to.providerContainer.read(userInfoNotifierProvider.notifier).set(data);
         // 告诉 openInstall 注册成功
         // 用于 openInstall 统计注册
-        Global.to.openInstallFlutterPlugin?.reportRegister();
-        _goHomeView(ref.context);
+        Global.to.providerContainer.read(openInstallNotifierProvider.notifier).plugin.reportRegister();
+        _goHomeView(context);
       },
       onModel: (json) => UserInfoModel.fromJson(json),
       data: {

@@ -67,7 +67,7 @@ const _$CustomerTypeEnumMap = {
 _CustomerChatViewArguments _$CustomerChatViewArgumentsFromJson(
         Map<String, dynamic> json) =>
     _CustomerChatViewArguments(
-      cret: json['cret'] as String?,
+      cert: json['cert'] as String?,
       message: json['message'] as String?,
       apiUrl: json['apiUrl'] as String?,
       imageUrl: json['imageUrl'] as String?,
@@ -80,7 +80,7 @@ _CustomerChatViewArguments _$CustomerChatViewArgumentsFromJson(
 Map<String, dynamic> _$CustomerChatViewArgumentsToJson(
         _CustomerChatViewArguments instance) =>
     <String, dynamic>{
-      'cret': instance.cret,
+      'cert': instance.cert,
       'message': instance.message,
       'apiUrl': instance.apiUrl,
       'imageUrl': instance.imageUrl,

@@ -5,13 +5,14 @@ import 'package:flutter_keyboard_visibility/flutter_keyboard_visibility.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:go_router/go_router.dart';
-import 'package:my_flutter_basic/views/login/provider.dart';
+import 'package:my_flutter_basic/common/provider/alive/my_app_info.dart';
 
 import '../../generated/l10n.dart';
 import '../../global.dart';
 import '../../public/public.dart';
 import '../../../common/common.dart';
 import '../widgets/index.dart';
+import 'provider.dart';
 
 part 'widgets/button_remember_password.dart';
 part 'widgets/button_login.dart';
@@ -19,7 +20,6 @@ part 'widgets/button_register.dart';
 part 'widgets/button_forgot_password.dart';
 part 'widgets/input_box_title.dart';
 
-part 'logics/update_send_code_state.dart';
 part 'logics/forgot_password.dart';
 part 'logics/login_for_password.dart';
 part 'logics/go_home_view.dart';
@@ -50,7 +50,8 @@ class LoginView extends StatelessWidget {
   }
 
   Widget _buildBody(BuildContext context) {
-    String version = 'v${Global.to.myAppInfo?.version}';
+    final myAppInfo = Global.to.providerContainer.read(myAppInfoNotifierProvider);
+    String version = 'v${myAppInfo?.version}';
 
     return SingleChildScrollView(child: Column(crossAxisAlignment: CrossAxisAlignment.center, children: [
       SvgPicture.asset(Theme.of(context).myIcons.logo),
@@ -64,10 +65,10 @@ class LoginView extends StatelessWidget {
 
 class _Content extends ConsumerStatefulWidget {
   @override
-  ConsumerState<_Content> createState() => __ContentState();
+  ConsumerState<_Content> createState() => _ContentState();
 }
 
-class __ContentState extends ConsumerState<_Content> {
+class _ContentState extends ConsumerState<_Content> {
   // 账号输入框控制器
   final accountTextController = TextEditingController();
   final accountFocusNode = FocusNode();
@@ -143,15 +144,22 @@ class __ContentState extends ConsumerState<_Content> {
   // 重置账号输入框
   void resetAccountInput() async {
     final signState = ref.read(loginViewSignStateNotifierProvider);
-    final loginViewEnableButtonSendCode = ref.read(loginViewEnableButtonSendCodeNotifierProvider);
 
-    if (loginViewEnableButtonSendCode && [SignState.loginForPassword, SignState.loginForCode].contains(signState)) {
+    if (signState == SignState.loginForPassword) {
       if (accountCache != null) {
         accountTextController.text = accountCache!;
+        ref.read(loginViewRememberPasswordNotifierProvider.notifier).set(true);
+      } else {
+        ref.read(loginViewRememberPasswordNotifierProvider.notifier).set(false);
       }
+    }
 
+    if (signState == SignState.loginForCode) {
       if (phoneCache != null) {
         phoneTextController.text = phoneCache!;
+        ref.read(loginViewRememberPasswordNotifierProvider.notifier).set(true);
+      } else {
+        ref.read(loginViewRememberPasswordNotifierProvider.notifier).set(false);
       }
     }
   }
@@ -169,7 +177,9 @@ class __ContentState extends ConsumerState<_Content> {
   void updateSignState(SignState state) {
     final loginViewSignState = ref.read(loginViewSignStateNotifierProvider.notifier);
     loginViewSignState.set(state);
+
     FocusScope.of(context).unfocus();
+
     clearInput();
     resetAccountInput();
     listener();
@@ -182,16 +192,23 @@ class __ContentState extends ConsumerState<_Content> {
         validate: validate,
         username: accountTextController.text,
         password: passwordTextController.text,
-        ref: ref,
+        isRememberPassword: ref.read(loginViewRememberPasswordNotifierProvider),
+        context: context,
         account: accountTextController.text
     )
         : _loginForCode(
         validate: validate,
         phone: phoneTextController.text,
         verificationCode: phoneCodeTextController.text,
-        ref: ref,
+        isRememberPassword: ref.read(loginViewRememberPasswordNotifierProvider),
+        context: context,
         account: accountTextController.text
     );
+  }
+
+  void updateSendCodeState(SendCodeState state) {
+    final loginViewSendCodeState = ref.read(loginViewSendCodeStateNotifierProvider.notifier);
+    loginViewSendCodeState.set(state);
   }
 
   // 输入框监听
@@ -208,7 +225,6 @@ class __ContentState extends ConsumerState<_Content> {
     } else {
       loginViewEnableButtonSendCode.set(true);
     }
-
 
     if (signState == SignState.loginForPassword) {
       if (accountTextController.text.isEmpty || passwordTextController.text.isEmpty) {
@@ -270,18 +286,9 @@ class __ContentState extends ConsumerState<_Content> {
       phoneCodeTextController: phoneCodeTextController,
       accountTextController: accountTextController,
       phoneCodeFocusNode: phoneCodeFocusNode,
-      onSendCodeBefore: () => _updateSendCodeState(
-        ref: ref,
-        state: SendCodeState.sending,
-      ),
-      onSendCodeSuccess: () => _updateSendCodeState(
-        ref: ref,
-        state: SendCodeState.waiting,
-      ),
-      onSendCodeError: () => _updateSendCodeState(
-        ref: ref,
-        state: SendCodeState.toBeSend,
-      ),
+      onSendCodeBefore: () => updateSendCodeState(SendCodeState.sending),
+      onSendCodeSuccess: () => updateSendCodeState(SendCodeState.waiting,),
+      onSendCodeError: () => updateSendCodeState(SendCodeState.toBeSend),
     );
 
     // 记住密码
@@ -295,7 +302,7 @@ class __ContentState extends ConsumerState<_Content> {
     // 注册按钮
     final buttonRegister = _ButtonRegister(
       onPressed: (value) => _register(
-        ref: ref,
+        context: context,
         username: accountTextController.text,
         password: passwordTextController.text,
         rePassword: rePasswordTextController.text,

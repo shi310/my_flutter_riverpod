@@ -2,19 +2,20 @@
 // 这里需要传一个 onSuccess 回调
 // 人机验证成功后需要走的逻辑可以传进来
 import 'package:flutter/material.dart';
-import 'package:flutter_riverpod/flutter_riverpod.dart';
-
 import '../common.dart';
 
 Future<void> verificationHuman({
-  required WidgetRef ref,
+  required BuildContext context,
   void Function(String)? onSuccess,
+  required Future<HumanVerificationModel> getCaptchaImage,
+  required String language,
 }) async {
-  FocusScope.of(ref.context).unfocus();
+  FocusScope.of(context).unfocus();
   HumanVerificationModel humanVerificationModel = HumanVerificationModel();
 
   showMyLoading();
-  final model = await ref.read(humanVerificationNotifierProvider.future);
+  final model = await getCaptchaImage;
+  // final model = await ref.read(humanVerificationNotifierProvider.future);
   hideMyLoading();
 
   humanVerificationModel = humanVerificationModel.copyWith(
@@ -25,7 +26,8 @@ Future<void> verificationHuman({
   if (humanVerificationModel.captchaId != null) {
     showMyBlock();
     showCaptcha(
-      language: ref.read(languageNotifierProvider).languageCode,
+      // language: ref.read(languageNotifierProvider).languageCode,
+      language: language,
       captchaId: humanVerificationModel.captchaId ?? '',
       onSuccess: (value) async {
         if (value.isNotEmpty) {

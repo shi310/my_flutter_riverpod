@@ -735,4 +735,233 @@ class __$CustomerFaqInfoModelCopyWithImpl<$Res>
   }
 }
 
+/// @nodoc
+mixin _$CombinedCustomerDataModel {
+  CustomerModel? get customer;
+  CustomerFaqTypeListModel? get faqTypeList;
+
+  /// Create a copy of CombinedCustomerDataModel
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
+  @pragma('vm:prefer-inline')
+  $CombinedCustomerDataModelCopyWith<CombinedCustomerDataModel> get copyWith =>
+      _$CombinedCustomerDataModelCopyWithImpl<CombinedCustomerDataModel>(
+          this as CombinedCustomerDataModel, _$identity);
+
+  /// Serializes this CombinedCustomerDataModel to a JSON map.
+  Map<String, dynamic> toJson();
+
+  @override
+  bool operator ==(Object other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType &&
+            other is CombinedCustomerDataModel &&
+            (identical(other.customer, customer) ||
+                other.customer == customer) &&
+            (identical(other.faqTypeList, faqTypeList) ||
+                other.faqTypeList == faqTypeList));
+  }
+
+  @JsonKey(includeFromJson: false, includeToJson: false)
+  @override
+  int get hashCode => Object.hash(runtimeType, customer, faqTypeList);
+
+  @override
+  String toString() {
+    return 'CombinedCustomerDataModel(customer: $customer, faqTypeList: $faqTypeList)';
+  }
+}
+
+/// @nodoc
+abstract mixin class $CombinedCustomerDataModelCopyWith<$Res> {
+  factory $CombinedCustomerDataModelCopyWith(CombinedCustomerDataModel value,
+          $Res Function(CombinedCustomerDataModel) _then) =
+      _$CombinedCustomerDataModelCopyWithImpl;
+  @useResult
+  $Res call({CustomerModel? customer, CustomerFaqTypeListModel? faqTypeList});
+
+  $CustomerModelCopyWith<$Res>? get customer;
+  $CustomerFaqTypeListModelCopyWith<$Res>? get faqTypeList;
+}
+
+/// @nodoc
+class _$CombinedCustomerDataModelCopyWithImpl<$Res>
+    implements $CombinedCustomerDataModelCopyWith<$Res> {
+  _$CombinedCustomerDataModelCopyWithImpl(this._self, this._then);
+
+  final CombinedCustomerDataModel _self;
+  final $Res Function(CombinedCustomerDataModel) _then;
+
+  /// Create a copy of CombinedCustomerDataModel
+  /// with the given fields replaced by the non-null parameter values.
+  @pragma('vm:prefer-inline')
+  @override
+  $Res call({
+    Object? customer = freezed,
+    Object? faqTypeList = freezed,
+  }) {
+    return _then(_self.copyWith(
+      customer: freezed == customer
+          ? _self.customer
+          : customer // ignore: cast_nullable_to_non_nullable
+              as CustomerModel?,
+      faqTypeList: freezed == faqTypeList
+          ? _self.faqTypeList
+          : faqTypeList // ignore: cast_nullable_to_non_nullable
+              as CustomerFaqTypeListModel?,
+    ));
+  }
+
+  /// Create a copy of CombinedCustomerDataModel
+  /// with the given fields replaced by the non-null parameter values.
+  @override
+  @pragma('vm:prefer-inline')
+  $CustomerModelCopyWith<$Res>? get customer {
+    if (_self.customer == null) {
+      return null;
+    }
+
+    return $CustomerModelCopyWith<$Res>(_self.customer!, (value) {
+      return _then(_self.copyWith(customer: value));
+    });
+  }
+
+  /// Create a copy of CombinedCustomerDataModel
+  /// with the given fields replaced by the non-null parameter values.
+  @override
+  @pragma('vm:prefer-inline')
+  $CustomerFaqTypeListModelCopyWith<$Res>? get faqTypeList {
+    if (_self.faqTypeList == null) {
+      return null;
+    }
+
+    return $CustomerFaqTypeListModelCopyWith<$Res>(_self.faqTypeList!, (value) {
+      return _then(_self.copyWith(faqTypeList: value));
+    });
+  }
+}
+
+/// @nodoc
+@JsonSerializable()
+class _CombinedCustomerDataModel implements CombinedCustomerDataModel {
+  const _CombinedCustomerDataModel({this.customer, this.faqTypeList});
+  factory _CombinedCustomerDataModel.fromJson(Map<String, dynamic> json) =>
+      _$CombinedCustomerDataModelFromJson(json);
+
+  @override
+  final CustomerModel? customer;
+  @override
+  final CustomerFaqTypeListModel? faqTypeList;
+
+  /// Create a copy of CombinedCustomerDataModel
+  /// with the given fields replaced by the non-null parameter values.
+  @override
+  @JsonKey(includeFromJson: false, includeToJson: false)
+  @pragma('vm:prefer-inline')
+  _$CombinedCustomerDataModelCopyWith<_CombinedCustomerDataModel>
+      get copyWith =>
+          __$CombinedCustomerDataModelCopyWithImpl<_CombinedCustomerDataModel>(
+              this, _$identity);
+
+  @override
+  Map<String, dynamic> toJson() {
+    return _$CombinedCustomerDataModelToJson(
+      this,
+    );
+  }
+
+  @override
+  bool operator ==(Object other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType &&
+            other is _CombinedCustomerDataModel &&
+            (identical(other.customer, customer) ||
+                other.customer == customer) &&
+            (identical(other.faqTypeList, faqTypeList) ||
+                other.faqTypeList == faqTypeList));
+  }
+
+  @JsonKey(includeFromJson: false, includeToJson: false)
+  @override
+  int get hashCode => Object.hash(runtimeType, customer, faqTypeList);
+
+  @override
+  String toString() {
+    return 'CombinedCustomerDataModel(customer: $customer, faqTypeList: $faqTypeList)';
+  }
+}
+
+/// @nodoc
+abstract mixin class _$CombinedCustomerDataModelCopyWith<$Res>
+    implements $CombinedCustomerDataModelCopyWith<$Res> {
+  factory _$CombinedCustomerDataModelCopyWith(_CombinedCustomerDataModel value,
+          $Res Function(_CombinedCustomerDataModel) _then) =
+      __$CombinedCustomerDataModelCopyWithImpl;
+  @override
+  @useResult
+  $Res call({CustomerModel? customer, CustomerFaqTypeListModel? faqTypeList});
+
+  @override
+  $CustomerModelCopyWith<$Res>? get customer;
+  @override
+  $CustomerFaqTypeListModelCopyWith<$Res>? get faqTypeList;
+}
+
+/// @nodoc
+class __$CombinedCustomerDataModelCopyWithImpl<$Res>
+    implements _$CombinedCustomerDataModelCopyWith<$Res> {
+  __$CombinedCustomerDataModelCopyWithImpl(this._self, this._then);
+
+  final _CombinedCustomerDataModel _self;
+  final $Res Function(_CombinedCustomerDataModel) _then;
+
+  /// Create a copy of CombinedCustomerDataModel
+  /// with the given fields replaced by the non-null parameter values.
+  @override
+  @pragma('vm:prefer-inline')
+  $Res call({
+    Object? customer = freezed,
+    Object? faqTypeList = freezed,
+  }) {
+    return _then(_CombinedCustomerDataModel(
+      customer: freezed == customer
+          ? _self.customer
+          : customer // ignore: cast_nullable_to_non_nullable
+              as CustomerModel?,
+      faqTypeList: freezed == faqTypeList
+          ? _self.faqTypeList
+          : faqTypeList // ignore: cast_nullable_to_non_nullable
+              as CustomerFaqTypeListModel?,
+    ));
+  }
+
+  /// Create a copy of CombinedCustomerDataModel
+  /// with the given fields replaced by the non-null parameter values.
+  @override
+  @pragma('vm:prefer-inline')
+  $CustomerModelCopyWith<$Res>? get customer {
+    if (_self.customer == null) {
+      return null;
+    }
+
+    return $CustomerModelCopyWith<$Res>(_self.customer!, (value) {
+      return _then(_self.copyWith(customer: value));
+    });
+  }
+
+  /// Create a copy of CombinedCustomerDataModel
+  /// with the given fields replaced by the non-null parameter values.
+  @override
+  @pragma('vm:prefer-inline')
+  $CustomerFaqTypeListModelCopyWith<$Res>? get faqTypeList {
+    if (_self.faqTypeList == null) {
+      return null;
+    }
+
+    return $CustomerFaqTypeListModelCopyWith<$Res>(_self.faqTypeList!, (value) {
+      return _then(_self.copyWith(faqTypeList: value));
+    });
+  }
+}
+
 // dart format on

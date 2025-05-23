@@ -163,7 +163,7 @@ final loginViewSignStateNotifierProvider =
 
 typedef _$LoginViewSignStateNotifier = AutoDisposeNotifier<SignState>;
 String _$loginViewSendCodeStateNotifierHash() =>
-    r'585509beea235746e7826f6b149fc475fe5a7e02';
+    r'c400ff40d0df70e488e3cdb52877d8bed0ef032e';
 
 /// See also [LoginViewSendCodeStateNotifier].
 @ProviderFor(LoginViewSendCodeStateNotifier)
@@ -179,5 +179,23 @@ final loginViewSendCodeStateNotifierProvider = AutoDisposeNotifierProvider<
 );
 
 typedef _$LoginViewSendCodeStateNotifier = AutoDisposeNotifier<SendCodeState>;
+String _$loginViewTextEditingControllerNotifierHash() =>
+    r'e0ff2c6ab794343b91272bb103e33f8e9850595c';
+
+/// See also [LoginViewTextEditingControllerNotifier].
+@ProviderFor(LoginViewTextEditingControllerNotifier)
+final loginViewTextEditingControllerNotifierProvider =
+    AutoDisposeNotifierProvider<LoginViewTextEditingControllerNotifier,
+        void>.internal(
+  LoginViewTextEditingControllerNotifier.new,
+  name: r'loginViewTextEditingControllerNotifierProvider',
+  debugGetCreateSourceHash: const bool.fromEnvironment('dart.vm.product')
+      ? null
+      : _$loginViewTextEditingControllerNotifierHash,
+  dependencies: null,
+  allTransitiveDependencies: null,
+);
+
+typedef _$LoginViewTextEditingControllerNotifier = AutoDisposeNotifier<void>;
 // ignore_for_file: type=lint
 // ignore_for_file: subtype_of_sealed_class, invalid_use_of_internal_member, invalid_use_of_visible_for_testing_member, deprecated_member_use_from_same_package

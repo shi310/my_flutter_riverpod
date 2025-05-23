@@ -4,7 +4,6 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:riverpod_annotation/riverpod_annotation.dart';
 
 import '../../common/common.dart';
-import '../../global.dart';
 import '../../public/public.dart';
 
 part 'provider.g.dart';
@@ -20,7 +19,8 @@ Future<CustomerModel> customerListNotifier(Ref ref, {
   final typeName = arguments.customerType == CustomerType.guest ? [4] : [2, 3];
 
   CustomerModel data = CustomerModel();
-  await Global.to.myDio?.post<CustomerModel>(ApiPath.me.getCustomer,
+  final myDio = ref.read(myDioForAppNotifierProvider);
+  await myDio?.post<CustomerModel>(ApiPath.me.getCustomer,
     onSuccess: (code, msg, results) async {
       data = results;
     },
@@ -45,7 +45,8 @@ Future<CustomerFaqTypeListModel> customerFaqTypeListNotifier(Ref ref) async {
   myProviderKeepAlive(ref, debugKey: "customerFaqTypeList");
 
   CustomerFaqTypeListModel data = CustomerFaqTypeListModel();
-  await Global.to.myDio?.get<CustomerFaqTypeListModel>(ApiPath.me.getCustomerFaqType,
+  final myDio = ref.read(myDioForAppNotifierProvider);
+  await myDio?.get<CustomerFaqTypeListModel>(ApiPath.me.getCustomerFaqType,
     onSuccess: (code, msg, results) async {
       data = results;
     },
@@ -60,4 +61,22 @@ Future<CustomerFaqTypeListModel> customerFaqTypeListNotifier(Ref ref) async {
     }),
   );
   return data;
+}
+
+@riverpod
+Future<CombinedCustomerDataModel> customerDataCombined(Ref ref, {
+  required CustomerListViewArguments arguments,
+}) async {
+  final customerList = await ref.watch(
+    customerListNotifierProvider(arguments: arguments).future,
+  );
+
+  final faqTypeList = await ref.watch(
+    customerFaqTypeListNotifierProvider.future,
+  );
+
+  return CombinedCustomerDataModel(
+    customer: customerList,
+    faqTypeList: faqTypeList,
+  );
 }

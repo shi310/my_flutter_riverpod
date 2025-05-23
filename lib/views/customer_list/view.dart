@@ -2,11 +2,11 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:go_router/go_router.dart';
-import 'package:my_flutter_basic/views/customer_list/provider.dart';
 
 import '../../common/common.dart';
 import '../../generated/l10n.dart';
 import '../../public/public.dart';
+import 'provider.dart';
 
 class CustomerListView extends StatelessWidget {
   const CustomerListView({
@@ -218,7 +218,7 @@ class _CustomerListWidget extends StatelessWidget {
     // 客服列表点击事件
     void onClickCustomerItem(Customer model) async {
       final arguments = CustomerChatViewArguments(
-        cret: model.cret,
+        cert: model.cret,
         apiUrl: customerData.urlApi,
         imageUrl: customerData.urlImg,
         sign: customerData.sign,

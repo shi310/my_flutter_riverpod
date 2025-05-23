@@ -1,5 +1,7 @@
 import 'package:freezed_annotation/freezed_annotation.dart';
 
+import 'models.dart';
+
 part 'customer_faq.freezed.dart';
 part 'customer_faq.g.dart';
 
@@ -44,4 +46,14 @@ abstract class CustomerFaqInfoModel with _$CustomerFaqInfoModel {
   }) = _CustomerFaqInfoModel;
 
   factory CustomerFaqInfoModel.fromJson(Map<String, dynamic> json) => _$CustomerFaqInfoModelFromJson(json);
+}
+
+@freezed
+abstract class CombinedCustomerDataModel with _$CombinedCustomerDataModel {
+  const factory CombinedCustomerDataModel({
+    CustomerModel? customer,
+    CustomerFaqTypeListModel? faqTypeList,
+  }) = _CombinedCustomerDataModel;
+
+  factory CombinedCustomerDataModel.fromJson(Map<String, dynamic> json) => _$CombinedCustomerDataModelFromJson(json);
 }

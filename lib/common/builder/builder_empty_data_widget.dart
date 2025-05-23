@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
-import 'package:my_flutter_basic/common/common.dart';
 
 import '../../generated/l10n.dart';
+import '../common.dart';
 
 Widget builderEmptyDataWidget({
   required BuildContext context

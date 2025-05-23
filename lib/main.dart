@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:my_flutter_basic/common/theme/dark.dart';
+import 'package:my_flutter_basic/common/theme/light.dart';
 
 import 'common/common.dart';
 import 'generated/l10n.dart';
@@ -11,23 +13,30 @@ void main() async {
   WidgetsFlutterBinding.ensureInitialized();
   // 全局控制器
   Global.to.onInit();
-
+  // 初始化OpenInstall
+  Global.to.providerContainer.read(openInstallNotifierProvider);
+  // 并发初始化
+  // 同时进行
   await Future.wait([
     // 初始化主题
-    initTheme(),
+    Global.to.providerContainer.read(themeNotifierProvider.notifier).init(),
     // 初始化语言
-    initLanguage(),
+    Global.to.providerContainer.read(localeNotifierProvider.notifier).init(),
     // 初始化深度链接
     initDeepLink(),
     // 初始化APP信息
     initDeviceInfo(),
-    // 初始化OpenInstall
-    initOpenInstall(),
     // 初始化APP数据
     initAppData(),
   ]);
 
-  runApp(ProviderScope(child: MyApp()));
+  // 获取配置配信息...
+  Global.to.onReady();
+
+  runApp(UncontrolledProviderScope(
+    container: Global.to.providerContainer,
+    child: const MyApp(),
+  ));
 }
 
 class MyApp extends ConsumerWidget {
@@ -35,15 +44,15 @@ class MyApp extends ConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    final locale = ref.watch(languageNotifierProvider);
+    final locale = ref.watch(localeNotifierProvider);
     final themeMode = ref.watch(themeNotifierProvider);
 
     return MaterialApp.router(
       routerConfig: MyPages.routerConfig,
       locale: locale,
       themeMode: themeMode,
-      theme: MyTheme.light,
-      darkTheme: MyTheme.dark,
+      theme: themeDataLight,
+      darkTheme: themeDataDark,
       localizationsDelegates: [
         S.delegate,
         GlobalMaterialLocalizations.delegate,

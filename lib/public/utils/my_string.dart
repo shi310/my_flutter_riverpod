@@ -32,13 +32,13 @@ extension StringExtension on String {
   }
 
   /// 转int
-  int? toInt() {
-    return int.tryParse(this);
+  int toInt() {
+    return int.tryParse(this) ?? 0;
   }
 
   /// 转double
-  double? toDouble() {
-    return double.tryParse(this);
+  double toDouble() {
+    return double.tryParse(this) ?? 0.0;
   }
 
   /// 校验中文名字

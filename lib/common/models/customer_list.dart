@@ -50,7 +50,7 @@ enum CustomerType {
 @freezed
 abstract class CustomerChatViewArguments with _$CustomerChatViewArguments {
   const factory CustomerChatViewArguments({
-    String? cret,
+    String? cert,
     String? message,
     String? apiUrl,
     String? imageUrl,

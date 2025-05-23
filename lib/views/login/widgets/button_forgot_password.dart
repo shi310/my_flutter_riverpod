@@ -15,7 +15,9 @@ class _ButtonForgotPassword extends ConsumerWidget {
       width: double.infinity,
       child: FilledButton(
         onPressed: isEnableButtonConfirm ? () => verificationHuman(
-          ref: ref,
+          context: context,
+          language: ref.read(localeNotifierProvider).languageCode,
+          getCaptchaImage: ref.read(humanVerificationNotifierProvider.future),
           onSuccess: (value) => onPressed?.call(value),
         ) : null,
         child: Text(S.of(context).confirm, style: TextStyle(

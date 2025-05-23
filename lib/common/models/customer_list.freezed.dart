@@ -645,7 +645,7 @@ class __$CustomerListViewArgumentsCopyWithImpl<$Res>
 
 /// @nodoc
 mixin _$CustomerChatViewArguments {
-  String? get cret;
+  String? get cert;
   String? get message;
   String? get apiUrl;
   String? get imageUrl;
@@ -670,7 +670,7 @@ mixin _$CustomerChatViewArguments {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is CustomerChatViewArguments &&
-            (identical(other.cret, cret) || other.cret == cret) &&
+            (identical(other.cert, cert) || other.cert == cert) &&
             (identical(other.message, message) || other.message == message) &&
             (identical(other.apiUrl, apiUrl) || other.apiUrl == apiUrl) &&
             (identical(other.imageUrl, imageUrl) ||
@@ -685,12 +685,12 @@ mixin _$CustomerChatViewArguments {
 
   @JsonKey(includeFromJson: false, includeToJson: false)
   @override
-  int get hashCode => Object.hash(runtimeType, cret, message, apiUrl, imageUrl,
+  int get hashCode => Object.hash(runtimeType, cert, message, apiUrl, imageUrl,
       avatarUrl, sign, tenantId, userId);
 
   @override
   String toString() {
-    return 'CustomerChatViewArguments(cret: $cret, message: $message, apiUrl: $apiUrl, imageUrl: $imageUrl, avatarUrl: $avatarUrl, sign: $sign, tenantId: $tenantId, userId: $userId)';
+    return 'CustomerChatViewArguments(cert: $cert, message: $message, apiUrl: $apiUrl, imageUrl: $imageUrl, avatarUrl: $avatarUrl, sign: $sign, tenantId: $tenantId, userId: $userId)';
   }
 }
 
@@ -701,7 +701,7 @@ abstract mixin class $CustomerChatViewArgumentsCopyWith<$Res> {
       _$CustomerChatViewArgumentsCopyWithImpl;
   @useResult
   $Res call(
-      {String? cret,
+      {String? cert,
       String? message,
       String? apiUrl,
       String? imageUrl,
@@ -724,7 +724,7 @@ class _$CustomerChatViewArgumentsCopyWithImpl<$Res>
   @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? cret = freezed,
+    Object? cert = freezed,
     Object? message = freezed,
     Object? apiUrl = freezed,
     Object? imageUrl = freezed,
@@ -734,9 +734,9 @@ class _$CustomerChatViewArgumentsCopyWithImpl<$Res>
     Object? userId = freezed,
   }) {
     return _then(_self.copyWith(
-      cret: freezed == cret
-          ? _self.cret
-          : cret // ignore: cast_nullable_to_non_nullable
+      cert: freezed == cert
+          ? _self.cert
+          : cert // ignore: cast_nullable_to_non_nullable
               as String?,
       message: freezed == message
           ? _self.message
@@ -774,7 +774,7 @@ class _$CustomerChatViewArgumentsCopyWithImpl<$Res>
 @JsonSerializable()
 class _CustomerChatViewArguments implements CustomerChatViewArguments {
   const _CustomerChatViewArguments(
-      {this.cret,
+      {this.cert,
       this.message,
       this.apiUrl,
       this.imageUrl,
@@ -786,7 +786,7 @@ class _CustomerChatViewArguments implements CustomerChatViewArguments {
       _$CustomerChatViewArgumentsFromJson(json);
 
   @override
-  final String? cret;
+  final String? cert;
   @override
   final String? message;
   @override
@@ -824,7 +824,7 @@ class _CustomerChatViewArguments implements CustomerChatViewArguments {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is _CustomerChatViewArguments &&
-            (identical(other.cret, cret) || other.cret == cret) &&
+            (identical(other.cert, cert) || other.cert == cert) &&
             (identical(other.message, message) || other.message == message) &&
             (identical(other.apiUrl, apiUrl) || other.apiUrl == apiUrl) &&
             (identical(other.imageUrl, imageUrl) ||
@@ -839,12 +839,12 @@ class _CustomerChatViewArguments implements CustomerChatViewArguments {
 
   @JsonKey(includeFromJson: false, includeToJson: false)
   @override
-  int get hashCode => Object.hash(runtimeType, cret, message, apiUrl, imageUrl,
+  int get hashCode => Object.hash(runtimeType, cert, message, apiUrl, imageUrl,
       avatarUrl, sign, tenantId, userId);
 
   @override
   String toString() {
-    return 'CustomerChatViewArguments(cret: $cret, message: $message, apiUrl: $apiUrl, imageUrl: $imageUrl, avatarUrl: $avatarUrl, sign: $sign, tenantId: $tenantId, userId: $userId)';
+    return 'CustomerChatViewArguments(cert: $cert, message: $message, apiUrl: $apiUrl, imageUrl: $imageUrl, avatarUrl: $avatarUrl, sign: $sign, tenantId: $tenantId, userId: $userId)';
   }
 }
 
@@ -857,7 +857,7 @@ abstract mixin class _$CustomerChatViewArgumentsCopyWith<$Res>
   @override
   @useResult
   $Res call(
-      {String? cret,
+      {String? cert,
       String? message,
       String? apiUrl,
       String? imageUrl,
@@ -880,7 +880,7 @@ class __$CustomerChatViewArgumentsCopyWithImpl<$Res>
   @override
   @pragma('vm:prefer-inline')
   $Res call({
-    Object? cret = freezed,
+    Object? cert = freezed,
     Object? message = freezed,
     Object? apiUrl = freezed,
     Object? imageUrl = freezed,
@@ -890,9 +890,9 @@ class __$CustomerChatViewArgumentsCopyWithImpl<$Res>
     Object? userId = freezed,
   }) {
     return _then(_CustomerChatViewArguments(
-      cret: freezed == cret
-          ? _self.cret
-          : cret // ignore: cast_nullable_to_non_nullable
+      cert: freezed == cert
+          ? _self.cert
+          : cert // ignore: cast_nullable_to_non_nullable
               as String?,
       message: freezed == message
           ? _self.message

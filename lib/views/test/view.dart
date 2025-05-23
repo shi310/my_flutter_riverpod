@@ -1,5 +1,3 @@
-import 'dart:ui';
-
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
@@ -44,75 +42,43 @@ class TestView extends ConsumerWidget {
           Center(child: Text(S.of(context).fileSizeOut(30))),
 
           ElevatedButton(
-            onPressed: () {
-              // 获取当前的语言设置
-              final currentLocale = ref.read(languageNotifierProvider);
-
-              // 如果当前语言已经是英语，则跳过更新
-              if (currentLocale.languageCode == 'en') {
-                return;
-              }
-
-              ref.read(languageNotifierProvider.notifier).updateLanguage(Locale('en', 'US'));
-              MyCache.putFile(MyConfig.shard.localKey, 'en');
+            onPressed: () async {
+              ref.read(localeNotifierProvider.notifier).en();
             },
             child: Text('英语'),
           ),
 
           ElevatedButton(
             onPressed: () {
-              // 获取当前的语言设置
-              final currentLocale = ref.read(languageNotifierProvider);
-
-              // 如果当前语言已经是英语，则跳过更新
-              if (currentLocale.languageCode == 'zh') {
-                return;
-              }
-
-              ref.read(languageNotifierProvider.notifier).updateLanguage(Locale('zh', 'CN'));
-              MyCache.putFile(MyConfig.shard.localKey, 'zh');
-
+              ref.read(localeNotifierProvider.notifier).zh();
             },
             child: Text('中文'),
           ),
 
           ElevatedButton(
             onPressed: () {
-              final systemLocale = PlatformDispatcher.instance.locale;
-              final systemLocaleTag = systemLocale.languageCode;
-
-              switch (systemLocaleTag) {
-                case 'zh':
-                  ref.read(languageNotifierProvider.notifier).updateLanguage(Locale('zh', 'CN'));
-                case 'en':
-                  ref.read(languageNotifierProvider.notifier).updateLanguage(Locale('en', 'US'));
-                default:
-                  ref.read(languageNotifierProvider.notifier).updateLanguage(Locale('zh', 'CN'));
-              }
-              MyCache.removeFile(MyConfig.shard.localKey);
+              ref.read(localeNotifierProvider.notifier).system();
             },
             child: FittedBox(child: Text('系统语言')),
           ),
 
           ElevatedButton(
             onPressed: () {
-              ref.read(themeNotifierProvider.notifier).updateTheme(ThemeMode.light);
-              MyCache.putFile(MyConfig.shard.themeModeKey, 'light');
+              ref.read(themeNotifierProvider.notifier).light();
             },
             child: Text('亮色'),
           ),
 
           ElevatedButton(
             onPressed: () {
-              ref.read(themeNotifierProvider.notifier).updateTheme(ThemeMode.dark);
-              MyCache.putFile(MyConfig.shard.themeModeKey, 'dark');
+              ref.read(themeNotifierProvider.notifier).dark();
             },
             child: Text('暗色'),
           ),
 
           ElevatedButton(
             onPressed: () {
-              ref.read(themeNotifierProvider.notifier).updateTheme(ThemeMode.system);
+              ref.read(themeNotifierProvider.notifier).system();
               MyCache.removeFile(MyConfig.shard.themeModeKey);
             },
             child: FittedBox(child: Text('系统主题')),

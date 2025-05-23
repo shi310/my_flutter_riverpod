@@ -10,7 +10,8 @@ Future<void> _forgotPassword({
   required String verificationCode,
 }) async {
   showMyLoading();
-  await Global.to.myDio?.post(ApiPath.base.forgetPassword,
+  final myDio = Global.to.providerContainer.read(myDioForAppNotifierProvider);
+  await myDio?.post(ApiPath.base.forgetPassword,
       onSuccess: (code, msg, data) async {
         onSuccess.call(SignState.loginForPassword);
         MyAlert.showSnack(child: Text(msg));

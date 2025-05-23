@@ -20,7 +20,7 @@ class MyDio {
     }
 
     final baseOptions = BaseOptions(
-      baseUrl: urls.first,
+      baseUrl: urls.firstOrNull ?? '',
       sendTimeout: timeout,
       receiveTimeout: timeout,
       connectTimeout: timeout,

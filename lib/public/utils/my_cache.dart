@@ -43,7 +43,7 @@ class MyCache {
     } else {
       final validTill = fileInfo.validTill;
       final isBefore = validTill.isBefore(DateTime.now());
-      log('缓存过期时间: $validTill  -> 是否过期: $isBefore');
+      log('[$url] 缓存过期时间: $validTill  -> 是否过期: $isBefore');
       if (isBefore) {
         await cacheManager.removeFile(url);
         return null;

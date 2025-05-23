@@ -71,3 +71,22 @@ Map<String, dynamic> _$CustomerFaqInfoModelToJson(
       'picUrl': instance.picUrl,
       'sort': instance.sort,
     };
+
+_CombinedCustomerDataModel _$CombinedCustomerDataModelFromJson(
+        Map<String, dynamic> json) =>
+    _CombinedCustomerDataModel(
+      customer: json['customer'] == null
+          ? null
+          : CustomerModel.fromJson(json['customer'] as Map<String, dynamic>),
+      faqTypeList: json['faqTypeList'] == null
+          ? null
+          : CustomerFaqTypeListModel.fromJson(
+              json['faqTypeList'] as Map<String, dynamic>),
+    );
+
+Map<String, dynamic> _$CombinedCustomerDataModelToJson(
+        _CombinedCustomerDataModel instance) =>
+    <String, dynamic>{
+      'customer': instance.customer,
+      'faqTypeList': instance.faqTypeList,
+    };

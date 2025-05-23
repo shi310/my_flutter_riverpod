@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
-import 'package:my_flutter_basic/common/common.dart';
-import 'package:my_flutter_basic/views/widgets/index.dart';
 
 import '../../generated/l10n.dart';
+import '../../views/widgets/index.dart';
+import '../common.dart';
 
 Widget builderErrorWidget(Object error, {
   required BuildContext context,

@@ -1,3 +1,5 @@
+import 'package:my_flutter_basic/common/provider/alive/is_used_app.dart';
+
 import '../../global.dart';
 import '../../public/utils/utils.dart';
 import '../common.dart';
@@ -16,7 +18,8 @@ Future<void> _getIsUsedApp() async {
   if (file != null) {
     String crypto = await file.readAsString();
     final string= crypto.aesDecrypt(MyConfig.key.aesKey);
-    Global.to.isUsedApp = string;
+    Global.to.providerContainer.read(isUsedAppNotifierProvider.notifier).set(string);
+    // Global.to.isUsedApp = string;
   }
 }
 
@@ -26,6 +29,7 @@ Future<void> _getUserToken() async {
   if (file != null) {
     String crypto = await file.readAsString();
     final string = crypto.aesDecrypt(MyConfig.key.aesKey);
-    Global.to.userInfo = UserInfoModel.fromJson(string.toJson());
+    final data = UserInfoModel.fromJson(string.toJson());
+    Global.to.providerContainer.read(userInfoNotifierProvider.notifier).set(data);
   }
 }

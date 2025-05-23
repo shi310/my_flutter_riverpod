@@ -7,7 +7,7 @@ part of 'w_163.dart';
 // **************************************************************************
 
 String _$captchaImageNotifierHash() =>
-    r'1478e2da3b42a2d02e2521804c9a24d699e38277';
+    r'cddfb6effd24e0b4214bb52e34cf8467a734a7f7';
 
 /// See also [captchaImageNotifier].
 @ProviderFor(captchaImageNotifier)
@@ -27,7 +27,7 @@ final captchaImageNotifierProvider =
 typedef CaptchaImageNotifierRef
     = AutoDisposeFutureProviderRef<CaptchaImageModel>;
 String _$humanVerificationNotifierHash() =>
-    r'3016a17be8202ff552bd1eb303691060e1372b54';
+    r'6bb3acbb30960e338d4b36701e911390d0e65786';
 
 /// See also [humanVerificationNotifier].
 @ProviderFor(humanVerificationNotifier)

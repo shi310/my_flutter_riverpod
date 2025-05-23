@@ -24,11 +24,11 @@ class _PackageInfoConverter implements JsonConverter<PackageInfo?, Map<String, d
 
   @override
   PackageInfo fromJson(Map<String, dynamic>? json) => PackageInfo(
-    appName: json?["appName"] ?? '',
-    packageName: json?["packageName"] ?? '',
-    version: json?["version"] ?? '',
-    buildNumber: json?["buildNumber"] ?? '',
-    buildSignature: json?["buildSignature"] ?? '',
+    appName: json?["appName"],
+    packageName: json?["packageName"],
+    version: json?["version"],
+    buildNumber: json?["buildNumber"],
+    buildSignature: json?["buildSignature"],
     installerStore: json?["installerStore"],
     installTime: json?["installTime"],
     updateTime: json?["updateTime"],

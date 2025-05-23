@@ -1,6 +1,6 @@
-part of 'theme.dart';
+import 'package:flutter/material.dart';
 
-final _light = ThemeData(
+final themeDataLight = ThemeData(
   brightness: Brightness.light,
   platform: TargetPlatform.iOS,
   useMaterial3: true,

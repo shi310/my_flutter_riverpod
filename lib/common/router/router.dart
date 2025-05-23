@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
+import 'package:my_flutter_basic/common/provider/alive/is_used_app.dart';
 
 import '../../global.dart';
 import '../../views/views.dart';
@@ -26,8 +27,9 @@ class MyPages {
           // 这里分两种情况：
           // 1，用户未登录
           // 2，用户已登录
-          if (Global.to.isUsedApp == 'true') {
-            if (Global.to.userInfo.token == null) {
+          if (Global.to.providerContainer.read(isUsedAppNotifierProvider) == 'true') {
+            final token = Global.to.providerContainer.read(userInfoNotifierProvider).token;
+            if (token == null) {
               // 本地没有 token 的情况跳转到登陆页面
               return MyRouters.loginView.path;
             } else {
@@ -87,7 +89,10 @@ class MyPages {
       GoRoute(
         path: MyRouters.customerChatView.path,
         name: MyRouters.customerChatView.name,
-        builder: (context, state) => CustomerChatView(),
+        builder: (context, state) {
+          final args = state.extra as CustomerChatViewArguments;
+          return CustomerChatView(arguments: args);
+        },
       ),
     ],
   );
