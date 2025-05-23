@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:riverpod_annotation/riverpod_annotation.dart';
+
+import '../../common/common.dart';
+import '../../public/public.dart';
 
 part 'provider.g.dart';
 
@@ -73,15 +75,7 @@ class LoginViewSignStateNotifier extends _$LoginViewSignStateNotifier {
   @override
   SignState build() => SignState.loginForPassword;
 
-  void set(SignState value) => state = value;
-}
-
-@riverpod
-class LoginViewSendCodeStateNotifier extends _$LoginViewSendCodeStateNotifier {
-  @override
-  SendCodeState build() => SendCodeState.toBeSend;
-
-  void update(BuildContext context, SendCodeState value) {
+  void update(BuildContext context, SignState value) {
     state = value;
     FocusScope.of(context).unfocus();
     final controller = ref.read(loginViewTextEditingControllerNotifierProvider.notifier);
@@ -89,6 +83,37 @@ class LoginViewSendCodeStateNotifier extends _$LoginViewSendCodeStateNotifier {
     controller.resetAccountInput();
     controller.listener();
   }
+}
+
+@riverpod
+class LoginViewSendCodeStateNotifier extends _$LoginViewSendCodeStateNotifier {
+  @override
+  SendCodeState build() => SendCodeState.toBeSend;
+
+  void update(SendCodeState value) {
+    state = value;
+  }
+}
+
+@riverpod
+class LoginViewFocusNodeNotifier extends _$LoginViewFocusNodeNotifier {
+  final accountFocusNode = FocusNode();
+  final passwordFocusNode = FocusNode();
+  final rePasswordFocusNode = FocusNode();
+  final phoneFocusNode = FocusNode();
+  final phoneCodeFocusNode = FocusNode();
+
+  @override
+  void build() {
+    ref.onDispose(() {
+      accountFocusNode.dispose();
+      passwordFocusNode.dispose();
+      rePasswordFocusNode.dispose();
+      phoneFocusNode.dispose();
+      phoneCodeFocusNode.dispose();
+    });
+  }
+
 }
 
 @riverpod
@@ -132,19 +157,20 @@ class LoginViewTextEditingControllerNotifier extends _$LoginViewTextEditingContr
 
   void resetAccountInput() async {
     final signState = ref.read(loginViewSignStateNotifierProvider);
+    final cache = ref.read(loginViewAccountCacheNotifierProvider.notifier);
+    final accountCache = cache.accountCache;
+    final phoneCache = cache.phoneCache;
 
     if (signState == SignState.loginForPassword) {
-      if (accountCache != null) {
-        accountTextController.text = accountCache!;
+      if (accountCache != null && accountCache.isNotEmpty) {
+        accountTextController.text = accountCache;
         ref.read(loginViewRememberPasswordNotifierProvider.notifier).set(true);
       } else {
         ref.read(loginViewRememberPasswordNotifierProvider.notifier).set(false);
       }
-    }
-
-    if (signState == SignState.loginForCode) {
-      if (phoneCache != null) {
-        phoneTextController.text = phoneCache!;
+    } else if (signState == SignState.loginForCode) {
+      if (phoneCache != null && phoneCache.isNotEmpty) {
+        phoneTextController.text = phoneCache;
         ref.read(loginViewRememberPasswordNotifierProvider.notifier).set(true);
       } else {
         ref.read(loginViewRememberPasswordNotifierProvider.notifier).set(false);
@@ -191,6 +217,59 @@ class LoginViewTextEditingControllerNotifier extends _$LoginViewTextEditingContr
       } else {
         loginViewEnableButtonConfirm.set(true);
       }
+    }
+  }
+}
+
+@riverpod
+class LoginViewAccountCacheNotifier extends _$LoginViewAccountCacheNotifier {
+  String? accountCache;
+  String? phoneCache;
+  String? emailCache;
+
+  Future<void> getAccount() async {
+    final account = await MyCache.getFile(MyConfig.shard.accountKey);
+    if (account != null) {
+      final accountCacheString = await account.readAsString();
+      accountCache = accountCacheString.aesDecrypt(MyConfig.key.aesKey);
+    } else {
+      accountCache = '';
+    }
+  }
+
+  Future<void> getPhone() async {
+    final phone = await MyCache.getFile(MyConfig.shard.phoneKey);
+    if (phone != null) {
+      final phoneCacheString = await phone.readAsString();
+      phoneCache = phoneCacheString.aesDecrypt(MyConfig.key.aesKey);
+    } else {
+      phoneCache = '';
+    }
+  }
+
+  Future<void> getEmail() async {
+    final email = await MyCache.getFile(MyConfig.shard.emailKey);
+    if (email != null) {
+      final emailCacheString = await email.readAsString();
+      emailCache = emailCacheString.aesDecrypt(MyConfig.key.aesKey);
+    } else {
+      emailCache = '';
+    }
+  }
+
+  @override
+  Future<void> build() async {
+    if (accountCache == null || phoneCache == null || emailCache == null) {
+      WidgetsBinding.instance.addPostFrameCallback((_) async {
+        showMyLoading();
+        await Future.wait([
+          getAccount(),
+          getPhone(),
+          getEmail(),
+        ]);
+        ref.read(loginViewTextEditingControllerNotifierProvider.notifier).resetAccountInput();
+        hideMyLoading();
+      });
     }
   }
 }

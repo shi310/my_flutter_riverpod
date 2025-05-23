@@ -146,7 +146,7 @@ final loginViewTimeSendWaitNotifierProvider =
 
 typedef _$LoginViewTimeSendWaitNotifier = AutoDisposeNotifier<int>;
 String _$loginViewSignStateNotifierHash() =>
-    r'ef31a26e3e3258a27abec7e3e0dbf1d5d66453cb';
+    r'c68f254ad31a2376572c67eea396850567666278';
 
 /// See also [LoginViewSignStateNotifier].
 @ProviderFor(LoginViewSignStateNotifier)
@@ -163,7 +163,7 @@ final loginViewSignStateNotifierProvider =
 
 typedef _$LoginViewSignStateNotifier = AutoDisposeNotifier<SignState>;
 String _$loginViewSendCodeStateNotifierHash() =>
-    r'c400ff40d0df70e488e3cdb52877d8bed0ef032e';
+    r'7e3ec9c0f7a16f6f54f66e313e760cdb7fc0aa1d';
 
 /// See also [LoginViewSendCodeStateNotifier].
 @ProviderFor(LoginViewSendCodeStateNotifier)
@@ -179,8 +179,25 @@ final loginViewSendCodeStateNotifierProvider = AutoDisposeNotifierProvider<
 );
 
 typedef _$LoginViewSendCodeStateNotifier = AutoDisposeNotifier<SendCodeState>;
+String _$loginViewFocusNodeNotifierHash() =>
+    r'6f313ae3f72ad6a93cc89288c5600da8ddd287d8';
+
+/// See also [LoginViewFocusNodeNotifier].
+@ProviderFor(LoginViewFocusNodeNotifier)
+final loginViewFocusNodeNotifierProvider =
+    AutoDisposeNotifierProvider<LoginViewFocusNodeNotifier, void>.internal(
+  LoginViewFocusNodeNotifier.new,
+  name: r'loginViewFocusNodeNotifierProvider',
+  debugGetCreateSourceHash: const bool.fromEnvironment('dart.vm.product')
+      ? null
+      : _$loginViewFocusNodeNotifierHash,
+  dependencies: null,
+  allTransitiveDependencies: null,
+);
+
+typedef _$LoginViewFocusNodeNotifier = AutoDisposeNotifier<void>;
 String _$loginViewTextEditingControllerNotifierHash() =>
-    r'e0ff2c6ab794343b91272bb103e33f8e9850595c';
+    r'cd6e359c5acfc9b406b15317049d184a11051caa';
 
 /// See also [LoginViewTextEditingControllerNotifier].
 @ProviderFor(LoginViewTextEditingControllerNotifier)
@@ -197,5 +214,22 @@ final loginViewTextEditingControllerNotifierProvider =
 );
 
 typedef _$LoginViewTextEditingControllerNotifier = AutoDisposeNotifier<void>;
+String _$loginViewAccountCacheNotifierHash() =>
+    r'1a6cce451571f045145551c6e74ed25871a9959f';
+
+/// See also [LoginViewAccountCacheNotifier].
+@ProviderFor(LoginViewAccountCacheNotifier)
+final loginViewAccountCacheNotifierProvider = AutoDisposeAsyncNotifierProvider<
+    LoginViewAccountCacheNotifier, void>.internal(
+  LoginViewAccountCacheNotifier.new,
+  name: r'loginViewAccountCacheNotifierProvider',
+  debugGetCreateSourceHash: const bool.fromEnvironment('dart.vm.product')
+      ? null
+      : _$loginViewAccountCacheNotifierHash,
+  dependencies: null,
+  allTransitiveDependencies: null,
+);
+
+typedef _$LoginViewAccountCacheNotifier = AutoDisposeAsyncNotifier<void>;
 // ignore_for_file: type=lint
 // ignore_for_file: subtype_of_sealed_class, invalid_use_of_internal_member, invalid_use_of_visible_for_testing_member, deprecated_member_use_from_same_package

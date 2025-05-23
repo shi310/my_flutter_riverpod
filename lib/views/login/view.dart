@@ -63,198 +63,37 @@ class LoginView extends StatelessWidget {
   }
 }
 
-class _Content extends ConsumerStatefulWidget {
+class _Content extends ConsumerWidget {
   @override
-  ConsumerState<_Content> createState() => _ContentState();
-}
+  Widget build(BuildContext context, WidgetRef ref) {
+    final controller = ref.watch(loginViewTextEditingControllerNotifierProvider.notifier);
+    final accountTextController = controller.accountTextController;
+    final passwordTextController = controller.passwordTextController;
+    final phoneTextController = controller.phoneTextController;
+    final phoneCodeTextController = controller.phoneCodeTextController;
+    final rePasswordTextController = controller.rePasswordTextController;
 
-class _ContentState extends ConsumerState<_Content> {
-  // 账号输入框控制器
-  final accountTextController = TextEditingController();
-  final accountFocusNode = FocusNode();
+    final focusNode = ref.watch(loginViewFocusNodeNotifierProvider.notifier);
+    final accountFocusNode = focusNode.accountFocusNode;
+    final passwordFocusNode = focusNode.passwordFocusNode;
+    final rePasswordFocusNode = focusNode.rePasswordFocusNode;
+    final phoneFocusNode = focusNode.phoneFocusNode;
+    final phoneCodeFocusNode = focusNode.phoneCodeFocusNode;
 
-  // 密码输入框控制器
-  final passwordTextController = TextEditingController();
-  final passwordFocusNode = FocusNode();
+    ref.watch(loginViewAccountCacheNotifierProvider.notifier);
 
-  // 重复密码输入框控制器
-  final rePasswordTextController = TextEditingController();
-  final rePasswordFocusNode = FocusNode();
-
-  // 手机输入框控制器
-  final phoneTextController = TextEditingController();
-  final phoneFocusNode = FocusNode();
-
-  // 验证码输入框控制器
-  final phoneCodeTextController = TextEditingController();
-  final phoneCodeFocusNode = FocusNode();
-
-
-  // 本地读取的账号
-  String? accountCache;
-  // 本地读取的手机号
-  String? phoneCache;
-  // 本地读取的邮箱
-  String? emailCache;
-
-  @override
-  void initState() {
-    accountTextController.addListener(listener);
-    phoneTextController.addListener(listener);
-    passwordTextController.addListener(listener);
-    rePasswordTextController.addListener(listener);
-    phoneCodeTextController.addListener(listener);
-    WidgetsBinding.instance.addPostFrameCallback((_) async {
-      showMyLoading();
-      await Future.wait([
-        // 获取本地账号
-        getAccount(),
-      ]);
-      hideMyLoading();
-    });
-    super.initState();
-  }
-
-  @override
-  void dispose() {
-    accountTextController.removeListener(listener);
-    phoneTextController.removeListener(listener);
-    passwordTextController.removeListener(listener);
-    rePasswordTextController.removeListener(listener);
-    phoneCodeTextController.removeListener(listener);
-    super.dispose();
-  }
-
-  // 获取储存的账号
-  Future<void> getAccount() async {
-    final account = await MyCache.getFile(MyConfig.shard.accountKey);
-    if (account != null) {
-      accountCache = await account.readAsString();
-      accountCache = accountCache?.aesDecrypt(MyConfig.key.aesKey);
+    // 更新发送验证码状态
+    void updateSendCodeState(SendCodeState state) {
+      final loginViewSendCodeState = ref.read(loginViewSendCodeStateNotifierProvider.notifier);
+      loginViewSendCodeState.update(state);
     }
 
-    final phone = await MyCache.getFile(MyConfig.shard.phoneKey);
-    if (phone != null) {
-      phoneCache = await phone.readAsString();
-      phoneCache = phoneCache?.aesDecrypt(MyConfig.key.aesKey);
-    }
-    resetAccountInput();
-  }
-
-  // 重置账号输入框
-  void resetAccountInput() async {
-    final signState = ref.read(loginViewSignStateNotifierProvider);
-
-    if (signState == SignState.loginForPassword) {
-      if (accountCache != null) {
-        accountTextController.text = accountCache!;
-        ref.read(loginViewRememberPasswordNotifierProvider.notifier).set(true);
-      } else {
-        ref.read(loginViewRememberPasswordNotifierProvider.notifier).set(false);
-      }
+    // 更新登陆状态
+    void updateSignState(SignState state) {
+      final loginViewSignState = ref.read(loginViewSignStateNotifierProvider.notifier);
+      loginViewSignState.update(ref.context, state);
     }
 
-    if (signState == SignState.loginForCode) {
-      if (phoneCache != null) {
-        phoneTextController.text = phoneCache!;
-        ref.read(loginViewRememberPasswordNotifierProvider.notifier).set(true);
-      } else {
-        ref.read(loginViewRememberPasswordNotifierProvider.notifier).set(false);
-      }
-    }
-  }
-
-  // 清空输入框
-  void clearInput() {
-    accountTextController.clear();
-    phoneTextController.clear();
-    passwordTextController.clear();
-    rePasswordTextController.clear();
-    phoneCodeTextController.clear();
-  }
-
-  // 更新登陆状态
-  void updateSignState(SignState state) {
-    final loginViewSignState = ref.read(loginViewSignStateNotifierProvider.notifier);
-    loginViewSignState.set(state);
-
-    FocusScope.of(context).unfocus();
-
-    clearInput();
-    resetAccountInput();
-    listener();
-  }
-
-  // 登陆逻辑
-  void login(String validate) {
-    ref.read(loginViewSignStateNotifierProvider) == SignState.loginForPassword
-        ? _loginForPassword(
-        validate: validate,
-        username: accountTextController.text,
-        password: passwordTextController.text,
-        isRememberPassword: ref.read(loginViewRememberPasswordNotifierProvider),
-        context: context,
-        account: accountTextController.text
-    )
-        : _loginForCode(
-        validate: validate,
-        phone: phoneTextController.text,
-        verificationCode: phoneCodeTextController.text,
-        isRememberPassword: ref.read(loginViewRememberPasswordNotifierProvider),
-        context: context,
-        account: accountTextController.text
-    );
-  }
-
-  void updateSendCodeState(SendCodeState state) {
-    final loginViewSendCodeState = ref.read(loginViewSendCodeStateNotifierProvider.notifier);
-    loginViewSendCodeState.set(state);
-  }
-
-  // 输入框监听
-  void listener() {
-    final loginViewEnableButtonLogin = ref.read(loginViewEnableButtonLoginNotifierProvider.notifier);
-    final loginViewEnableButtonRegister = ref.read(loginViewEnableButtonRegisterNotifierProvider.notifier);
-    final loginViewEnableButtonConfirm = ref.read(loginViewEnableButtonConfirmNotifierProvider.notifier);
-    final loginViewEnableButtonSendCode = ref.read(loginViewEnableButtonSendCodeNotifierProvider.notifier);
-    final signState = ref.read(loginViewSignStateNotifierProvider);
-
-    // 发送验证码按钮是否启用
-    if (phoneTextController.text.isEmpty) {
-      loginViewEnableButtonSendCode.set(false);
-    } else {
-      loginViewEnableButtonSendCode.set(true);
-    }
-
-    if (signState == SignState.loginForPassword) {
-      if (accountTextController.text.isEmpty || passwordTextController.text.isEmpty) {
-        loginViewEnableButtonLogin.set(false);
-      } else {
-        loginViewEnableButtonLogin.set(true);
-      }
-    } else if (signState == SignState.loginForCode) {
-      if (phoneTextController.text.isEmpty || phoneCodeTextController.text.isEmpty) {
-        loginViewEnableButtonLogin.set(false);
-      } else {
-        loginViewEnableButtonLogin.set(true);
-      }
-    } else if (signState == SignState.register) {
-      if (accountTextController.text.isEmpty || passwordTextController.text.isEmpty || rePasswordTextController.text.isEmpty || phoneTextController.text.isEmpty || phoneCodeTextController.text.isEmpty) {
-        loginViewEnableButtonRegister.set(false);
-      } else {
-        loginViewEnableButtonRegister.set(true);
-      }
-    } else if (signState == SignState.forgotPassword) {
-      if (passwordTextController.text.isEmpty || rePasswordTextController.text.isEmpty || phoneTextController.text.isEmpty || phoneCodeTextController.text.isEmpty) {
-        loginViewEnableButtonConfirm.set(false);
-      } else {
-        loginViewEnableButtonConfirm.set(true);
-      }
-    }
-  }
-
-  @override
-  Widget build(BuildContext context) {
     // 账号输入框
     final inputAccount = InputAccount(
       accountTextController: accountTextController,
@@ -296,7 +135,25 @@ class _ContentState extends ConsumerState<_Content> {
 
     // 登陆按钮
     final buttonLogin = _ButtonLogin(
-      onPressed: login,
+      onPressed: (validate) {
+        ref.read(loginViewSignStateNotifierProvider) == SignState.loginForPassword
+            ? _loginForPassword(
+            validate: validate,
+            username: accountTextController.text,
+            password: passwordTextController.text,
+            isRememberPassword: ref.read(loginViewRememberPasswordNotifierProvider),
+            context: context,
+            account: accountTextController.text
+        )
+            : _loginForCode(
+            validate: validate,
+            phone: phoneTextController.text,
+            verificationCode: phoneCodeTextController.text,
+            isRememberPassword: ref.read(loginViewRememberPasswordNotifierProvider),
+            context: context,
+            account: accountTextController.text
+        );
+      },
     );
 
     // 注册按钮

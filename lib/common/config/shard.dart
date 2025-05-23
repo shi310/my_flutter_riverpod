@@ -17,6 +17,8 @@ class _Shard {
   final String accountKey = 'shard_account_key';
   // 保存的手机号码
   final String phoneKey = 'shard_phone_key';
+  // 保存的邮箱
+  final String emailKey = 'shard_email_key';
   // 是否今天不再展示首页通知
   final String isHidePublicNoticeKey = 'shared_is_hide_public_notice_key';
   // 是否今天不再展示挂单市场的通知
