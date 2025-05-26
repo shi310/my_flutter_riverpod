@@ -164,16 +164,24 @@ class LoginViewTextEditingControllerNotifier extends _$LoginViewTextEditingContr
     if (signState == SignState.loginForPassword) {
       if (accountCache != null && accountCache.isNotEmpty) {
         accountTextController.text = accountCache;
-        ref.read(loginViewRememberPasswordNotifierProvider.notifier).set(true);
+        WidgetsBinding.instance.addPostFrameCallback((_) {
+          ref.read(loginViewRememberPasswordNotifierProvider.notifier).set(true);
+        });
       } else {
-        ref.read(loginViewRememberPasswordNotifierProvider.notifier).set(false);
+        WidgetsBinding.instance.addPostFrameCallback((_) {
+          ref.read(loginViewRememberPasswordNotifierProvider.notifier).set(false);
+        });
       }
     } else if (signState == SignState.loginForCode) {
       if (phoneCache != null && phoneCache.isNotEmpty) {
         phoneTextController.text = phoneCache;
-        ref.read(loginViewRememberPasswordNotifierProvider.notifier).set(true);
+        WidgetsBinding.instance.addPostFrameCallback((_) {
+          ref.read(loginViewRememberPasswordNotifierProvider.notifier).set(true);
+        });
       } else {
-        ref.read(loginViewRememberPasswordNotifierProvider.notifier).set(false);
+        WidgetsBinding.instance.addPostFrameCallback((_) {
+          ref.read(loginViewRememberPasswordNotifierProvider.notifier).set(true);
+        });
       }
     }
   }
