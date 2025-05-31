@@ -9,5 +9,6 @@ class _Qicaht {
   final String queryAutoReply = '/v1/api/query-auto-reply';
   // 消息记录
   final String messageHistory = '/v1/api/message/sync';
+  // 上传文件
   final String upload = '/v1/assets/upload-v3';
 }

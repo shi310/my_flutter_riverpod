@@ -13,24 +13,27 @@ _QiChatAutoReplyModel _$QiChatAutoReplyModelFromJson(
           ? null
           : AutoReplyItemModel.fromJson(
               json['autoReplyItem'] as Map<String, dynamic>),
-      createTime: json['createTime'] as String?,
+      workerId: (json['workerId'] as num?)?.toInt(),
+      tenantId: (json['tenantId'] as num?)?.toInt(),
     );
 
 Map<String, dynamic> _$QiChatAutoReplyModelToJson(
         _QiChatAutoReplyModel instance) =>
     <String, dynamic>{
       'autoReplyItem': instance.autoReplyItem,
-      'createTime': instance.createTime,
+      'workerId': instance.workerId,
+      'tenantId': instance.tenantId,
     };
 
 _AutoReplyItemModel _$AutoReplyItemModelFromJson(Map<String, dynamic> json) =>
     _AutoReplyItemModel(
       id: json['id'] as String?,
-      name: json['name'] as String?,
       title: json['title'] as String?,
+      name: json['name'] as String?,
       qa: (json['qa'] as List<dynamic>?)
           ?.map((e) => Qa.fromJson(e as Map<String, dynamic>))
           .toList(),
+      delaySec: (json['delaySec'] as num?)?.toInt(),
       workerId: (json['workerId'] as List<dynamic>?)
           ?.map((e) => (e as num).toInt())
           .toList(),
@@ -42,9 +45,10 @@ _AutoReplyItemModel _$AutoReplyItemModelFromJson(Map<String, dynamic> json) =>
 Map<String, dynamic> _$AutoReplyItemModelToJson(_AutoReplyItemModel instance) =>
     <String, dynamic>{
       'id': instance.id,
-      'name': instance.name,
       'title': instance.title,
+      'name': instance.name,
       'qa': instance.qa,
+      'delaySec': instance.delaySec,
       'workerId': instance.workerId,
       'workerNames': instance.workerNames,
     };

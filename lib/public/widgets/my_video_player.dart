@@ -19,6 +19,16 @@ class MyVideoPlayer extends StatefulWidget {
 
   @override
   State<MyVideoPlayer> createState() => _MyVideoPlayerState();
+
+  factory MyVideoPlayer.file({
+    required File file,
+    Widget? loading,
+  }) => MyVideoPlayer(file: file, loading: loading);
+
+  factory MyVideoPlayer.network({
+    required String videoUrl,
+    Widget? loading,
+  }) => MyVideoPlayer(videoUrl: videoUrl, loading: loading);
 }
 
 class _MyVideoPlayerState extends State<MyVideoPlayer> {
@@ -63,23 +73,6 @@ class _MyVideoPlayerState extends State<MyVideoPlayer> {
     initPlayer();
     super.initState();
   }
-
-  // @override
-  // void didUpdateWidget(covariant MyVideoPlayer oldWidget) {
-  //   // 页面刷新的时候
-  //   // 先暂停旧的视频，然后重新初始化
-  //   _videoPlayerController.pause();
-  //
-  //   _videoPlayerController.dispose().then((value) {
-  //     _chewieController.dispose();
-  //     initPlayer();
-  //     setState(() {
-  //       _isShowLoading = true;
-  //     });
-  //   });
-  //
-  //   super.didUpdateWidget(oldWidget);
-  // }
 
   @override
   void dispose() {

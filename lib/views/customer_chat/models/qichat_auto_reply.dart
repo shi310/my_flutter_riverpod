@@ -8,7 +8,8 @@ part 'qichat_auto_reply.g.dart';
 abstract class QiChatAutoReplyModel with _$QiChatAutoReplyModel {
   const factory QiChatAutoReplyModel({
     AutoReplyItemModel? autoReplyItem,
-    String? createTime,
+    int? workerId,
+    int? tenantId,
   }) = _QiChatAutoReplyModel;
 
   factory QiChatAutoReplyModel.fromJson(Map<String, dynamic> json) => _$QiChatAutoReplyModelFromJson(json);
@@ -19,9 +20,10 @@ abstract class QiChatAutoReplyModel with _$QiChatAutoReplyModel {
 abstract class AutoReplyItemModel with _$AutoReplyItemModel {
   const factory AutoReplyItemModel({
     String? id,
-    String? name,
     String? title,
+    String? name,
     List<Qa>? qa,
+    int? delaySec,
     List<int>? workerId,
     List<String>? workerNames,
   }) = _AutoReplyItemModel;

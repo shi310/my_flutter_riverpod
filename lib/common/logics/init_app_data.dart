@@ -1,5 +1,3 @@
-import 'package:my_flutter_basic/common/provider/alive/is_used_app.dart';
-
 import '../../global.dart';
 import '../../public/utils/utils.dart';
 import '../common.dart';

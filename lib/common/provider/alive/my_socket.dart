@@ -1,5 +1,6 @@
-import 'package:my_flutter_basic/public/public.dart';
 import 'package:riverpod_annotation/riverpod_annotation.dart';
+
+import '../../../public/public.dart';
 
 part 'my_socket.g.dart';
 

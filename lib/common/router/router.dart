@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
-import 'package:my_flutter_basic/common/provider/alive/is_used_app.dart';
 
 import '../../global.dart';
 import '../../views/views.dart';

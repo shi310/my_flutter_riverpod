@@ -192,7 +192,7 @@ class MessageLookup extends MessageLookupByLibrary {
     "confirm": MessageLookupByLibrary.simpleMessage("确认"),
     "confirmLater": MessageLookupByLibrary.simpleMessage("稍后确认"),
     "connectFailed": MessageLookupByLibrary.simpleMessage("线路初始化失败"),
-    "connecting": MessageLookupByLibrary.simpleMessage("正在连接..."),
+    "connecting": MessageLookupByLibrary.simpleMessage("正在连接"),
     "copy": MessageLookupByLibrary.simpleMessage("复制"),
     "customerHelpViewTitle": MessageLookupByLibrary.simpleMessage("客服帮助"),
     "customerNoCert": MessageLookupByLibrary.simpleMessage("暂未配置仲裁客服"),

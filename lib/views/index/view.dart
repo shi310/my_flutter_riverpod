@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:go_router/go_router.dart';
-import 'package:my_flutter_basic/common/provider/alive/is_used_app.dart';
 
 import '../../../common/common.dart';
 import '../../generated/l10n.dart';

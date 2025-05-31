@@ -10,9 +10,9 @@ class QiChatListener implements TeneasySDKDelegate {
   // 回调：客服变更
   final void Function(SCWorkerChanged) onWorkChanged;
   // 回调：消息删除
-  final void Function(Message, int, String?) onMsgDeleted;
+  final void Function(Message, Int64, String?) onMsgDeleted;
   // 回调：消息回执
-  final void Function(Message, int, String?) onMsgReceipt;
+  final void Function(Message, Int64, String?) onMsgReceipt;
 
   const QiChatListener({
     required this.onReceivedMsg,
@@ -50,12 +50,12 @@ class QiChatListener implements TeneasySDKDelegate {
   @override
   void msgDeleted(msg, payloadId, errMsg) {
     MyLogger.w("删除成功: ${msg.msgId} ");
-    onMsgDeleted.call(msg, payloadId.toString().toInt(), errMsg);
+    onMsgDeleted.call(msg, payloadId, errMsg);
   }
 
   @override
   void msgReceipt(msg, payloadId, errMsg) {
     MyLogger.w("收到回执 payloadId:$payloadId msgId: ${msg.msgId}");
-    onMsgReceipt.call(msg, payloadId.toString().toInt(), errMsg);
+    onMsgReceipt.call(msg, payloadId, errMsg);
   }
 }

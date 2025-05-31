@@ -12,4 +12,11 @@ final themeDataLight = ThemeData(
       elevation: 0,
     ),
   ),
+
+  iconButtonTheme: IconButtonThemeData(
+    style: IconButton.styleFrom(
+      padding: EdgeInsets.zero,
+      elevation: 0,
+    ),
+  ),
 );

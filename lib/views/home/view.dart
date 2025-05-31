@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
-import 'package:my_flutter_basic/public/public.dart';
 
 import '../../common/common.dart';
+import '../../public/utils/utils.dart';
 
 class HomeView extends StatelessWidget {
   const HomeView({super.key});

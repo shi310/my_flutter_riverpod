@@ -6,6 +6,8 @@ PODS:
   - captcha_plugin_flutter (0.0.2):
     - Flutter
     - NTESVerifyCode (= 3.6.4)
+  - connectivity_plus (0.0.1):
+    - Flutter
   - Flutter (1.0.0)
   - flutter_keyboard_visibility (0.0.1):
     - Flutter
@@ -91,6 +93,7 @@ DEPENDENCIES:
   - app_links (from `.symlinks/plugins/app_links/ios`)
   - audioplayers_darwin (from `.symlinks/plugins/audioplayers_darwin/ios`)
   - captcha_plugin_flutter (from `.symlinks/plugins/captcha_plugin_flutter/ios`)
+  - connectivity_plus (from `.symlinks/plugins/connectivity_plus/ios`)
   - Flutter (from `Flutter`)
   - flutter_keyboard_visibility (from `.symlinks/plugins/flutter_keyboard_visibility/ios`)
   - flutter_security_checker (from `.symlinks/plugins/flutter_security_checker/ios`)
@@ -129,6 +132,8 @@ EXTERNAL SOURCES:
     :path: ".symlinks/plugins/audioplayers_darwin/ios"
   captcha_plugin_flutter:
     :path: ".symlinks/plugins/captcha_plugin_flutter/ios"
+  connectivity_plus:
+    :path: ".symlinks/plugins/connectivity_plus/ios"
   Flutter:
     :path: Flutter
   flutter_keyboard_visibility:
@@ -162,6 +167,7 @@ SPEC CHECKSUMS:
   app_links: 76b66b60cc809390ca1ad69bfd66b998d2387ac7
   audioplayers_darwin: ccf9c770ee768abb07e26d90af093f7bab1c12ab
   captcha_plugin_flutter: ae54599fbe7b3815f90f1ac2e82efcf7309677f2
+  connectivity_plus: cb623214f4e1f6ef8fe7403d580fdad517d2f7dd
   Flutter: e0871f40cf51350855a761d2e70bf5af5b9b5de7
   flutter_keyboard_visibility: 4625131e43015dbbe759d9b20daaf77e0e3f6619
   flutter_security_checker: 8e3a1d205d5f04fcd3af93810a97d5e4ba06d80e

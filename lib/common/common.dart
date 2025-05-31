@@ -8,3 +8,7 @@ export 'models/models.dart';
 export 'provider/provider.dart';
 export 'router/router.dart';
 export 'theme/theme.dart';
+
+export 'theme/dark.dart';
+export 'theme/light.dart';
+

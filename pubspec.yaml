@@ -93,10 +93,13 @@ dependencies:
   captcha_plugin_flutter: 1.1.9
 
   # 起聊SDK
-  qichatsdk_flutter: 1.2.7
+  qichatsdk_flutter: 1.3.0
 
   # uuid
   uuid: 4.5.1
+
+  # int64 int32
+  fixnum: 1.1.1
 
   # riverpod
   flutter_riverpod: 2.6.1

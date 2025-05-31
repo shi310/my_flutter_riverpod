@@ -75,11 +75,23 @@ class MyDio {
       return;
     }
 
+    Map<String, dynamic> params = err.requestOptions.queryParameters;
+
+    if (params.isEmpty && err.requestOptions.data != null) {
+      if (err.requestOptions.data is Map<String, dynamic>) {
+        params = err.requestOptions.data;
+      } else {
+        params = {
+          'data': err.requestOptions.data
+        };
+      }
+    }
+
     log("❌" * 80);
     log("❌ 请求地址 => ${err.requestOptions.uri}");
     log("❌ 请求方式 => ${err.requestOptions.method}");
     log("❌ 请求头 => ${err.requestOptions.headers.toJsonString().formatJson()}");
-    log("❌ 请求参数 => ${err.requestOptions.queryParameters.toJsonString().formatJson()}");
+    log("❌ 请求参数 => ${params.toJsonString().formatJson()}");
     log("❌ 错误信息 => ${err.message}");
     log("❌" * 80);
   }
@@ -276,6 +288,7 @@ class MyDio {
           cancelToken: cancelToken ?? cancelTokenPublic,
           onReceiveProgress: onSendProgress,
         ).timeout(timeout * 60 * 60 * 24);
+
       } catch (err) {
         _index = (_index + 1) % urls.length;
 
@@ -332,11 +345,36 @@ class ResponseModel {
     required this.msg,
   });
 
-  factory ResponseModel.fromJson(Map<String, dynamic> json) => ResponseModel(
-    code: json["code"] ?? -1,
-    data: json["data"] ?? {},
-    msg: json["msg"] ?? '',
-  );
+  factory ResponseModel.fromJson(dynamic json) {
+    if (json is Map<String, dynamic>) {
+      return ResponseModel(
+        code: json["code"] ?? -1,
+        data: json["data"] ?? {},
+        msg: json["msg"] ?? '',
+      );
+    } else if (json is String) {
+      try {
+        Map<String, dynamic> data = json.toJson();
+        return ResponseModel(
+          code: data["code"] ?? -1,
+          data: data["data"] ?? {},
+          msg: data["msg"] ?? '',
+        );
+      } catch (e) {
+        return ResponseModel(
+          code: 0,
+          data: json,
+          msg: '',
+        );
+      }
+    } else {
+      return ResponseModel(
+        code: 0,
+        data: json,
+        msg: '',
+      );
+    }
+  }
 
   Map<String, dynamic> toJson() => {
     "code": code,

@@ -265,14 +265,9 @@ class S {
     return Intl.message('Close', name: 'close', desc: '', args: []);
   }
 
-  /// `Connecting...`
+  /// `Connecting`
   String get connecting {
-    return Intl.message(
-      'Connecting...',
-      name: 'connecting',
-      desc: '',
-      args: [],
-    );
+    return Intl.message('Connecting', name: 'connecting', desc: '', args: []);
   }
 
   /// `Failed to Initialize Connection`

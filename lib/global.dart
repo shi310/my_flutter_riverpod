@@ -1,7 +1,6 @@
 import 'dart:async';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:my_flutter_basic/common/provider/alive/shore_bird.dart';
 
 import 'common/common.dart';
 import 'public/public.dart';

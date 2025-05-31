@@ -1,6 +1,4 @@
 import 'package:my_device_info/my_device_info_method.dart';
-import 'package:my_flutter_basic/common/provider/alive/my_app_info.dart';
-import 'package:my_flutter_basic/common/provider/alive/shore_bird.dart';
 import 'package:package_info_plus/package_info_plus.dart';
 import '../../global.dart';
 import '../../public/public.dart';

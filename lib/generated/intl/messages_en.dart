@@ -284,7 +284,7 @@ class MessageLookup extends MessageLookupByLibrary {
     "connectFailed": MessageLookupByLibrary.simpleMessage(
       "Failed to Initialize Connection",
     ),
-    "connecting": MessageLookupByLibrary.simpleMessage("Connecting..."),
+    "connecting": MessageLookupByLibrary.simpleMessage("Connecting"),
     "copy": MessageLookupByLibrary.simpleMessage("Copy"),
     "customerHelpViewTitle": MessageLookupByLibrary.simpleMessage(
       "Customer Support",

@@ -29,7 +29,7 @@
   "tryItNow": "Try Now",
   "activityClosed": "Activity Closed",
   "close": "Close",
-  "connecting": "Connecting...",
+  "connecting": "Connecting",
   "connectFailed": "Failed to Initialize Connection",
   "videoPlayerLoading": "Loading...",
   "fileSizeOut": "File size exceeds the maximum limit ({name}MB)",

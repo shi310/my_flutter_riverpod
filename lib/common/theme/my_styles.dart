@@ -37,7 +37,7 @@ class MyStyles {
   // 输入框禁用时的边框样式
   InputBorder get inputBorderDisable => OutlineInputBorder(
     borderRadius: const BorderRadius.all(Radius.circular(10.0)),
-    borderSide: BorderSide(color: myColors.inputBorder.withValues(alpha: 0), width: 1),
+    borderSide: BorderSide(color: myColors.inputBorder.withValues(alpha: 0.5), width: 1),
   );
 }
 

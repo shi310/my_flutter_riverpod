@@ -1,6 +1,7 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:my_flutter_basic/common/common.dart';
+
+import '../../../common/common.dart';
 
 class MyAlert extends StatefulWidget {
   static final globalKey = GlobalKey<_MyAlertState>();

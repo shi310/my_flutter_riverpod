@@ -16,7 +16,8 @@ T _$identity<T>(T value) => value;
 /// @nodoc
 mixin _$QiChatAutoReplyModel {
   AutoReplyItemModel? get autoReplyItem;
-  String? get createTime;
+  int? get workerId;
+  int? get tenantId;
 
   /// Create a copy of QiChatAutoReplyModel
   /// with the given fields replaced by the non-null parameter values.
@@ -36,17 +37,20 @@ mixin _$QiChatAutoReplyModel {
             other is QiChatAutoReplyModel &&
             (identical(other.autoReplyItem, autoReplyItem) ||
                 other.autoReplyItem == autoReplyItem) &&
-            (identical(other.createTime, createTime) ||
-                other.createTime == createTime));
+            (identical(other.workerId, workerId) ||
+                other.workerId == workerId) &&
+            (identical(other.tenantId, tenantId) ||
+                other.tenantId == tenantId));
   }
 
   @JsonKey(includeFromJson: false, includeToJson: false)
   @override
-  int get hashCode => Object.hash(runtimeType, autoReplyItem, createTime);
+  int get hashCode =>
+      Object.hash(runtimeType, autoReplyItem, workerId, tenantId);
 
   @override
   String toString() {
-    return 'QiChatAutoReplyModel(autoReplyItem: $autoReplyItem, createTime: $createTime)';
+    return 'QiChatAutoReplyModel(autoReplyItem: $autoReplyItem, workerId: $workerId, tenantId: $tenantId)';
   }
 }
 
@@ -56,7 +60,7 @@ abstract mixin class $QiChatAutoReplyModelCopyWith<$Res> {
           $Res Function(QiChatAutoReplyModel) _then) =
       _$QiChatAutoReplyModelCopyWithImpl;
   @useResult
-  $Res call({AutoReplyItemModel? autoReplyItem, String? createTime});
+  $Res call({AutoReplyItemModel? autoReplyItem, int? workerId, int? tenantId});
 
   $AutoReplyItemModelCopyWith<$Res>? get autoReplyItem;
 }
@@ -75,17 +79,22 @@ class _$QiChatAutoReplyModelCopyWithImpl<$Res>
   @override
   $Res call({
     Object? autoReplyItem = freezed,
-    Object? createTime = freezed,
+    Object? workerId = freezed,
+    Object? tenantId = freezed,
   }) {
     return _then(_self.copyWith(
       autoReplyItem: freezed == autoReplyItem
           ? _self.autoReplyItem
           : autoReplyItem // ignore: cast_nullable_to_non_nullable
               as AutoReplyItemModel?,
-      createTime: freezed == createTime
-          ? _self.createTime
-          : createTime // ignore: cast_nullable_to_non_nullable
-              as String?,
+      workerId: freezed == workerId
+          ? _self.workerId
+          : workerId // ignore: cast_nullable_to_non_nullable
+              as int?,
+      tenantId: freezed == tenantId
+          ? _self.tenantId
+          : tenantId // ignore: cast_nullable_to_non_nullable
+              as int?,
     ));
   }
 
@@ -107,14 +116,17 @@ class _$QiChatAutoReplyModelCopyWithImpl<$Res>
 /// @nodoc
 @JsonSerializable()
 class _QiChatAutoReplyModel implements QiChatAutoReplyModel {
-  const _QiChatAutoReplyModel({this.autoReplyItem, this.createTime});
+  const _QiChatAutoReplyModel(
+      {this.autoReplyItem, this.workerId, this.tenantId});
   factory _QiChatAutoReplyModel.fromJson(Map<String, dynamic> json) =>
       _$QiChatAutoReplyModelFromJson(json);
 
   @override
   final AutoReplyItemModel? autoReplyItem;
   @override
-  final String? createTime;
+  final int? workerId;
+  @override
+  final int? tenantId;
 
   /// Create a copy of QiChatAutoReplyModel
   /// with the given fields replaced by the non-null parameter values.
@@ -139,17 +151,20 @@ class _QiChatAutoReplyModel implements QiChatAutoReplyModel {
             other is _QiChatAutoReplyModel &&
             (identical(other.autoReplyItem, autoReplyItem) ||
                 other.autoReplyItem == autoReplyItem) &&
-            (identical(other.createTime, createTime) ||
-                other.createTime == createTime));
+            (identical(other.workerId, workerId) ||
+                other.workerId == workerId) &&
+            (identical(other.tenantId, tenantId) ||
+                other.tenantId == tenantId));
   }
 
   @JsonKey(includeFromJson: false, includeToJson: false)
   @override
-  int get hashCode => Object.hash(runtimeType, autoReplyItem, createTime);
+  int get hashCode =>
+      Object.hash(runtimeType, autoReplyItem, workerId, tenantId);
 
   @override
   String toString() {
-    return 'QiChatAutoReplyModel(autoReplyItem: $autoReplyItem, createTime: $createTime)';
+    return 'QiChatAutoReplyModel(autoReplyItem: $autoReplyItem, workerId: $workerId, tenantId: $tenantId)';
   }
 }
 
@@ -161,7 +176,7 @@ abstract mixin class _$QiChatAutoReplyModelCopyWith<$Res>
       __$QiChatAutoReplyModelCopyWithImpl;
   @override
   @useResult
-  $Res call({AutoReplyItemModel? autoReplyItem, String? createTime});
+  $Res call({AutoReplyItemModel? autoReplyItem, int? workerId, int? tenantId});
 
   @override
   $AutoReplyItemModelCopyWith<$Res>? get autoReplyItem;
@@ -181,17 +196,22 @@ class __$QiChatAutoReplyModelCopyWithImpl<$Res>
   @pragma('vm:prefer-inline')
   $Res call({
     Object? autoReplyItem = freezed,
-    Object? createTime = freezed,
+    Object? workerId = freezed,
+    Object? tenantId = freezed,
   }) {
     return _then(_QiChatAutoReplyModel(
       autoReplyItem: freezed == autoReplyItem
           ? _self.autoReplyItem
           : autoReplyItem // ignore: cast_nullable_to_non_nullable
               as AutoReplyItemModel?,
-      createTime: freezed == createTime
-          ? _self.createTime
-          : createTime // ignore: cast_nullable_to_non_nullable
-              as String?,
+      workerId: freezed == workerId
+          ? _self.workerId
+          : workerId // ignore: cast_nullable_to_non_nullable
+              as int?,
+      tenantId: freezed == tenantId
+          ? _self.tenantId
+          : tenantId // ignore: cast_nullable_to_non_nullable
+              as int?,
     ));
   }
 
@@ -213,9 +233,10 @@ class __$QiChatAutoReplyModelCopyWithImpl<$Res>
 /// @nodoc
 mixin _$AutoReplyItemModel {
   String? get id;
-  String? get name;
   String? get title;
+  String? get name;
   List<Qa>? get qa;
+  int? get delaySec;
   List<int>? get workerId;
   List<String>? get workerNames;
 
@@ -236,9 +257,11 @@ mixin _$AutoReplyItemModel {
         (other.runtimeType == runtimeType &&
             other is AutoReplyItemModel &&
             (identical(other.id, id) || other.id == id) &&
-            (identical(other.name, name) || other.name == name) &&
             (identical(other.title, title) || other.title == title) &&
+            (identical(other.name, name) || other.name == name) &&
             const DeepCollectionEquality().equals(other.qa, qa) &&
+            (identical(other.delaySec, delaySec) ||
+                other.delaySec == delaySec) &&
             const DeepCollectionEquality().equals(other.workerId, workerId) &&
             const DeepCollectionEquality()
                 .equals(other.workerNames, workerNames));
@@ -249,15 +272,16 @@ mixin _$AutoReplyItemModel {
   int get hashCode => Object.hash(
       runtimeType,
       id,
-      name,
       title,
+      name,
       const DeepCollectionEquality().hash(qa),
+      delaySec,
       const DeepCollectionEquality().hash(workerId),
       const DeepCollectionEquality().hash(workerNames));
 
   @override
   String toString() {
-    return 'AutoReplyItemModel(id: $id, name: $name, title: $title, qa: $qa, workerId: $workerId, workerNames: $workerNames)';
+    return 'AutoReplyItemModel(id: $id, title: $title, name: $name, qa: $qa, delaySec: $delaySec, workerId: $workerId, workerNames: $workerNames)';
   }
 }
 
@@ -269,9 +293,10 @@ abstract mixin class $AutoReplyItemModelCopyWith<$Res> {
   @useResult
   $Res call(
       {String? id,
-      String? name,
       String? title,
+      String? name,
       List<Qa>? qa,
+      int? delaySec,
       List<int>? workerId,
       List<String>? workerNames});
 }
@@ -290,9 +315,10 @@ class _$AutoReplyItemModelCopyWithImpl<$Res>
   @override
   $Res call({
     Object? id = freezed,
-    Object? name = freezed,
     Object? title = freezed,
+    Object? name = freezed,
     Object? qa = freezed,
+    Object? delaySec = freezed,
     Object? workerId = freezed,
     Object? workerNames = freezed,
   }) {
@@ -301,18 +327,22 @@ class _$AutoReplyItemModelCopyWithImpl<$Res>
           ? _self.id
           : id // ignore: cast_nullable_to_non_nullable
               as String?,
-      name: freezed == name
-          ? _self.name
-          : name // ignore: cast_nullable_to_non_nullable
-              as String?,
       title: freezed == title
           ? _self.title
           : title // ignore: cast_nullable_to_non_nullable
+              as String?,
+      name: freezed == name
+          ? _self.name
+          : name // ignore: cast_nullable_to_non_nullable
               as String?,
       qa: freezed == qa
           ? _self.qa
           : qa // ignore: cast_nullable_to_non_nullable
               as List<Qa>?,
+      delaySec: freezed == delaySec
+          ? _self.delaySec
+          : delaySec // ignore: cast_nullable_to_non_nullable
+              as int?,
       workerId: freezed == workerId
           ? _self.workerId
           : workerId // ignore: cast_nullable_to_non_nullable
@@ -330,9 +360,10 @@ class _$AutoReplyItemModelCopyWithImpl<$Res>
 class _AutoReplyItemModel implements AutoReplyItemModel {
   const _AutoReplyItemModel(
       {this.id,
-      this.name,
       this.title,
+      this.name,
       final List<Qa>? qa,
+      this.delaySec,
       final List<int>? workerId,
       final List<String>? workerNames})
       : _qa = qa,
@@ -344,9 +375,9 @@ class _AutoReplyItemModel implements AutoReplyItemModel {
   @override
   final String? id;
   @override
-  final String? name;
-  @override
   final String? title;
+  @override
+  final String? name;
   final List<Qa>? _qa;
   @override
   List<Qa>? get qa {
@@ -357,6 +388,8 @@ class _AutoReplyItemModel implements AutoReplyItemModel {
     return EqualUnmodifiableListView(value);
   }
 
+  @override
+  final int? delaySec;
   final List<int>? _workerId;
   @override
   List<int>? get workerId {
@@ -398,9 +431,11 @@ class _AutoReplyItemModel implements AutoReplyItemModel {
         (other.runtimeType == runtimeType &&
             other is _AutoReplyItemModel &&
             (identical(other.id, id) || other.id == id) &&
-            (identical(other.name, name) || other.name == name) &&
             (identical(other.title, title) || other.title == title) &&
+            (identical(other.name, name) || other.name == name) &&
             const DeepCollectionEquality().equals(other._qa, _qa) &&
+            (identical(other.delaySec, delaySec) ||
+                other.delaySec == delaySec) &&
             const DeepCollectionEquality().equals(other._workerId, _workerId) &&
             const DeepCollectionEquality()
                 .equals(other._workerNames, _workerNames));
@@ -411,15 +446,16 @@ class _AutoReplyItemModel implements AutoReplyItemModel {
   int get hashCode => Object.hash(
       runtimeType,
       id,
-      name,
       title,
+      name,
       const DeepCollectionEquality().hash(_qa),
+      delaySec,
       const DeepCollectionEquality().hash(_workerId),
       const DeepCollectionEquality().hash(_workerNames));
 
   @override
   String toString() {
-    return 'AutoReplyItemModel(id: $id, name: $name, title: $title, qa: $qa, workerId: $workerId, workerNames: $workerNames)';
+    return 'AutoReplyItemModel(id: $id, title: $title, name: $name, qa: $qa, delaySec: $delaySec, workerId: $workerId, workerNames: $workerNames)';
   }
 }
 
@@ -433,9 +469,10 @@ abstract mixin class _$AutoReplyItemModelCopyWith<$Res>
   @useResult
   $Res call(
       {String? id,
-      String? name,
       String? title,
+      String? name,
       List<Qa>? qa,
+      int? delaySec,
       List<int>? workerId,
       List<String>? workerNames});
 }
@@ -454,9 +491,10 @@ class __$AutoReplyItemModelCopyWithImpl<$Res>
   @pragma('vm:prefer-inline')
   $Res call({
     Object? id = freezed,
-    Object? name = freezed,
     Object? title = freezed,
+    Object? name = freezed,
     Object? qa = freezed,
+    Object? delaySec = freezed,
     Object? workerId = freezed,
     Object? workerNames = freezed,
   }) {
@@ -465,18 +503,22 @@ class __$AutoReplyItemModelCopyWithImpl<$Res>
           ? _self.id
           : id // ignore: cast_nullable_to_non_nullable
               as String?,
-      name: freezed == name
-          ? _self.name
-          : name // ignore: cast_nullable_to_non_nullable
-              as String?,
       title: freezed == title
           ? _self.title
           : title // ignore: cast_nullable_to_non_nullable
+              as String?,
+      name: freezed == name
+          ? _self.name
+          : name // ignore: cast_nullable_to_non_nullable
               as String?,
       qa: freezed == qa
           ? _self._qa
           : qa // ignore: cast_nullable_to_non_nullable
               as List<Qa>?,
+      delaySec: freezed == delaySec
+          ? _self.delaySec
+          : delaySec // ignore: cast_nullable_to_non_nullable
+              as int?,
       workerId: freezed == workerId
           ? _self._workerId
           : workerId // ignore: cast_nullable_to_non_nullable

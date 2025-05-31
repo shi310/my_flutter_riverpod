@@ -161,29 +161,19 @@ class LoginViewTextEditingControllerNotifier extends _$LoginViewTextEditingContr
     final accountCache = cache.accountCache;
     final phoneCache = cache.phoneCache;
 
-    if (signState == SignState.loginForPassword) {
-      if (accountCache != null && accountCache.isNotEmpty) {
-        accountTextController.text = accountCache;
-        WidgetsBinding.instance.addPostFrameCallback((_) {
-          ref.read(loginViewRememberPasswordNotifierProvider.notifier).set(true);
-        });
-      } else {
-        WidgetsBinding.instance.addPostFrameCallback((_) {
-          ref.read(loginViewRememberPasswordNotifierProvider.notifier).set(false);
-        });
-      }
-    } else if (signState == SignState.loginForCode) {
-      if (phoneCache != null && phoneCache.isNotEmpty) {
-        phoneTextController.text = phoneCache;
-        WidgetsBinding.instance.addPostFrameCallback((_) {
-          ref.read(loginViewRememberPasswordNotifierProvider.notifier).set(true);
-        });
-      } else {
-        WidgetsBinding.instance.addPostFrameCallback((_) {
-          ref.read(loginViewRememberPasswordNotifierProvider.notifier).set(true);
-        });
-      }
+    bool isRememberAccount = false;
+
+    if (signState == SignState.loginForPassword && accountCache != null && accountCache.isNotEmpty) {
+      accountTextController.text = accountCache;
+      isRememberAccount = true;
+    } else if (signState == SignState.loginForCode && phoneCache != null && phoneCache.isNotEmpty) {
+      phoneTextController.text = phoneCache;
+      isRememberAccount = true;
     }
+
+    WidgetsBinding.instance.addPostFrameCallback((_) {
+      ref.read(loginViewRememberPasswordNotifierProvider.notifier).set(isRememberAccount);
+    });
   }
 
   // 输入框监听

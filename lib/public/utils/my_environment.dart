@@ -14,6 +14,8 @@ class MyEnvironment {
   Future<Environment> _initialize() async {
     const String environment = String.fromEnvironment('ENVIRONMENT', defaultValue: 'test');
 
+    log('当前环境为 $environment');
+
     switch (environment) {
       case 'test':
         return Environment.test;

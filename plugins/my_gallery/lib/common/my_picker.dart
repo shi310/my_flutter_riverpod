@@ -48,9 +48,9 @@ class MyPicker {
         maxDuration: maxDuration,
         preferredCameraDevice: isBackCamera ? CameraDevice.rear : CameraDevice.front,
       );
-      log(xFile == null ? '没有获取到图片...' : '图片获取成功: --> (${xFile.path})');
+      log(xFile == null ? '没有获取到视频...' : '视频获取成功: --> (${xFile.path})');
     } catch (e) {
-      log('获取图片失败...');
+      log('获取视频失败...');
     } finally {
       _isPicking = false;
     }
@@ -70,9 +70,9 @@ class MyPicker {
         imageQuality: 30,
       );
 
-      log(xFile == null ? '没有获取到图片...' : '图片获取成功: --> (${xFile.path})');
+      log(xFile == null ? '没有获取到媒体...' : '媒体获取成功: --> (${xFile.path})');
     } catch (e) {
-      log('获取图片失败...');
+      log('获取媒体失败...');
     } finally {
       _isPicking = false;
     }
