@@ -284,10 +284,12 @@ class MyDio {
           data: data == null ? null : FormData.fromMap(data),
           options: Options(
             contentType: 'multipart/form-data',
+            sendTimeout: timeout * 60 * 60 * 24,
+            receiveTimeout: timeout * 60 * 60 * 24,
           ),
           cancelToken: cancelToken ?? cancelTokenPublic,
           onReceiveProgress: onSendProgress,
-        ).timeout(timeout * 60 * 60 * 24);
+        );
 
       } catch (err) {
         _index = (_index + 1) % urls.length;
