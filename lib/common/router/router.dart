@@ -93,6 +93,26 @@ class MyPages {
           return CustomerChatView(arguments: args);
         },
       ),
+
+      // 打开图片
+      GoRoute(
+        path: MyRouters.openImage.path,
+        name: MyRouters.openImage.name,
+        builder: (context, state) {
+          final args = state.extra as OpenImageViewArguments;
+          return OpenImageView(arguments: args);
+        },
+      ),
+
+      // 打开视频
+      GoRoute(
+        path: MyRouters.openVideo.path,
+        name: MyRouters.openVideo.name,
+        builder: (context, state) {
+          final args = state.extra as OpenVideoViewArguments;
+          return OpenVideoView(arguments: args);
+        },
+      ),
     ],
   );
 }

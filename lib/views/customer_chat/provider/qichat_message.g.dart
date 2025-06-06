@@ -7,7 +7,7 @@ part of 'qichat_message.dart';
 // **************************************************************************
 
 String _$customerChatViewQichatMessageNotifierHash() =>
-    r'8499e3961052b82e2d7b8b309178547313feed90';
+    r'bb9b9db96ee5c8b8c72e678cd819854bb43195d3';
 
 /// 起聊的消息列表
 ///

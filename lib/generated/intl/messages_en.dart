@@ -286,6 +286,7 @@ class MessageLookup extends MessageLookupByLibrary {
     ),
     "connecting": MessageLookupByLibrary.simpleMessage("Connecting"),
     "copy": MessageLookupByLibrary.simpleMessage("Copy"),
+    "copySuccess": MessageLookupByLibrary.simpleMessage("Copied to Clipboard"),
     "customerHelpViewTitle": MessageLookupByLibrary.simpleMessage(
       "Customer Support",
     ),

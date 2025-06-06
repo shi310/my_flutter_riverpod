@@ -123,4 +123,9 @@ class MyRouters {
   static const activityTradePrice = MyRoutersModel('/activity_trade_price', 'activity_trade_price');
   static const chatFaqInfoView = MyRoutersModel('/chat_faq_info', 'chat_faq_info');
   static const chatFaqListView = MyRoutersModel('/chat_faq_list', 'chat_faq_list');
+
+  // 打开图片
+  static const openImage = MyRoutersModel('/open_image', 'open_image');
+  // 打开视频
+  static const openVideo = MyRoutersModel('/open_video', 'open_video');
 }

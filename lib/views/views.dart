@@ -8,4 +8,5 @@ export 'home/view.dart';
 export 'index/view.dart';
 export 'login/view.dart';
 export 'test/view.dart';
-export 'package:qichatsdk_flutter/src/dartOut/api/common/c_message.pb.dart';
+export 'open_image/view.dart';
+export 'open_video/view.dart';

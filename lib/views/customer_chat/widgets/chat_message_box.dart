@@ -26,10 +26,9 @@ class _CustomerChatViewMessageBox extends StatelessWidget {
       child: MyCard(
         constraints: BoxConstraints(maxWidth: MediaQuery.of(context).size.width - 32 - 4 - 8),
         child: Row(crossAxisAlignment: CrossAxisAlignment.start, children: [
-          if (alignType == QichatAlignType.left)
-            avatarBox,
-          if (alignType == QichatAlignType.left)
-            const SizedBox(width: 8),
+          Opacity(opacity: alignType == QichatAlignType.left ? 1 : 0, child: avatarBox),
+          Opacity(opacity: alignType == QichatAlignType.left ? 1 : 0, child: SizedBox(width: 6)),
+
           Flexible(child: Column(crossAxisAlignment: alignType == QichatAlignType.left ? CrossAxisAlignment.start : CrossAxisAlignment.end, children: [
             Text(createTime, style: TextStyle(
               fontSize: MyFontSize.bodySmall.value,
@@ -37,10 +36,9 @@ class _CustomerChatViewMessageBox extends StatelessWidget {
             const SizedBox(height: 4),
             child,
           ])),
-          if (alignType == QichatAlignType.right)
-            const SizedBox(width: 8),
-          if (alignType == QichatAlignType.right)
-            avatarBox,
+
+          Opacity(opacity: alignType == QichatAlignType.left ? 0 : 1, child: SizedBox(width: 6)),
+          Opacity(opacity: alignType == QichatAlignType.left ? 0 : 1, child: avatarBox),
         ]),
       ),
     );

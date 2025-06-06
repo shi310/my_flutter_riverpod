@@ -19,12 +19,17 @@ class _ButtonSend extends ConsumerWidget {
           // 消息发送等待方法
           Completer<Int64> sendCompleter = Completer<Int64>();
 
+          // 获取需要回复的消息体
+          final replyMessage = ref.read(customerChatViewReplyMessageNotifierProvider);
+
           // 获取当前起聊的主体
           final controller = ref.read(customerChatControllerNotifierProvider.notifier);
           // 获取输入框
           final inputTextController = ref.read(customerChatViewTextEditingControllerNotifierProvider.notifier);
           // 发送消息
-          controller.chatLib?.sendMessage(inputTextController.controller.text, MessageFormat.MSG_TEXT, Int64(controller.consultId ?? 0));
+          controller.chatLib?.sendMessage(inputTextController.controller.text, MessageFormat.MSG_TEXT, Int64(controller.consultId ?? 0),
+            replyMsgId: replyMessage?.msgId ?? Int64(0),
+          );
           // 获取消息列表
           // 准备往里面添加消息
           final chatList = ref.read(customerChatViewQichatMessageNotifierProvider.notifier);
@@ -39,7 +44,7 @@ class _ButtonSend extends ConsumerWidget {
             url: null,
             messageFormat: MessageFormat.MSG_TEXT,
             alignType: QichatAlignType.right,
-            replyMsgId: Int64(0),
+            replyMsgId: replyMessage?.msgId ?? Int64(0),
             completer: sendCompleter,
             createTime: DateTime.now().toString().split('.').first,
             autoReplyItem: null,
@@ -52,6 +57,8 @@ class _ButtonSend extends ConsumerWidget {
           inputTextController.controller.clear();
           // 输入框监听：手动
           inputTextController.listenerText();
+          // 清理回复消息
+          ref.read(customerChatViewReplyMessageNotifierProvider.notifier).clear();
         },
         child: Text(S.of(context).send),
       ),

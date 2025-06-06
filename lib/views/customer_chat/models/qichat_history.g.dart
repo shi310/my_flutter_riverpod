@@ -149,10 +149,14 @@ Map<String, dynamic> _$AutoReplyFlagToJson(_AutoReplyFlag instance) =>
 
 _Media _$MediaFromJson(Map<String, dynamic> json) => _Media(
       uri: json['uri'] as String?,
+      hlsUri: json['hlsUri'] as String?,
+      thumbnailUri: json['thumbnailUri'] as String?,
     );
 
 Map<String, dynamic> _$MediaToJson(_Media instance) => <String, dynamic>{
       'uri': instance.uri,
+      'hlsUri': instance.hlsUri,
+      'thumbnailUri': instance.thumbnailUri,
     };
 
 _Geo _$GeoFromJson(Map<String, dynamic> json) => _Geo(

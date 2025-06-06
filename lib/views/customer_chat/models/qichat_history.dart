@@ -80,6 +80,8 @@ abstract class AutoReplyFlag with _$AutoReplyFlag {
 abstract class Media with _$Media {
   const factory Media({
     String? uri,
+    String? hlsUri,
+    String? thumbnailUri,
   }) = _Media;
 
   factory Media.fromJson(Map<String, dynamic> json) => _$MediaFromJson(json);

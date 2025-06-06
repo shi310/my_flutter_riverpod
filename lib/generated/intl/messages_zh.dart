@@ -194,6 +194,7 @@ class MessageLookup extends MessageLookupByLibrary {
     "connectFailed": MessageLookupByLibrary.simpleMessage("线路初始化失败"),
     "connecting": MessageLookupByLibrary.simpleMessage("正在连接"),
     "copy": MessageLookupByLibrary.simpleMessage("复制"),
+    "copySuccess": MessageLookupByLibrary.simpleMessage("已成功复制到剪贴板"),
     "customerHelpViewTitle": MessageLookupByLibrary.simpleMessage("客服帮助"),
     "customerNoCert": MessageLookupByLibrary.simpleMessage("暂未配置仲裁客服"),
     "customerViewTitleFaq": MessageLookupByLibrary.simpleMessage("常见问题"),

@@ -1,4 +1,5 @@
 import 'package:fixnum/fixnum.dart';
+import 'package:my_flutter_basic/public/public.dart';
 import 'package:riverpod_annotation/riverpod_annotation.dart';
 
 import '../models/models.dart';
@@ -35,5 +36,14 @@ class CustomerChatViewQichatMessageNotifier extends _$CustomerChatViewQichatMess
 
   void update(QiChatMessageModel value) {
     state = state.map((e) => e.msgId == value.msgId ? value : e).toList();
+  }
+
+  QiChatMessageModel? getMessageById(Int64 msgId) {
+    try {
+      return state.firstWhere((e) => e.msgId == msgId);
+    } catch (e) {
+      MyLogger.w('获取消息体失败 -> $e');
+      return null;
+    }
   }
 }

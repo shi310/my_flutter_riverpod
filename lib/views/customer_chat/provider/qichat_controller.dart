@@ -1,6 +1,8 @@
 import 'dart:async';
 
+import 'package:dio/dio.dart';
 import 'package:fixnum/fixnum.dart';
+import 'package:my_flutter_basic/views/customer_chat/provider/reply_message.dart';
 import 'package:qichatsdk_flutter/qichatsdk_flutter.dart';
 import 'package:riverpod_annotation/riverpod_annotation.dart';
 import 'package:uuid/uuid.dart';
@@ -43,6 +45,95 @@ class CustomerChatControllerNotifier extends _$CustomerChatControllerNotifier {
     });
   }
 
+  /// 发送媒体消息
+  void sendMedia({
+    required String path,
+    required MediaType mediaType,
+  }) {
+    // 消息发送等待方法
+    Completer<Int64> sendCompleter = Completer<Int64>();
+
+    // 获取需要回复的消息体
+    final replyMessage = ref.read(customerChatViewReplyMessageNotifierProvider);
+
+    final message = QiChatMessageModel(
+      id: const Uuid().v4(),
+      msgId: Int64(0),
+      payloadId: Int64(0),
+      content: null,
+      path: path,
+      url: null,
+      messageFormat: mediaType == MediaType.image ? MessageFormat.MSG_IMG : MessageFormat.MSG_VIDEO,
+      alignType: QichatAlignType.right,
+      replyMsgId: replyMessage?.msgId ?? Int64(0),
+      completer: sendCompleter,
+      createTime: DateTime.now().toString().split('.').first,
+      autoReplyItem: null,
+    );
+
+    // 获取消息列表
+    // 准备往里面添加消息
+    final chatList = ref.read(customerChatViewQichatMessageNotifierProvider.notifier);
+
+    // 添加消息
+    chatList.add(message);
+
+    // 移动列表到底部
+    ref.read(customerChatViewScrollControllerNotifierProvider.notifier).moveTabToBottom();
+
+    // 上传文件
+    myDio?.upload(ApiPath.qichat.upload,
+      data: () async {
+        final fileType = path.split('.').last.toLowerCase();
+        final fileName = '${DateTime.now().millisecondsSinceEpoch}.$fileType';
+        // 构建 MultipartFile 对象
+        final multipartFile = await MultipartFile.fromFile(path,
+          filename: fileName,
+        );
+
+        return {
+          'myFile': multipartFile,
+          'type': '4',
+        };
+      },
+      onSuccess: (code, msg, data) async {
+        // 拿到payloadId
+        if (data != null && data is Map<String, dynamic>) {
+          if (mediaType == MediaType.image) {
+            chatLib?.sendMessage(data['filepath'], MessageFormat.MSG_IMG, Int64(consultId ?? 0),
+              replyMsgId: replyMessage?.msgId ?? Int64(0),
+            );
+          } else {
+            chatLib?.sendVideoMessage(data['filepath'], '', '', Int64(consultId ?? 0),
+              replyMsgId: replyMessage?.msgId ?? Int64(0),
+            );
+          }
+          final newMessage = message.copyWith(
+            payloadId: chatLib?.payloadId,
+          );
+          chatList.replace(message, newMessage);
+        } else {
+          sendCompleter.completeError('发送失败');
+        }
+      },
+      onConnectError: (e) async{
+        sendCompleter.completeError(e);
+      },
+      onError: (e) async {
+        showResponseError(e);
+        sendCompleter.completeError('上传失败');
+      },
+      onSendProgress: (value, total) {
+        // 更新上传进度
+        MyLogger.w('上传进度: $value/$total');
+      },
+    );
+
+    // 清除回复
+    ref.read(customerChatViewReplyMessageNotifierProvider.notifier).clear();
+  }
+
+  /// 初始化
   Future<void> init({
     required CustomerChatViewArguments arguments,
   }) async {

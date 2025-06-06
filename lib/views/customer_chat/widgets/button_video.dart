@@ -34,7 +34,8 @@ class _ButtonVideo extends ConsumerWidget {
             size: size,
             mediaType: MediaType.video,
             onConfirm: (context, path, size, mediaType) {
-
+              final controller = ref.read(customerChatControllerNotifierProvider.notifier);
+              controller.sendMedia(path: path, mediaType: mediaType);
             },
             confirmText: confirmText,
             cancelText: cancelText,

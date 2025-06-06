@@ -32,8 +32,9 @@ class _ButtonCamera extends ConsumerWidget {
             path: path,
             size: size,
             mediaType: MediaType.image,
-            onConfirm: (context, path, size, mediaType) {
-
+            onConfirm: (context, path, size, mediaType)  {
+              final controller = ref.read(customerChatControllerNotifierProvider.notifier);
+              controller.sendMedia(path: path, mediaType: mediaType);
             },
             confirmText: confirmText,
             cancelText: cancelText,

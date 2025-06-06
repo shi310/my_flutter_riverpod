@@ -195,6 +195,16 @@ class S {
     return Intl.message('Copy', name: 'copy', desc: '', args: []);
   }
 
+  /// `Copied to Clipboard`
+  String get copySuccess {
+    return Intl.message(
+      'Copied to Clipboard',
+      name: 'copySuccess',
+      desc: '',
+      args: [],
+    );
+  }
+
   /// `Are you sure you want to proceed?`
   String get isContinue {
     return Intl.message(

@@ -50,13 +50,8 @@ Future<void> showMyDialog({
     children: [
       if (title != null) title.call(context),
       if (content != null && title != null) SizedBox(height: 16),
-      if (content != null)
-        Flexible(
-          child: SingleChildScrollView(
-            scrollDirection: Axis. vertical,
-            child: ConstrainedBox(constraints: BoxConstraints(minHeight: 60), child: Center(child: content.call(context))),
-          ),
-        ),
+      if (content != null) 
+        Flexible(child: content.call(context)),
       if ((title != null || content != null) && (confirmText != null || cancelText != null || onConfirm != null || onCancel != null)) SizedBox(height: 16),
       if (confirmText != null || cancelText != null || onConfirm != null || onCancel != null)
         Row(

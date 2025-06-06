@@ -7,7 +7,7 @@ part of 'qichat_controller.dart';
 // **************************************************************************
 
 String _$customerChatControllerNotifierHash() =>
-    r'43c5a8663ca6c04f986fece19ff617635683c9a4';
+    r'535e264c9b39c2bbd4159edae6cf75bf0b95b70f';
 
 /// 起聊控制器
 ///

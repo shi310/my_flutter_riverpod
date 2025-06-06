@@ -20,6 +20,7 @@
   "noStoragePermission": "请先开启相关的权限",
   "reset": "重置",
   "copy": "复制",
+  "copySuccess": "已成功复制到剪贴板",
   "isContinue": "是否确认继续操作?",
   "yes": "是",
   "no": "否",

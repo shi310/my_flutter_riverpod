@@ -20,6 +20,7 @@
   "noStoragePermission": "Please Grant Storage Permissions",
   "reset": "Reset",
   "copy": "Copy",
+  "copySuccess": "Copied to Clipboard",
   "isContinue": "Are you sure you want to proceed?",
   "yes": "Yes",
   "no": "No",

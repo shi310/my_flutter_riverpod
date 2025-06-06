@@ -6,7 +6,7 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 typedef MyProviderKeepAlive = void Function();
 
 MyProviderKeepAlive myProviderKeepAlive(Ref ref, {
-  Duration duration = const Duration(minutes: 10),
+  Duration duration = const Duration(minutes: 30),
   String? debugKey,
 }) {
   // 开始缓存: 这里是缓存数据

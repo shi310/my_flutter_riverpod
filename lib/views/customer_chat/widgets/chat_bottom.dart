@@ -8,18 +8,13 @@ class _ChatBottom extends StatelessWidget {
   });
 
   @override Widget build(BuildContext context) {
-    // 输入框
-    final input = _Input();
-
-    // 表情选择容器
-    final emoticonsContainer = _EmoticonsContainer();
-
     return MyCard(
       width: double.infinity,
       padding: EdgeInsets.fromLTRB(16, 8, 16, 8),
       color: Theme.of(context).myColors.itemCardBackground,
-      child: SafeArea(child: Column(children: [
-        input,
+      child: SafeArea(child: Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
+        _ReplyBox(),
+        _Input(),
         const SizedBox(height: 2),
         Row(children: [
           // 表情 / 文字键盘
@@ -36,7 +31,7 @@ class _ChatBottom extends StatelessWidget {
           _ButtonSend(arguments: arguments),
         ]),
         const SizedBox(height: 2),
-        emoticonsContainer,
+        _EmoticonsContainer(),
       ]
       )),
     );

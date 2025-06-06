@@ -1,5 +1,7 @@
 import Flutter
 import UIKit
+import Security
+import Foundation
 
 public class MyDeviceInfoPlugin: NSObject, FlutterPlugin {
     public static func register(with registrar: FlutterPluginRegistrar) {
@@ -22,11 +24,19 @@ public class MyDeviceInfoPlugin: NSObject, FlutterPlugin {
             deviceInfo["systemVersion"] = "IOS \(UIDevice.current.systemVersion)"
 
             // 设备ID (识别码)
-            if let identifierForVendor = UIDevice.current.identifierForVendor?.uuidString {
-                deviceInfo["id"] = identifierForVendor
-                deviceInfo["id"] = identifierForVendor
+            // if let identifierForVendor = UIDevice.current.identifierForVendor?.uuidString {
+            //    deviceInfo["id"] = identifierForVendor
+            // } else {
+            //    deviceInfo["id"] = "Unknown"
+            // }
+
+            let key = "com.flutter.my_device_info.deviceUUID"
+            if let uuid = KeychainHelper.get(key: key) {
+                deviceInfo["id"] = uuid
             } else {
-                deviceInfo["id"] = "Unknown"
+                let newUUID = UUID().uuidString
+                KeychainHelper.set(key: key, value: newUUID)
+                deviceInfo["id"] = newUUID
             }
 
             result(deviceInfo)
@@ -119,5 +129,39 @@ public class MyDeviceInfoPlugin: NSObject, FlutterPlugin {
             return model
         }
         return "iPhone"
+    }
+}
+
+class KeychainHelper {
+    static func set(key: String, value: String) {
+        if let data = value.data(using: .utf8) {
+            let query: [String: Any] = [
+                kSecClass as String: kSecClassGenericPassword,
+                kSecAttrAccount as String: key,
+                kSecValueData as String: data
+            ]
+
+            SecItemDelete(query as CFDictionary)
+            SecItemAdd(query as CFDictionary, nil)
+        }
+    }
+
+    static func get(key: String) -> String? {
+        let query: [String: Any] = [
+            kSecClass as String: kSecClassGenericPassword,
+            kSecAttrAccount as String: key,
+            kSecReturnData as String: true,
+            kSecMatchLimit as String: kSecMatchLimitOne
+        ]
+
+        var dataTypeRef: AnyObject?
+        let status = SecItemCopyMatching(query as CFDictionary, &dataTypeRef)
+
+        if status == errSecSuccess,
+           let data = dataTypeRef as? Data,
+           let result = String(data: data, encoding: .utf8) {
+            return result
+        }
+        return nil
     }
 }

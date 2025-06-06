@@ -35,14 +35,9 @@ class _ChatListView extends ConsumerWidget {
           avatar = MyImage(imageUrl: '${arguments.imageUrl}${qichatController.customerAvatar}');
         }
 
-        Widget child = _CustomerChatViewMessageBoxChild(
-          messageFormat: qichatMessage[index].messageFormat,
-          content: qichatMessage[index].content,
-          url: qichatMessage[index].url,
-          path: qichatMessage[index].path,
-          alignType: qichatMessage[index].alignType,
-          completer: qichatMessage[index].completer,
-        );
+        final reply = ref.read(customerChatViewQichatMessageNotifierProvider.notifier).getMessageById(qichatMessage[index].replyMsgId);
+
+        Widget child = _CustomerChatViewMessageBoxChild(message: qichatMessage[index], reply: reply);
 
         if (qichatMessage[index].autoReplyItem != null) {
           child = _CustomerChatMessageBoxQA(

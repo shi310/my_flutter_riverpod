@@ -1734,6 +1734,8 @@ class __$AutoReplyFlagCopyWithImpl<$Res>
 /// @nodoc
 mixin _$Media {
   String? get uri;
+  String? get hlsUri;
+  String? get thumbnailUri;
 
   /// Create a copy of Media
   /// with the given fields replaced by the non-null parameter values.
@@ -1750,16 +1752,19 @@ mixin _$Media {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is Media &&
-            (identical(other.uri, uri) || other.uri == uri));
+            (identical(other.uri, uri) || other.uri == uri) &&
+            (identical(other.hlsUri, hlsUri) || other.hlsUri == hlsUri) &&
+            (identical(other.thumbnailUri, thumbnailUri) ||
+                other.thumbnailUri == thumbnailUri));
   }
 
   @JsonKey(includeFromJson: false, includeToJson: false)
   @override
-  int get hashCode => Object.hash(runtimeType, uri);
+  int get hashCode => Object.hash(runtimeType, uri, hlsUri, thumbnailUri);
 
   @override
   String toString() {
-    return 'Media(uri: $uri)';
+    return 'Media(uri: $uri, hlsUri: $hlsUri, thumbnailUri: $thumbnailUri)';
   }
 }
 
@@ -1768,7 +1773,7 @@ abstract mixin class $MediaCopyWith<$Res> {
   factory $MediaCopyWith(Media value, $Res Function(Media) _then) =
       _$MediaCopyWithImpl;
   @useResult
-  $Res call({String? uri});
+  $Res call({String? uri, String? hlsUri, String? thumbnailUri});
 }
 
 /// @nodoc
@@ -1784,11 +1789,21 @@ class _$MediaCopyWithImpl<$Res> implements $MediaCopyWith<$Res> {
   @override
   $Res call({
     Object? uri = freezed,
+    Object? hlsUri = freezed,
+    Object? thumbnailUri = freezed,
   }) {
     return _then(_self.copyWith(
       uri: freezed == uri
           ? _self.uri
           : uri // ignore: cast_nullable_to_non_nullable
+              as String?,
+      hlsUri: freezed == hlsUri
+          ? _self.hlsUri
+          : hlsUri // ignore: cast_nullable_to_non_nullable
+              as String?,
+      thumbnailUri: freezed == thumbnailUri
+          ? _self.thumbnailUri
+          : thumbnailUri // ignore: cast_nullable_to_non_nullable
               as String?,
     ));
   }
@@ -1797,11 +1812,15 @@ class _$MediaCopyWithImpl<$Res> implements $MediaCopyWith<$Res> {
 /// @nodoc
 @JsonSerializable()
 class _Media implements Media {
-  const _Media({this.uri});
+  const _Media({this.uri, this.hlsUri, this.thumbnailUri});
   factory _Media.fromJson(Map<String, dynamic> json) => _$MediaFromJson(json);
 
   @override
   final String? uri;
+  @override
+  final String? hlsUri;
+  @override
+  final String? thumbnailUri;
 
   /// Create a copy of Media
   /// with the given fields replaced by the non-null parameter values.
@@ -1823,16 +1842,19 @@ class _Media implements Media {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is _Media &&
-            (identical(other.uri, uri) || other.uri == uri));
+            (identical(other.uri, uri) || other.uri == uri) &&
+            (identical(other.hlsUri, hlsUri) || other.hlsUri == hlsUri) &&
+            (identical(other.thumbnailUri, thumbnailUri) ||
+                other.thumbnailUri == thumbnailUri));
   }
 
   @JsonKey(includeFromJson: false, includeToJson: false)
   @override
-  int get hashCode => Object.hash(runtimeType, uri);
+  int get hashCode => Object.hash(runtimeType, uri, hlsUri, thumbnailUri);
 
   @override
   String toString() {
-    return 'Media(uri: $uri)';
+    return 'Media(uri: $uri, hlsUri: $hlsUri, thumbnailUri: $thumbnailUri)';
   }
 }
 
@@ -1842,7 +1864,7 @@ abstract mixin class _$MediaCopyWith<$Res> implements $MediaCopyWith<$Res> {
       __$MediaCopyWithImpl;
   @override
   @useResult
-  $Res call({String? uri});
+  $Res call({String? uri, String? hlsUri, String? thumbnailUri});
 }
 
 /// @nodoc
@@ -1858,11 +1880,21 @@ class __$MediaCopyWithImpl<$Res> implements _$MediaCopyWith<$Res> {
   @pragma('vm:prefer-inline')
   $Res call({
     Object? uri = freezed,
+    Object? hlsUri = freezed,
+    Object? thumbnailUri = freezed,
   }) {
     return _then(_Media(
       uri: freezed == uri
           ? _self.uri
           : uri // ignore: cast_nullable_to_non_nullable
+              as String?,
+      hlsUri: freezed == hlsUri
+          ? _self.hlsUri
+          : hlsUri // ignore: cast_nullable_to_non_nullable
+              as String?,
+      thumbnailUri: freezed == thumbnailUri
+          ? _self.thumbnailUri
+          : thumbnailUri // ignore: cast_nullable_to_non_nullable
               as String?,
     ));
   }

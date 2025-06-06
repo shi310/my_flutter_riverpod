@@ -21,8 +21,11 @@ class MyDio {
 
     final baseOptions = BaseOptions(
       baseUrl: urls.firstOrNull ?? '',
-      sendTimeout: timeout,
-      receiveTimeout: timeout,
+      // 上传文件的超时：默认 1 小时
+      sendTimeout: timeout * 6 * 60,
+      // 服务器相应时间：默认 1 小时
+      receiveTimeout: timeout * 6 * 60,
+      // 连接超时：默认 10 秒
       connectTimeout: timeout,
       responseType: ResponseType.json,
       contentType: 'application/json; charset=utf-8',
@@ -266,7 +269,7 @@ class MyDio {
   }
 
   Future<void> upload<T>(String path, {
-    Map<String, dynamic>? data,
+    required Future<Map<String, dynamic>> Function() data,
     CancelToken? cancelToken,
     void Function(int, int)? onSendProgress,
     Future<dynamic> Function(Response<dynamic>?)? onError,
@@ -277,20 +280,19 @@ class MyDio {
     Response? response;
 
     for (int index = 0; index < urls.length; index++) {
+      final pragma = await data.call();
       try {
         _dio?.options.baseUrl = urls[_index];
-        response = await _dio?.post(
-          path,
-          data: data == null ? null : FormData.fromMap(data),
+        response = await _dio?.post(path,
+          data: FormData.fromMap(pragma),
           options: Options(
             contentType: 'multipart/form-data',
             sendTimeout: timeout * 60 * 60 * 24,
             receiveTimeout: timeout * 60 * 60 * 24,
           ),
           cancelToken: cancelToken ?? cancelTokenPublic,
-          onReceiveProgress: onSendProgress,
+          onSendProgress: onSendProgress,
         );
-
       } catch (err) {
         _index = (_index + 1) % urls.length;
 
@@ -298,7 +300,7 @@ class MyDio {
           await onConnectError?.call(DioException(
             requestOptions: RequestOptions(
               path: path,
-              queryParameters: data,
+              queryParameters: pragma,
               cancelToken: cancelToken,
               method: 'POST',
               headers: headers,
